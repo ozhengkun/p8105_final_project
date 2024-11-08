@@ -1,4 +1,4 @@
-Proposal-Spotify 3000
+Proposal-Spotify 30000
 ================
 Zhengkun Ou, Yulin Liu, Wanlin Wu, Congyu Yang, Senna Kim
 2024-11-08

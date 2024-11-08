@@ -1,5 +1,5 @@
 ---
-title: "Proposal-Spotify 3000"
+title: "Proposal-Spotify 30000"
 author: "Zhengkun Ou, Yulin Liu, Wanlin Wu, Congyu Yang, Senna Kim"
 date: "2024-11-08"
 output: github_document
