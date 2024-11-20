@@ -37,7 +37,11 @@ cor_pop = spotify_df |>
   pivot_longer(everything(), names_to = "variable", values_to = "correlation") |> 
   arrange(desc(correlation))
 
+cor_pop
 
+```
+
+```{r}
 
 cor_pop|>
   ggplot(aes(x= variable, y = correlation))+
