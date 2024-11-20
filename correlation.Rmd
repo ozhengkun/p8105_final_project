@@ -1,0 +1,68 @@
+---
+title: "exploratory correlation"
+author: "Senna"
+date: "2024-11-20"
+output: html_document
+---
+```{r}
+spotify_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
+
+```
+
+```{r}
+library(ggplot2)
+library(reshape2)
+library(tidyverse)
+```
+
+```{r}
+numeric_var = spotify_df[sapply(spotify_df, is.numeric)]
+
+cor_matr = melt(cor(numeric_var, use = "complete.obs"))
+```
+```{r}
+ggplot(cor_matr, aes(Var1, Var2, fill = value)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0, limit = c(-1, 1)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Correlation Heatmap", x = "Variables", y = "Variables", fill = "Correlation")
+```
+
+```{r}
+cor_pop = spotify_df |>
+  select(where(is.numeric)) |> 
+  select(-track_popularity) |> 
+  summarise(across(everything(), ~ cor(.x, spotify_df$track_popularity, use = "complete.obs"))) |>
+  pivot_longer(everything(), names_to = "variable", values_to = "correlation") |> 
+  arrange(desc(correlation))
+
+
+
+cor_pop|>
+  ggplot(aes(x= variable, y = correlation))+
+  geom_col() +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "correlation with popularity", x = "Variable", y = "correlation")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
