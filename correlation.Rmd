@@ -2,7 +2,7 @@
 title: "exploratory correlation"
 author: "Senna"
 date: "2024-11-20"
-output: html_document
+output: github_document
 ---
 ```{r}
 spotify_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
