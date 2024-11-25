@@ -1,0 +1,209 @@
+---
+title: "Duration"
+output: html_document
+date: "2024-11-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(stats)
+library(effectsize)
+```
+
+```{r}
+spotify_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
+```
+
+```{r}
+#data cleaning
+spotify_df <- 
+  spotify_df %>% 
+  distinct(track_id, .keep_all = TRUE) %>% 
+  select(-track_id, -track_album_id, -playlist_id) %>% 
+  mutate(
+    track_album_release_year = as.numeric(str_sub(track_album_release_date, 1, 4)), 
+    playlist_name = factor(playlist_name),
+    playlist_genre = factor(playlist_genre),
+    playlist_subgenre = factor(playlist_subgenre)
+  ) %>% 
+  select(-track_album_release_date) 
+```
+  
+```{r}
+#median approach
+spotify_df_median <- 
+  spotify_df %>%
+  mutate(duration_median = case_when(  
+      duration_ms >= median(duration_ms, na.rm = TRUE) ~ "Long Duration",
+      duration_ms < median(duration_ms, na.rm = TRUE) ~ "Short Duration"
+      )
+    )
+```
+
+
+```{r}
+#standard deviation approach
+spotify_df_sd <- spotify_df %>%
+  mutate(
+    duration_sd = case_when(
+      duration_ms < mean(duration_ms, na.rm = TRUE) - sd(duration_ms, na.rm = TRUE) ~ "Short Duration",
+      duration_ms > mean(duration_ms, na.rm = TRUE) + sd(duration_ms, na.rm = TRUE) ~ "Long Duration",
+      TRUE ~ "Medium Duration"
+    )
+  )
+```
+
+```{r}
+#k-means approach
+kmeans_result <- kmeans(spotify_df$duration_ms, centers = 3)
+
+spotify_df_kmeans <- spotify_df %>%
+  mutate(
+    duration_kmeans = case_when(
+      kmeans_result$cluster == 1 ~ "Short Duration",
+      kmeans_result$cluster == 2 ~ "Medium Duration",
+      kmeans_result$cluster == 3 ~ "Long Duration"
+    )
+  )
+```
+
+```{r}
+#percentile approach
+spotify_df_perc <- spotify_df %>%
+  mutate(
+    duration_perc = case_when(
+      duration_ms < quantile(duration_ms, 0.25, na.rm = TRUE) ~ "Short Duration",
+      duration_ms > quantile(duration_ms, 0.75, na.rm = TRUE) ~ "Long Duration",
+      TRUE ~ "Medium Duration"
+    )
+  )
+```
+
+
+```{r}
+#median approach plot
+spotify_df_median %>%
+  ggplot(aes(x = playlist_genre, y = track_popularity, fill = duration_median)) +
+  geom_boxplot(outlier.alpha = 0.3) +
+  labs(
+    title = "Popularity by Genre and Duration Category (Median)",
+    x = "Music Genre",
+    y = "Track Popularity",
+    fill = "Duration Category"
+  ) 
+```
+We see that for some Genre songs with long duration tend to have lower popularity, for instance, edm and r&b. However, for others there is no such significant differences.
+```{r}
+#median approach anova test with effect size (Eta-squared)
+anova_results_median <- spotify_df_median %>%
+  group_by(playlist_genre) %>%
+  summarise(
+    anova = list(aov(track_popularity ~ duration_median, data = cur_data())),
+    eta_squared = map_dbl(anova, ~ eta_squared(.)$Eta2[1])  
+  )
+
+anova_summary_median <- anova_results_median %>%
+  mutate(
+    f_statistic = map_dbl(anova, ~ summary(.)[[1]]$`F value`[1]),
+    p_value = map_dbl(anova, ~ summary(.)[[1]]$`Pr(>F)`[1])
+  )
+
+anova_summary_median
+```
+By running anova test and compute effect size using Eta-squared we see that while p-value is significant for all genre except rock with 0.45, the effect size are all small. Hence we can say that Long-duration songs are slightly less popular in some genres (e.g., EDM, R&B, Rap), but the effect is small and not meaningful for practical applications.
+
+```{r}
+#standard deviation approach plot
+spotify_df_sd %>%
+  ggplot(aes(x = playlist_genre, y = track_popularity, fill = duration_sd)) +
+  geom_boxplot(outlier.alpha = 0.3) +
+  labs(
+    title = "Popularity by Genre and Duration Category (Standard Deviation)",
+    x = "Music Genre",
+    y = "Track Popularity",
+    fill = "Duration Category"
+  ) 
+```
+We see that for some Genre songs with long duration tend to have lower popularity, for instance, edm， pop, rap, and r&b. However, for latin and rock there is no such significant differences.
+
+```{r}
+#standard deviation approach anova test
+anova_results_sd <- spotify_df_sd %>%
+  group_by(playlist_genre) %>%
+  summarise(
+    anova = list(aov(track_popularity ~ duration_sd, data = cur_data())),
+    eta_squared = map_dbl(anova, ~ eta_squared(.)$Eta2[1]))
+
+anova_summary_sd <- anova_results_sd %>%
+  mutate(
+    f_statistic = map_dbl(anova, ~ summary(.)[[1]]$`F value`[1]),
+    p_value = map_dbl(anova, ~ summary(.)[[1]]$`Pr(>F)`[1])
+  )
+anova_summary_sd
+```
+While all the genre music are statistically significant differences, the effect sizes are very small or even negligible (with Eta-squared < 0.02), indicating that duration explain only a small proportion of the variance in popularity. 
+
+```{r}
+#k-means approach plot
+spotify_df_kmeans %>%
+  ggplot(aes(x = playlist_genre, y = track_popularity, fill = duration_kmeans)) +
+  geom_boxplot(outlier.alpha = 0.3) +
+  labs(
+    title = "Popularity by Genre and Duration Category (K-Means)",
+    x = "Music Genre",
+    y = "Track Popularity",
+    fill = "Duration Category"
+  ) 
+```
+We see that for some Genre songs with long duration tend to have lower popularity, for instance, edm, latin, pop, and r&b. However, for rap and rock there is no such significant differences.
+```{r}
+#k-means approach anova test
+anova_results_kmeans <- spotify_df_kmeans %>%
+  group_by(playlist_genre) %>%
+  summarise(
+    anova = list(aov(track_popularity ~ duration_kmeans, data = cur_data())),
+    eta_squared = map_dbl(anova, ~ eta_squared(.)$Eta2[1]))
+
+anova_summary_kmeans <- anova_results_kmeans %>%
+  mutate(
+    f_statistic = map_dbl(anova, ~ summary(.)[[1]]$`F value`[1]),
+    p_value = map_dbl(anova, ~ summary(.)[[1]]$`Pr(>F)`[1])
+  )
+anova_summary_kmeans
+```
+Confirm to previous approaches, even with statistically significance difference the duration have small practical impact on song popularity across genres.
+
+```{r}
+#percentile approach plot
+spotify_df_perc %>%
+  ggplot(aes(x = playlist_genre, y = track_popularity, fill = duration_perc)) +
+  geom_boxplot(outlier.alpha = 0.3) +
+  labs(
+    title = "Popularity by Genre and Duration Category (Percentiles)",
+    x = "Music Genre",
+    y = "Track Popularity",
+    fill = "Duration Category"
+  ) 
+```
+We see that for some Genre songs with long duration tend to have lower popularity, for instance, edm, latin, pop, and r&b. However, for rap and rock there is no such significant differences.
+
+```{r}
+#percentile approach anova test
+anova_results_perc <- spotify_df_perc %>%
+  group_by(playlist_genre) %>%
+   summarise(
+    anova = list(aov(track_popularity ~ duration_perc, data = cur_data())),
+    eta_squared = map_dbl(anova, ~ eta_squared(.)$Eta2[1]))
+
+anova_summary_perc <- anova_results_perc %>%
+  mutate(
+    f_statistic = map_dbl(anova, ~ summary(.)[[1]]$`F value`[1]),
+    p_value = map_dbl(anova, ~ summary(.)[[1]]$`Pr(>F)`[1])
+  )
+anova_summary_perc
+```
+Again, while the popularity across duration categories are statistically significant difference, duration explain a small proportion of the variance in popularity.
+
+### Overall
+Long duration songs are slightly less likely to be more popular, but the effect of duration is small and varies significantly across genres.
