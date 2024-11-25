@@ -1,6 +1,6 @@
 ---
 title: "Duration"
-output: html_document
+output: github_document
 date: "2024-11-24"
 ---
 
