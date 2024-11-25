@@ -1,0 +1,112 @@
+---
+title: "Danceability"
+author: "ww2745"
+date: "2024-11-22"
+output: html_document
+---
+## Set up
+```{r}
+library(ggplot2)
+library(dplyr)
+library(plotly)
+library(tidyverse)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+##Load Dataset
+```{r}
+spotify_data = 
+  read_csv("spotify_songs.csv") |> 
+  mutate(popularity=track_popularity,
+         genre=playlist_genre)
+```
+
+##Distrubution of dancebility
+```{r}
+violin_danceability = spotify_data |> 
+  plot_ly(
+    x = ~genre,
+    y = ~danceability,
+    type = "violin",
+    color= ~genre,
+    box = list(visible = TRUE),          
+    meanline = list(visible = TRUE)
+  ) |> 
+  layout(
+    title = "Distribution of Danceability by Genre",
+    xaxis = list(title = "Genre"),
+    yaxis = list(title = "Danceability")
+  )
+
+violin_danceability
+
+```
+
+##Danceability and popularity
+```{r}
+scatter_plot = spotify_data |> 
+  plot_ly(
+    x = ~danceability,
+    y = ~popularity,
+    color= ~genre,
+    type = "scatter", 
+    alpha=.2,
+    text = ~paste("Genre: ", genre, "<br>Danceability: ", danceability, "<br>Popularity: ", popularity)
+  ) |> 
+  layout(
+    title = "Danceability vs. Popularity",
+    xaxis = list(title = "Danceability", range = c(0, 1)),
+    yaxis = list(title = "Popularity", range = c(0, 100)),
+    showlegend = FALSE
+  )
+
+scatter_plot
+
+```
+
+## Regression
+```{r}
+model = lm(popularity ~ danceability, data = spotify_data)
+
+scatter_plot = spotify_data |> 
+  plot_ly(
+    x = ~danceability,
+    y = ~popularity,
+    color = ~genre,
+    type = "scatter", 
+    alpha = 0.2,
+    text = ~paste("Genre: ", genre, "<br>Danceability: ", danceability, "<br>Popularity: ", popularity)
+  ) |> 
+  add_trace(
+    x = ~spotify_data$danceability,
+    y = ~predict(model),
+    mode = "lines",
+    line = list(color = "red"),
+    name = "Regression Line"
+  ) |> 
+  layout(
+    title = "Danceability vs. Popularity",
+    xaxis = list(title = "Danceability", range = c(0, 1)),
+    yaxis = list(title = "Popularity", range = c(0, 100)),
+    showlegend = FALSE
+  )
+
+scatter_plot
+
+```
+
