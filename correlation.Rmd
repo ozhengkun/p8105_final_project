@@ -49,8 +49,7 @@ spotify_df <-
                           7 ~ "G", 8 ~ "G#/Ab",
                           9 ~ "A", 10 ~ "A#/Bb",
                           11 ~ "B")),
-         mode = factor(case_match(mode, 0 ~ "minor",
-                          1 ~ "Major")),
+         mode = factor(case_match(mode, 0 ~ "minor",1 ~ "Major")),
          speechiness = factor(case_when(speechiness < 0.33 ~ "non-speech-like music",
                                  speechiness >= 0.33 & speechiness <= 0.66 ~ "mix of speech and music",
                                  speechiness > 0.66 ~ "entirely of spoken words")))
@@ -129,20 +128,50 @@ spotify_df %>%
 From this plot we can see, singers prefer to produce and sing energetic (fast, loud, and noisy) music.
 
 ```{r}
-spotify_df %>% 
-  ggplot(aes(x = energy, y = track_popularity)) + 
-  geom_hex()+
-  geom_smooth()
-```
-
-```{r}
 spotify_df %>% group_by(playlist_genre) %>% 
   ggplot(aes(x = energy, y = track_popularity)) + 
   geom_hex()+
   facet_wrap(~ playlist_genre,nrow = 2)
 
 ```
-Although, we realize that energy is a significant predictor for popularity and current singers and song producers prefer quick and loud songs. Unfortunalty, we cannot see obvious relationship between songs' energy and songs' popularity.
+Although, we realize that energy is a significant predictor for popularity and current singers and song producers prefer quick and loud songs. Unfortunate, we cannot see obvious relationship between songs' energy and songs' popularity.
+
+
+Try k-mean
+
+```{r}
+energy_popularity <- spotify_df %>% 
+  select(track_popularity,energy)
+
+kmeans_energy <- 
+  kmeans(x = energy_popularity, centers = 3)
+
+kmeans_energy
+```
+
+```{r}
+kmeans_energy_df =
+  broom::augment(kmeans_energy, energy_popularity)
+
+kmeans_energy_df %>% 
+  ggplot(aes(x = energy, y = track_popularity, color = .cluster)) +
+  geom_boxplot() 
+```
+Energy level around 80 is most likely to have higher popularity score.
+
+```{r}
+energy_popularity_genre <- spotify_df %>% 
+  select(track_popularity,energy,playlist_genre)
+
+kmeans_energy_genre_df =
+  broom::augment(kmeans_energy, energy_popularity_genre)
+
+kmeans_energy_genre_df %>% group_by(playlist_genre) %>% 
+  ggplot(aes(x = energy, y = track_popularity, color = .cluster)) +
+  geom_boxplot() +
+  facet_wrap(~playlist_genre,nrow = 2)
+```
+
 
 ### key
 
@@ -168,8 +197,38 @@ spotify_df %>% group_by(playlist_genre) %>%
   facet_wrap(~ playlist_genre,nrow = 2)+
   theme(axis.text.x = element_text(size = 4,angle = 30))
 ```
-Although, we realize that energy is a significant predictor for popularity and current singers and song producers prefer quick and loud songs. Unfortunalty, we cannot see obvious relationship between songs' energy and songs' popularity.
 
+
+
+### loudness
+
+```{r}
+lm(track_popularity ~ loudness, data = spotify_df) %>% 
+  summary()
+```
+From this simple linear regression, we got a super small p-value, which means we can reject the null hypothesis and conclude that loudness is a significant predictor for popularity.
+
+```{r}
+spotify_df %>% 
+  ggplot(aes(x = loudness)) + 
+  geom_histogram()
+```
+From this plot we can see, most of the songs have loudness between -10db to 0db.
+
+```{r}
+spotify_df %>% 
+  ggplot(aes(x = loudness, y = track_popularity)) + 
+  geom_hex()+
+  geom_smooth()
+```
+
+```{r}
+spotify_df %>% group_by(playlist_genre) %>% 
+  ggplot(aes(x = loudness, y = track_popularity)) + 
+  geom_hex()+
+  facet_wrap(~ playlist_genre,nrow = 2)
+
+```
 
 
 
