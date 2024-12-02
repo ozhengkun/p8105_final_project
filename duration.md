@@ -7,7 +7,7 @@ spotify_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience
 ```
 
     ## Rows: 32833 Columns: 23
-    ## ── Column specification ────────────────────────────────────────────────────────
+    ## ── Column specification ─────────────────────────────────────────────────────────────────────────────
     ## Delimiter: ","
     ## chr (10): track_id, track_name, track_artist, track_album_id, track_album_na...
     ## dbl (13): track_popularity, danceability, energy, key, loudness, mode, speec...
@@ -119,14 +119,6 @@ anova_results_median <- spotify_df_median %>%
     ##   to eta squared. Returning eta squared.
     ## For one-way between subjects designs, partial eta squared is equivalent
     ##   to eta squared. Returning eta squared.
-
-    ## Warning: There was 1 warning in `summarise()`.
-    ## ℹ In argument: `anova = list(aov(track_popularity ~ duration_median, data =
-    ##   cur_data()))`.
-    ## ℹ In group 1: `playlist_genre = edm`.
-    ## Caused by warning:
-    ## ! `cur_data()` was deprecated in dplyr 1.1.0.
-    ## ℹ Please use `pick()` instead.
 
 ``` r
 anova_summary_median <- anova_results_median %>%

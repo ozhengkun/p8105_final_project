@@ -1,0 +1,131 @@
+---
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: journal
+    code_folding: hide
+    number_sections: false
+---
+
+<style>
+  body {
+    background: linear-gradient(180deg, #F4F6ED 0%, #C8E6C9 50%, #A5D6A7 100%);
+    color: #191414; 
+    font-family: 'Signika', sans-serif; 
+  }
+
+  h1 {
+    color: #E2725B; 
+    font-weight: bold;
+    font-size: 2.5em;
+  }
+
+  h2 {
+    color: #E2725B; 
+    font-weight: bold;
+    font-size: 1.8em;
+  }
+
+  p {
+    line-height: 1.8; 
+    font-size: 1.1em; 
+  }
+
+  a {
+    color: #1DB954;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #1ED760;
+  }
+
+   .btn {
+    background-color: #E2725B; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  .btn:hover {
+    background-color: #E2725B; 
+    color: black;
+  }
+
+  footer {
+    background: linear-gradient(90deg, #A5D6A7, #C8E6C9);
+    color: #191414;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1em;
+  }
+  footer a {
+    color: #1DB954;
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
+   .section {
+    background: white; 
+    border: 2px solid #E2725B;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+    transition: transform 0.2s ease; 
+  }
+  .section:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+  }
+</style>
+
+<h1 style="text-align: center; margin: 50px;">What Makes Your Song Shine on Spotify?</h1>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<div class="section">
+  <p style="font-size: 1.2em; text-align: justify; line-height: 1.8; color: #000000; margin: 20px; font-family: 'Signika', sans-serif;">
+    In a world where music connects billions, have you ever wondered what makes a song truly stand out? Is it the beat, the duration, or the genre? Through this project, we dive deep into Spotify's vast database to uncover the hidden patterns behind a song's success.
+  </p>
+</div>
+
+<img src="image/music2.jpg" alt="Does the song length matter" style="display: block; margin: 20px auto; width: 100%; border-radius: 10px;">
+<p style="text-align: center; font-size: 0.8em;">
+  Source: <a href="https://imusician.pro/en/resources/blog/does-the-song-length-matter" target="_blank">imusician.pro</a>
+</p>
+
+<h2 style="margin-top: 40px;">What You’ll Discover</h2>
+<div class="section">
+  <ul>
+    <li><b>Music Trends Over Time</b>: Explore how popularity has evolved across genres and eras.</li>
+    <li><b>Key Features of Hit Songs</b>: Uncover the optimal combination of factors like danceability, energy, and valence that make a song a hit.</li>
+    <li><b>Insights for Creators</b>: Gain practical tips for crafting songs that resonate with listeners.</li>
+  </ul>
+</div>
+
+<h2 style="margin-top: 40px;">Why This Matters</h2>
+<div class="section">
+  <p>
+    Whether you're a music lover, an aspiring artist, or just curious, this project provides a unique perspective on what makes music shine in today's streaming world. Dive in to explore trends, results, and actionable insights that reveal the heartbeat of Spotify's most popular tracks.
+  </p>
+</div>
+
+<footer>
+  <p>© 2024 What Makes Your Song Shine on Spotify?</p>
+  <p>
+    <a href="https://github.com/ozhengkun/p8105_final_project.git" target="_blank">GitHub</a> | 
+    <a href="mailto:youremail@example.com">Contact</a>
+  </p>
+</footer>
+
+

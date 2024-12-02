@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+@font-face {
+font-family: octicons-link;
+src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+body {
+-webkit-text-size-adjust: 100%;
+text-size-adjust: 100%;
+color: #333;
+font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-size: 16px;
+line-height: 1.6;
+word-wrap: break-word;
+}
+a {
+background-color: transparent;
+}
+a:active,
+a:hover {
+outline: 0;
+}
+strong {
+font-weight: bold;
+}
+h1 {
+font-size: 2em;
+margin: 0.67em 0;
+}
+img {
+border: 0;
+}
+hr {
+box-sizing: content-box;
+height: 0;
+}
+pre {
+overflow: auto;
+}
+code,
+kbd,
+pre {
+font-family: monospace, monospace;
+font-size: 1em;
+}
+input {
+color: inherit;
+font: inherit;
+margin: 0;
+}
+html input[disabled] {
+cursor: default;
+}
+input {
+line-height: normal;
+}
+input[type="checkbox"] {
+box-sizing: border-box;
+padding: 0;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+td,
+th {
+padding: 0;
+}
+* {
+box-sizing: border-box;
+}
+input {
+font: 13px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+a {
+color: #4078c0;
+text-decoration: none;
+}
+a:hover,
+a:active {
+text-decoration: underline;
+}
+hr {
+height: 0;
+margin: 15px 0;
+overflow: hidden;
+background: transparent;
+border: 0;
+border-bottom: 1px solid #ddd;
+}
+hr:before {
+display: table;
+content: "";
+}
+hr:after {
+display: table;
+clear: both;
+content: "";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-top: 15px;
+margin-bottom: 15px;
+line-height: 1.1;
+}
+h1 {
+font-size: 30px;
+}
+h2 {
+font-size: 21px;
+}
+h3 {
+font-size: 16px;
+}
+h4 {
+font-size: 14px;
+}
+h5 {
+font-size: 12px;
+}
+h6 {
+font-size: 11px;
+}
+blockquote {
+margin: 0;
+}
+ul,
+ol {
+padding: 0;
+margin-top: 0;
+margin-bottom: 0;
+}
+ol ol,
+ul ol {
+list-style-type: lower-roman;
+}
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+list-style-type: lower-alpha;
+}
+dd {
+margin-left: 0;
+}
+code {
+font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+font-size: 12px;
+}
+pre {
+margin-top: 0;
+margin-bottom: 0;
+font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.select::-ms-expand {
+opacity: 0;
+}
+.octicon {
+font: normal normal normal 16px/1 octicons-link;
+display: inline-block;
+text-decoration: none;
+text-rendering: auto;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+.octicon-link:before {
+content: '\f05c';
+}
+.markdown-body:before {
+display: table;
+content: "";
+}
+.markdown-body:after {
+display: table;
+clear: both;
+content: "";
+}
+.markdown-body>*:first-child {
+margin-top: 0 !important;
+}
+.markdown-body>*:last-child {
+margin-bottom: 0 !important;
+}
+a:not([href]) {
+color: inherit;
+text-decoration: none;
+}
+.anchor {
+display: inline-block;
+padding-right: 2px;
+margin-left: -18px;
+}
+.anchor:focus {
+outline: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-top: 1em;
+margin-bottom: 16px;
+font-weight: bold;
+line-height: 1.4;
+}
+h1 .octicon-link,
+h2 .octicon-link,
+h3 .octicon-link,
+h4 .octicon-link,
+h5 .octicon-link,
+h6 .octicon-link {
+color: #000;
+vertical-align: middle;
+visibility: hidden;
+}
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+text-decoration: none;
+}
+h1:hover .anchor .octicon-link,
+h2:hover .anchor .octicon-link,
+h3:hover .anchor .octicon-link,
+h4:hover .anchor .octicon-link,
+h5:hover .anchor .octicon-link,
+h6:hover .anchor .octicon-link {
+visibility: visible;
+}
+h1 {
+padding-bottom: 0.3em;
+font-size: 2.25em;
+line-height: 1.2;
+border-bottom: 1px solid #eee;
+}
+h1 .anchor {
+line-height: 1;
+}
+h2 {
+padding-bottom: 0.3em;
+font-size: 1.75em;
+line-height: 1.225;
+border-bottom: 1px solid #eee;
+}
+h2 .anchor {
+line-height: 1;
+}
+h3 {
+font-size: 1.5em;
+line-height: 1.43;
+}
+h3 .anchor {
+line-height: 1.2;
+}
+h4 {
+font-size: 1.25em;
+}
+h4 .anchor {
+line-height: 1.2;
+}
+h5 {
+font-size: 1em;
+}
+h5 .anchor {
+line-height: 1.1;
+}
+h6 {
+font-size: 1em;
+color: #777;
+}
+h6 .anchor {
+line-height: 1.1;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table,
+pre {
+margin-top: 0;
+margin-bottom: 16px;
+}
+hr {
+height: 4px;
+padding: 0;
+margin: 16px 0;
+background-color: #e7e7e7;
+border: 0 none;
+}
+ul,
+ol {
+padding-left: 2em;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+margin-top: 0;
+margin-bottom: 0;
+}
+li>p {
+margin-top: 16px;
+}
+dl {
+padding: 0;
+}
+dl dt {
+padding: 0;
+margin-top: 16px;
+font-size: 1em;
+font-style: italic;
+font-weight: bold;
+}
+dl dd {
+padding: 0 16px;
+margin-bottom: 16px;
+}
+blockquote {
+padding: 0 15px;
+color: #777;
+border-left: 4px solid #ddd;
+}
+blockquote>:first-child {
+margin-top: 0;
+}
+blockquote>:last-child {
+margin-bottom: 0;
+}
+table {
+display: block;
+width: 100%;
+overflow: auto;
+word-break: normal;
+word-break: keep-all;
+}
+table th {
+font-weight: bold;
+}
+table th,
+table td {
+padding: 6px 13px;
+border: 1px solid #ddd;
+}
+table tr {
+background-color: #fff;
+border-top: 1px solid #ccc;
+}
+table tr:nth-child(2n) {
+background-color: #f8f8f8;
+}
+img {
+max-width: 100%;
+box-sizing: content-box;
+background-color: #fff;
+}
+code {
+padding: 0;
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+margin: 0;
+font-size: 85%;
+background-color: rgba(0,0,0,0.04);
+border-radius: 3px;
+}
+code:before,
+code:after {
+letter-spacing: -0.2em;
+content: "\00a0";
+}
+pre>code {
+padding: 0;
+margin: 0;
+font-size: 100%;
+word-break: normal;
+white-space: pre;
+background: transparent;
+border: 0;
+}
+.highlight {
+margin-bottom: 16px;
+}
+.highlight pre,
+pre {
+padding: 16px;
+overflow: auto;
+font-size: 85%;
+line-height: 1.45;
+background-color: #f7f7f7;
+border-radius: 3px;
+}
+.highlight pre {
+margin-bottom: 0;
+word-break: normal;
+}
+pre {
+word-wrap: normal;
+}
+pre code {
+display: inline;
+max-width: initial;
+padding: 0;
+margin: 0;
+overflow: initial;
+line-height: inherit;
+word-wrap: normal;
+background-color: transparent;
+border: 0;
+}
+pre code:before,
+pre code:after {
+content: normal;
+}
+kbd {
+display: inline-block;
+padding: 3px 5px;
+font-size: 11px;
+line-height: 10px;
+color: #555;
+vertical-align: middle;
+background-color: #fcfcfc;
+border: solid 1px #ccc;
+border-bottom-color: #bbb;
+border-radius: 3px;
+box-shadow: inset 0 -1px 0 #bbb;
+}
+.pl-c {
+color: #969896;
+}
+.pl-c1,
+.pl-s .pl-v {
+color: #0086b3;
+}
+.pl-e,
+.pl-en {
+color: #795da3;
+}
+.pl-s .pl-s1,
+.pl-smi {
+color: #333;
+}
+.pl-ent {
+color: #63a35c;
+}
+.pl-k {
+color: #a71d5d;
+}
+.pl-pds,
+.pl-s,
+.pl-s .pl-pse .pl-s1,
+.pl-sr,
+.pl-sr .pl-cce,
+.pl-sr .pl-sra,
+.pl-sr .pl-sre {
+color: #183691;
+}
+.pl-v {
+color: #ed6a43;
+}
+.pl-id {
+color: #b52a1d;
+}
+.pl-ii {
+background-color: #b52a1d;
+color: #f8f8f8;
+}
+.pl-sr .pl-cce {
+color: #63a35c;
+font-weight: bold;
+}
+.pl-ml {
+color: #693a17;
+}
+.pl-mh,
+.pl-mh .pl-en,
+.pl-ms {
+color: #1d3e81;
+font-weight: bold;
+}
+.pl-mq {
+color: #008080;
+}
+.pl-mi {
+color: #333;
+font-style: italic;
+}
+.pl-mb {
+color: #333;
+font-weight: bold;
+}
+.pl-md {
+background-color: #ffecec;
+color: #bd2c00;
+}
+.pl-mi1 {
+background-color: #eaffea;
+color: #55a532;
+}
+.pl-mdr {
+color: #795da3;
+font-weight: bold;
+}
+.pl-mo {
+color: #1d3e81;
+}
+kbd {
+display: inline-block;
+padding: 3px 5px;
+font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+line-height: 10px;
+color: #555;
+vertical-align: middle;
+background-color: #fcfcfc;
+border: solid 1px #ccc;
+border-bottom-color: #bbb;
+border-radius: 3px;
+box-shadow: inset 0 -1px 0 #bbb;
+}
+.task-list-item {
+list-style-type: none;
+}
+.task-list-item+.task-list-item {
+margin-top: 3px;
+}
+.task-list-item input {
+margin: 0 0.35em 0.25em -1.6em;
+vertical-align: middle;
+}
+:checked+.radio-label {
+z-index: 1;
+position: relative;
+border-color: #4078c0;
+}
+.sourceLine {
+display: inline-block;
+}
+code .kw { color: #000000; }
+code .dt { color: #ed6a43; }
+code .dv { color: #009999; }
+code .bn { color: #009999; }
+code .fl { color: #009999; }
+code .ch { color: #009999; }
+code .st { color: #183691; }
+code .co { color: #969896; }
+code .ot { color: #0086b3; }
+code .al { color: #a61717; }
+code .fu { color: #63a35c; }
+code .er { color: #a61717; background-color: #e3d2d2; }
+code .wa { color: #000000; }
+code .cn { color: #008080; }
+code .sc { color: #008080; }
+code .vs { color: #183691; }
+code .ss { color: #183691; }
+code .im { color: #000000; }
+code .va {color: #008080; }
+code .cf { color: #000000; }
+code .op { color: #000000; }
+code .bu { color: #000000; }
+code .ex { color: #000000; }
+code .pp { color: #999999; }
+code .at { color: #008080; }
+code .do { color: #969896; }
+code .an { color: #008080; }
+code .cv { color: #008080; }
+code .in { color: #008080; }
+</style>
+<style>
+body {
+box-sizing: border-box;
+min-width: 200px;
+max-width: 980px;
+margin: 0 auto;
+padding: 45px;
+padding-top: 0px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="duration">Duration</h1>
+<p>2024-11-24</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>spotify_df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv&#39;</span>)</span></code></pre></div>
+<pre><code>## Rows: 32833 Columns: 23
+## ── Column specification ─────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (10): track_id, track_name, track_artist, track_album_id, track_album_na...
+## dbl (13): track_popularity, danceability, energy, key, loudness, mode, speec...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#data cleaning</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>spotify_df <span class="ot">&lt;-</span> </span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  spotify_df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="fu">distinct</span>(track_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>track_id, <span class="sc">-</span>track_album_id, <span class="sc">-</span>playlist_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    <span class="at">track_album_release_year =</span> <span class="fu">as.numeric</span>(<span class="fu">str_sub</span>(track_album_release_date, <span class="dv">1</span>, <span class="dv">4</span>)), </span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>    <span class="at">playlist_name =</span> <span class="fu">factor</span>(playlist_name),</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>    <span class="at">playlist_genre =</span> <span class="fu">factor</span>(playlist_genre),</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    <span class="at">playlist_subgenre =</span> <span class="fu">factor</span>(playlist_subgenre)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>track_album_release_date) </span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#median approach</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>spotify_df_median <span class="ot">&lt;-</span> </span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  spotify_df <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration_median =</span> <span class="fu">case_when</span>(  </span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>      duration_ms <span class="sc">&gt;=</span> <span class="fu">median</span>(duration_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Long Duration&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>      duration_ms <span class="sc">&lt;</span> <span class="fu">median</span>(duration_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Short Duration&quot;</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>      )</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co">#standard deviation approach</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>spotify_df_sd <span class="ot">&lt;-</span> spotify_df <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    <span class="at">duration_sd =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>      duration_ms <span class="sc">&lt;</span> <span class="fu">mean</span>(duration_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">sd</span>(duration_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Short Duration&quot;</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>      duration_ms <span class="sc">&gt;</span> <span class="fu">mean</span>(duration_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="fu">sd</span>(duration_ms, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Long Duration&quot;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Medium Duration&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    )</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co">#k-means approach</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>kmeans_result <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(spotify_df<span class="sc">$</span>duration_ms, <span class="at">centers =</span> <span class="dv">3</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>spotify_df_kmeans <span class="ot">&lt;-</span> spotify_df <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">duration_kmeans =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>      kmeans_result<span class="sc">$</span>cluster <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Short Duration&quot;</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>      kmeans_result<span class="sc">$</span>cluster <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Medium Duration&quot;</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>      kmeans_result<span class="sc">$</span>cluster <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;Long Duration&quot;</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>    )</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co">#percentile approach</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>spotify_df_perc <span class="ot">&lt;-</span> spotify_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    <span class="at">duration_perc =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>      duration_ms <span class="sc">&lt;</span> <span class="fu">quantile</span>(duration_ms, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Short Duration&quot;</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>      duration_ms <span class="sc">&gt;</span> <span class="fu">quantile</span>(duration_ms, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Long Duration&quot;</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Medium Duration&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>    )</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co">#median approach plot</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>spotify_df_median <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> playlist_genre, <span class="at">y =</span> track_popularity, <span class="at">fill =</span> duration_median)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Popularity by Genre and Duration Category (Median)&quot;</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Music Genre&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Track Popularity&quot;</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Duration Category&quot;</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  ) </span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- -->
+We see that for some Genre songs with long duration tend to have lower
+popularity, for instance, edm and r&amp;b. However, for others there is
+no such significant differences.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co">#median approach anova test with effect size (Eta-squared)</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>anova_results_median <span class="ot">&lt;-</span> spotify_df_median <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">group_by</span>(playlist_genre) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    <span class="at">anova =</span> <span class="fu">list</span>(<span class="fu">aov</span>(track_popularity <span class="sc">~</span> duration_median, <span class="at">data =</span> <span class="fu">cur_data</span>())),</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>    <span class="at">eta_squared =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">eta_squared</span>(.)<span class="sc">$</span>Eta2[<span class="dv">1</span>])  </span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>anova_summary_median <span class="ot">&lt;-</span> anova_results_median <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>    <span class="at">f_statistic =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">summary</span>(.)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">1</span>]),</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>    <span class="at">p_value =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">summary</span>(.)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  )</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>anova_summary_median</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   playlist_genre anova  eta_squared f_statistic  p_value
+##   &lt;fct&gt;          &lt;list&gt;       &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+## 1 edm            &lt;aov&gt;     0.0380       193.    5.66e-43
+## 2 latin          &lt;aov&gt;     0.00353       14.6   1.32e- 4
+## 3 pop            &lt;aov&gt;     0.0129        67.0   3.36e-16
+## 4 r&amp;b            &lt;aov&gt;     0.0220       101.    1.53e-23
+## 5 rap            &lt;aov&gt;     0.0179        98.7   4.67e-23
+## 6 rock           &lt;aov&gt;     0.000133       0.572 4.49e- 1</code></pre>
+<p>By running anova test and compute effect size using Eta-squared we
+see that while p-value is significant for all genre except rock with
+0.45, the effect size are all small. Hence we can say that Long-duration
+songs are slightly less popular in some genres (e.g., EDM, R&amp;B,
+Rap), but the effect is small and not meaningful for practical
+applications.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co">#standard deviation approach plot</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>spotify_df_sd <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> playlist_genre, <span class="at">y =</span> track_popularity, <span class="at">fill =</span> duration_sd)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Popularity by Genre and Duration Category (Standard Deviation)&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Music Genre&quot;</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Track Popularity&quot;</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Duration Category&quot;</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>  ) </span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- -->
+We see that for some Genre songs with long duration tend to have lower
+popularity, for instance, edm， pop, rap, and r&amp;b. However, for
+latin and rock there is no such significant differences.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co">#standard deviation approach anova test</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>anova_results_sd <span class="ot">&lt;-</span> spotify_df_sd <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">group_by</span>(playlist_genre) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>    <span class="at">anova =</span> <span class="fu">list</span>(<span class="fu">aov</span>(track_popularity <span class="sc">~</span> duration_sd, <span class="at">data =</span> <span class="fu">cur_data</span>())),</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="at">eta_squared =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">eta_squared</span>(.)<span class="sc">$</span>Eta2[<span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>anova_summary_sd <span class="ot">&lt;-</span> anova_results_sd <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>    <span class="at">f_statistic =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">summary</span>(.)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">1</span>]),</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>    <span class="at">p_value =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">summary</span>(.)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>])</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  )</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>anova_summary_sd</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   playlist_genre anova  eta_squared f_statistic  p_value
+##   &lt;fct&gt;          &lt;list&gt;       &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+## 1 edm            &lt;aov&gt;      0.0585       151.   1.56e-64
+## 2 latin          &lt;aov&gt;      0.00397        8.24 2.67e- 4
+## 3 pop            &lt;aov&gt;      0.0141        36.8  1.37e-16
+## 4 r&amp;b            &lt;aov&gt;      0.00870       19.7  2.91e- 9
+## 5 rap            &lt;aov&gt;      0.0159        43.7  1.49e-19
+## 6 rock           &lt;aov&gt;      0.00407        8.78 1.56e- 4</code></pre>
+<p>While all the genre music are statistically significant differences,
+the effect sizes are very small or even negligible (with Eta-squared
+&lt; 0.02), indicating that duration explain only a small proportion of
+the variance in popularity.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co">#k-means approach plot</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>spotify_df_kmeans <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> playlist_genre, <span class="at">y =</span> track_popularity, <span class="at">fill =</span> duration_kmeans)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Popularity by Genre and Duration Category (K-Means)&quot;</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Music Genre&quot;</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Track Popularity&quot;</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Duration Category&quot;</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>  ) </span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --> We see
+that for some Genre songs with long duration tend to have lower
+popularity, for instance, edm, latin, pop, and r&amp;b. However, for rap
+and rock there is no such significant differences.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co">#k-means approach anova test</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>anova_results_kmeans <span class="ot">&lt;-</span> spotify_df_kmeans <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="fu">group_by</span>(playlist_genre) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>    <span class="at">anova =</span> <span class="fu">list</span>(<span class="fu">aov</span>(track_popularity <span class="sc">~</span> duration_kmeans, <span class="at">data =</span> <span class="fu">cur_data</span>())),</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>    <span class="at">eta_squared =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">eta_squared</span>(.)<span class="sc">$</span>Eta2[<span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>anova_summary_kmeans <span class="ot">&lt;-</span> anova_results_kmeans <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>    <span class="at">f_statistic =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">summary</span>(.)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">1</span>]),</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>    <span class="at">p_value =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">summary</span>(.)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>])</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>  )</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>anova_summary_kmeans</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   playlist_genre anova  eta_squared f_statistic  p_value
+##   &lt;fct&gt;          &lt;list&gt;       &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+## 1 edm            &lt;aov&gt;      0.0583       151.   2.68e-64
+## 2 latin          &lt;aov&gt;      0.00561       11.7  8.99e- 6
+## 3 pop            &lt;aov&gt;      0.0197        51.5  7.48e-23
+## 4 r&amp;b            &lt;aov&gt;      0.0225        51.9  5.11e-23
+## 5 rap            &lt;aov&gt;      0.0190        52.4  2.91e-23
+## 6 rock           &lt;aov&gt;      0.00440        9.51 7.59e- 5</code></pre>
+<p>Confirm to previous approaches, even with statistically significance
+difference the duration have small practical impact on song popularity
+across genres.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co">#percentile approach plot</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>spotify_df_perc <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> playlist_genre, <span class="at">y =</span> track_popularity, <span class="at">fill =</span> duration_perc)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Popularity by Genre and Duration Category (Percentiles)&quot;</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Music Genre&quot;</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Track Popularity&quot;</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Duration Category&quot;</span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>  ) </span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqAAAAHgCAMAAABNUi8GAAABlVBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZpAAZrYAujgzMzM0NDQ6AAA6ADo6AGY6OgA6Ojo6OmY6OpA6ZmY6ZpA6ZrY6kJA6kLY6kNtNTU1NTW5NTY5Nbo5NbqtNjshhnP9mAABmADpmAGZmOgBmOjpmOmZmOpBmZgBmZjpmZmZmZrZmkJBmkLZmkNtmtpBmtrZmtttmtv9uTU1uTW5uTY5ubk1ubm5ubo5ubqtuq6tuq+SOTU2OTW6OTY6Obk2ObquOjm6Ojo6OyP+QOgCQOjqQOmaQZgCQZjqQZmaQZpCQkDqQkGaQkLaQkNuQtpCQttuQ27aQ2/+rbk2rbm6rbo6rjk2rq26rq46ryKur5Mir5P+0tLS2ZgC2Zjq2kDq2kGa2tma2tpC2ttu225C229u22/+2/9u2///Ijk3Ijm7I5KvI/+TI///bkDrbkGbbtmbbtpDb25Db27bb29vb2//b/7bb/9vb///kq27k/+Tk///r6+v4dm3/tmb/yI7/25D/27b/29v/5Kv//7b//8j//9v//+T////IPlnOAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAfgElEQVR4nO2djX8cxX3GT8bOYQ4nENzqTO0ITJPStAUBbakNadFB0oYWKpu+iUvTNBirrQ5oUiLX5HSupNP+3Z2XfZl9ndnZmd3f3j7PB3x3szPPzsx+NW/7NgogiLBGXWcAgqoEQCHSAqAQaQFQiLQAKERaABQiLQAKkRYAhUjLEtDFSOjyx7qI69mV48Kw1e8/zASf7YxLXb78Dtvbc5/Vz2hxnqIdhcV47kF1Ap7XooKkTH/+7dHoqdfzCa109tK+eR1nFWW3LMvzbbtMdaJmgI5Gu5qIpYAuLj3MBJcDenY73Jubms0BqisGz6sG0NVEGl3PJbQSZ8i4jrOKsluW5dWz+3a56kK2gMqa/3JU3awUA6o6KCoFdD0bvcAaz/VXky0nNasAKjKx/kJjrOfsbGd0/X+C4L9vp2myBXTJ0xnXcVbRXkvrfl7aVdFTM0CDOf98whq4yw/4UdpeTkaX96Oq4SDIb1+y7m/rj0XIYnTps9mV38x4e7gUh5MlE14MUJ6cGaXD2c+wQlcT/oXvjnfKzPoX31ZsH8RbQiV7jSKyMLaHzzKA8j1sp/Is7cL0a5FXuTkqqmopjMLGfTVRiisTBkq22N63/mgWFUIa8X39PF1g+ReUq+PnHiRF/VJWdEFtJNlNsiz2vv4Jy5UYg/SpCXUA6FL0bqwNOtv57kR+ywC6iLqq9eypyYjRGQIq28xl2Hyd7Tw1iYzUcHmEYq2i3Ykjodgex1vCPCab465ShF2+nQU0OZwyz8IuSq8AuszvO0wfZfHXyo5DQJNshRvY3hUjvq+v0wVeTXYzdbxKxz9eRpb52sgAmo2wG6hdCH017eL54Ry9zuv+yjHr58bH638djTOAssP3QDZ/LO62OgYV6M3Djogl/12ZPBuuVud6xluBr6TZmMOf2EZbwojKXsOIZztbHwdPZqMsoHyHap6lXZReGdRFRU0s81nMJYyylew9ZbQdZAocZitVx0qhZVH32YbtwtpIjUGTCKvJ9eOwD8r8yZNWw0kSq6eozFv7ZzuihjMHW4T9+hd/PREVzWsmAZT35XHHJpOLKJnwcbxL3kyK4AXfCbfgW+W3ZEuUy9ReeUQZZTXRARoGh+njI54UNbFUsxhLTZhkazmK9p41Shc4JDVVx+lCh7+D3AaRERXQJMJq8tQPo2WQhZvBfBtqBuhzD6L+iPdPEUm82lOAhlPcpGWNAOUp4o4tPECLsI9XwlVAl/Fhy/4VJFtkutxex+HgNjtJCor/qOL0CqBRUZPIahaDzI5FwiRbEgueKGuULnAYptRxttBh+vwGkSMVUKVS5vzzhQcyWd2Vgc7UcAwamADK+u7v/u2/f72TB5SDEXdsCqCp8GSAl65xDaD5vZYDmh2D8m9Jej2gSRa/eOFBJqERoJkCS0CTOnYCaPAVX62LG+yeyAWg6S5eHKx50vtGx1WOBjOALkevxR2b5FseazWc/QhXFxVIgvxSQbIlzFd2r1EXn7R36iw+nWc1fWEXnwI0nsWf7fC+NJUwyVZxFy+xVAucBzRbaKWLz9dGpotPVcqvfizQHBSgqUlSPMsZifWOCFA2fH9ye5S0UhzQsDn5TjwcYsnZqF8kT4VzI3ES6VevCAs202BTjXyfnGwRqfJ7FdOU12W+1GKsv5iIOYqaZzW9yGt2kpQGNFkH3c4njLJVPEmSgKYKPM8Cmi80H5juFNeGkl01wpIdHFa9Yi8DGIMq00BlmUmsE8kWcCSXc8LjOpIDSBVQeV5oMYqdwlUq+VsJV84k8aW/sNNKL1yKIxpvEcrvdazkKyxG6Bs2K0qe1fQir9llpjSg8ZmkcS6hkq3CZaawY1cLLPlJ1XG60OHv3cLaiLMrs5xEiHI1iFm8WsJVvFDPV9rlMPwL9uU3ETtiVfpjZSLC/mXQjY/VGXW4zv+8XGhXwrm+eoVPFz6Od8dPeucAjbdI5fbKHdk47PLnmVOdWzLL6Twr6UVefyOb1WShPg1o8OQnk2jn6YTHSrb4Qv2fiAFG2ihT4PQ6aEGhpdPrxbURZ3cdZ1nsXSzUX+epB7AOWqiKqz1KVTYa6tEoqaaS1aSU1AL7BmgAZ5IKZQHok9vFp4vLwnut1eRbbBQ4L/zTSxd46XeMOIBz8YWqDSibWhReoFQW3nOpo8C0cgX2ekVcnxrQbgFlR+x6nfC+KxkFZjdkC8yvB/WmIVwPCkHtCIBCpAVAIdICoBBpAVCItAAoRFp2gH5TQ7Uiw6llI8c4uRcA3TgnAApASTsBUABK2gmAAlDSTgAUgJJ2AqAAlLQTAAWgpJ0AKAAl7QRAAShpJwAKQEk7AVAAStoJgAJQ0k4AFICSdgKgAJS004AAPX3rKAjO705vPo4/pLzVF5xaNvJPWENVAXoyffEouLi3Fzy6FX2E8lZfcGrZqAXEmqkC0MMb/8xa0PN3j3hLGn6Em7zVF5xaNmoFsibSdvGnbz8Ozt85CD9Y4FWmljLnTb0vwHCkBfTkpiAz/Ag3ePuDbsnpqjMngqUbegvK5a2+ajq99957Vk4ANI5MXVpAKY9B3/v000+tCAWgcWTq0gJ6ce+OnMXfoTeLB6CNjfwT1lC9XgcFoI2N/BPWUP0+k4QxaFMjxzi5V78BtRVFQJ3lCYAC0EQE8wRAAWgignkCoAA0EcE8AdBNBNQWDwDqWQC0LMRMANSzAGhZiJkAqGcB0LIQMwFQzwKgZSFmAqCeBUDLQswEQD0LgJaFmAmAehYALQsxEwD1LABaFmImAOpZALQsxEwA1LMAaFmImQCoZwHQshAzAVDPAqBlIWYCoJ4FQMtCzARAPQuAloWYCYB61gAALTjy/QDUMk8AFIAmAqCeBUBLIxkJgHoWAC2NZGvuzAmABgC0IpKtuTMnABoA0IpItubOnABoAEArItmaO3MCoEG/ALU8YAC0KjJ1AdBG3gDUtwBoI28A6lsAtJE3APWtngNqcgwBaFVk6gKg5kaG5s6cAGgAQOsYGZo7cwKgAQCtY2Ro7swJgAYAtI6RobkzJwAaANA6RobmzpwAaABA6xgZmjtzAqABAK1jZGjuzAmABgC0jpGhuTMnABrYAtqNCt5RbPLaYqNktu8/dvfeZHd52iihBTU3MjR35oQWNKAMqNEB6yugPvMEQAFo43QA1FQA1NzI0NwyGQAtFAA1NzIzN3ICoKYCoOZGZuYA1KkAqLmRmTkAdSoAam5kZg5AnQqAmhuRdDLyLpdjnNwLgJobkXQy8i6XY5zcC4CaG5F0MvIul2Oc3AuAmhuRdDLyLpdjnNzLP6CWWAFQh9VULsc4uRcANTfqiRMABaCknQAoACXtBEABKGknAApASTsBUABK2gmAAlDSTgAUgJJ2AqAAlLQTAAWgpJ0AKAAl7VSrmhzj5F4A1NyoJ04AFICSdgKgAJS0EwAFoKSdACgAJe0EQAEoaScACkBJOwFQAEraCYACUNJOABSAknYCoACUtBMABaCknQAoACXtBECrAHWGFQAFoFwA1NyoJ04AFICSdgKgAJS008AAfTTl2hOfLx6Fgd7qy4dTP7ACoMUyakFPbj4ODveUAG/15cOpH1gB0GKZAHr+zkFwcf9ACfFWXz6c+oEVAC2WCaCPbjFI74qOnukqU3lco1eiGr0l1ZmTu5fJ9sPJtsJpygBQ3oAGp2+qrai3P2gfTv1o99CCFssAUD4ClYrHod7qy4dTP7ACoMUyAPTwTvwNgPbAaWiAyo6dN6MXn2CZqQdOQwNUDEHFeuiNeCLvrb58OPUDKwBaLJxJMjfqiRMABaCknQAoACXtBEABKGknAApASTsBUABK2gmAAlDSTgAUgJJ2AqAAlLQTAAWgpJ0AKAAl7QRAAShpJwAKQEk7AVAAStoJgAJQ0k4AFICSdgKgAJS0EwAFoKSdACgAJe0EQAEoaScACkBJOwFQAEraCYACUNJOABSAknYCoP0F9GpWTbMEQH1rYIA+nRYAdYyTewHQRlkCoL41dEBznX6VIwBtX4MH9HsZAVBaAqAAlLQAKAAlLQAKQEkLgAJQ0gKgAJS0VEDPdrb2zVJ5qy8fTgB0UwANgvlodOXYIJW3+vLhBEA3B1Deio5G29pU3urLhxMA3SRAJaKXHlan8lZfPpwA6CYBuhiNxqyr13T03urLhxMA3RhA17PRaJd/WWqaUG/15cMJgG4KoGc7uq5dL9pvO84BGuQBrZUlvO3Yt9KAGjWfAVrQmrls12mTW1AACkCJKQGUTY9CjbWpvNWXDycAuhmAxi2ogbzVlw8nAFobUD5brmypnjwIVs+WnXbkTV3qnCSLbS2ciwegea1n2+LfstXGcjijVIvRrlFsrWJAWfPJl+i5MAY1zpISVOfeEQeA1rpB1Q7Q8i61CrlwDX2RwO0G0FqqU/ODAbSGkQtAf5uWD0CDxVjSxf5ZXfspa7lWE9aAbfN/t/kGPhQY880fTcIV9BTUSmwRlbd8rBXc+ujawzgpt/3BWO5LB+h6hjEoAFUBXV45jgGdjEP6FoxTFsj+X8/GAf9/NWHN5UJ2vEpzqcbm0XirerazLdbbk6RjuW5UBl8fJkkVnScATQCtuEHVGlBJlwSUwfF/xxLBEFCxIMnj8G0hmatrDyMXNfZStp674pNBm0rKwVPSlQKqjhtIAZrDqpbTYAB9urSeXLSgkr+lmKFHgHJeom0RoOqAM4kdLmJuC8QYjKmkvHsv6eEzLSjNSRIALXJoA9C5Mgbln+KSdqUFLQA06obPXtpXY0dtXzGgq2uflw0v+zBJAqBFDi0AKrpeFVCB1TJpQflqpzIMSBCU3bgSexkujEZdeyop298PS3r4TQa0YExGENCiXJosWLUAqFjR5LOa9WwrBJQ3iZOt/ZDceKajApqsg6qxReiSf89MkmSqRelJgRSgYllgY7r47CEsOIYUAM1jZeTkGVA5YoygeO2lsC+eszHl3zPe5qNxaplpXx18zqMzSUpsEXVrXy4zfXjpYSop30nZ/Dy9zLTNJvsmc/k6xxCA1iocCUA9a5mbjJfN4fPLTPPtguQ51TmGALRW4TYcUN7tizXRtBal98FlAWWzfXKX2wFQg9IVAWrw6D47zBpoUXARiljoL1FqDDoXdBqshtY5hgC0VuGcAqovnCVm7SlzT9I2G9AaPL2hzjEEoLUKB0DTIrfMZLY4ZLIS4xPQolwaYaUtHABNix6gzrDyCqhHrACoKuV60PiWj04nSQAUgKpCCwpAjY9vA86sBUABqPHxbcCZtchdzQRAaQF6VRvZrwoeHvZSp8tMABSAqiro4rs91QlAAaiqIkDRxWsLt/GAFp4mbcialQoA1T17MQCgAwA0W3m/JQBoOEnq9lQnAAWgqrDMBECLjm8VoOUXb8rN4rL3wouKWUpN4pwAKAAtOr5NAOWbiy97r0tnkAV0Ucp+WibHsDwEgG4GoGxIyObTq+d/LJhhvy6/sh9vXj1/zL/wNvO52/KRJPzZSpd+yQLTCWsAupB313f6lg8ASgPQill8BKi8+2I1kTdh8F9bCaBnL+1HgE52xeK67N95YDqhOaAkHmALQGkAqm9Bz15+qGDIf63fTwBl3yNAowb35RDQdEIACkD9AMo/FAyfP04BqrSg4vecn0JPGtEkYQ1AZRONLt6gcABU14LyPjwBNHz6UuMW1PSSUJNjWB5CClCTa/Pz+QagQTwGDTlLj0E5kXzguRDNpggTz3BUx6D1W1BjmRzD8hAA2nNAJ/L54OFkPOSM/fqWbEHjddDFaPQ7L8sunn29fHt3PVNn8QDUlVM+35sPqM25eItlTq0K1kH1Q9D+Aqq91Q2AZo7vVW1kqejRNq41sHVQAJqR9viaAupL+mWmR9Pp9MWj4Pzu9ObjKMzkGJaHoIvvEaD6yH6lB/Rwj/97cW8veHQrCjM5huUhABSAGkvbxV/cP+Af5+8eBadvHYWBJsewPKR3gBbMGABoS9JOkljXPp3uBadvPw7O3+Gs8sNT7tf45bt5rGzfUezTKQ9DzqmwkDmsclly6WRUuCKRBbRAp28e8Fb05GYEKFdJAb7Z1BbUAFC0oH5ktg56uJe0oFxldAHQjQOU0Cx+Xn6G83Bv2GPQlgE1Obk1PEDnydvCVPG+/eKTo4t7d4Y7iwegVZH9KgZUvIqu6H10j6bTGwfBoNdBB9jFW53q9CH1bcfJC5x0quDLIASA9gDQrNnTAwC06I/SAAYAausEQAvqrSKkc6wAaM6m7PhWASreUBzMU/MVNjgsu5ap2W3IABSAFh3fSkCffeE4OHslRVbFq9yb3Ybc5hOWO8cKgOZsyo5vJaDX/mA/WL0aX3ks7ji+vRs2h+z/9fsfjkbby+hVdY1uQ/Z3wXLBPLBrrABozqYU0IpZ/Orav+0GX3wk793gr9Hmt3CMVED5SzjZOCBEs9FtyB4BtakvAEoF0KxZqgX95fX1B6zp45idvSzvl5ulWtB9cQOdfNRss9uQASgArQ/o53/z9R9ysnbEs+YEVXMNoLa3IfcC0FxnA0C7BfThzz7cDpu+QN5/rG1BbW9DBqAA1ALQpWw358lTb8QYNLzRuABQ69uQewGoK6wAaM7GEtC4IRQ3yq1n4Sw+vNE4A2ij25BTt3z8nfhYf5CNRA/Qrs9JOcRK3z9YO23Uufggutlj7mgdFIBaYkUC0IID2j2grDHeXhjd3FxUY9nyoIs3cCLbxRccUAKA8sGAweNrAeiAANVH9qvMJOlsZ2ySqqQA3wDQ9gDNjww2G1Dn5+IBqIETANUJy0x9BdTACYAW1FvyDYDqnQCoTilA+eWg/EoUrUoK8M2gATVY+eohoKRm8XPOpgmhRTWWLQ8ANXACoDr5e4nC4AB1hRUAVbXJgOonugC07PgWnJbqHlC3D7AFoJZY0QA0m/R7FAANlg4fAd49oB6dAGhbwjITAC06vpWA8pM6l4qujQtvQnL5umN6gHrsmAcHqH5loez4VgEq5ioLeYVxWspdcq5ed5y5monAqU4ASh1QCSC/R+MH0XuOeXv63O2QnWb3GVcAup5tr2e7xei3B6hHrAYHqL5wpYBWzOLXM3lzsPqeY37X8K6T+4wrAOVozk1ekQxANx/QbNLUJGkp3omkvKUzdc9bs/uMNYAuxpuzDkoRUO34pReAcgqfVflL3TXc7D7jCkD5qU5G5wItqNZp0IAuxblwcSN8RQvq6HXHuYtF5ib3fBSyKest+QZA7bAiD6iYpSiAZe8abnafcRWgxipkU9Zb8m2jAS1oCgcDqFgHTcagyl3D65mYxbt83XF6Fm90QxIAHQKgFbP4VlVwsYiBCtmU9ZZ822hAPWJFAtCCA9o9oIHB9EiqqMay5QGgBk4AVKd0C4qb5gBoxfF1g1w9uZokmayfdI4VADVkrmiHpZH9Kv2MelN5qy8ACkDTsgM0r1x92b58Nw8D3nbstcKJCy2oldOGt6CEBEABKGm5evQNAAWgXtRqC1pwcgKAAtBKAVCCgBpUEwCtlLf6AqBPK6c6ihwcV7gPppwKgAJQ0nJ2JilfX3l1jZW7R0AA0LY0eECNxsUAtDN5BNSmvloH1AoGdPHtCYBawABA2xMAtYABgLYnAGoBAwBtTwDUAgYA2p4AqAUMALQ9AVALGABoewKgFjAA0PYEQC1gAKDtCYBawABA21NPAXV24Z4VDAC0PfUTUKNjCEABqPP6AqAANC0AagEDAG1PANQCBgDangCoBQwAtD0BUAsYAGh7AqAWMADQ9gRALWAAoO1pYICWru8DUKIaFqDlyQAoUQFQvREA7VAAVG8EQDsUANUbAdAOBUD1RgC0Q/UC0PJr6wAoAC2St/qqiRUABaCF8lZfABSApgVA9UYAtEMBUL0RAO1QAFRvBEA7FADVGwHQDgVA9UYAtEPpAT19YzrdC4JH0+n0xaMwzFt9AVAAmpYW0PN3DoLTNw+Cwz0l0Ft9AVAAmpYW0JNb7J/DvYv7B0qgt/oCoAA0LaMxKGtFz+9ORU8fBPxcYz5Krr4cvu043lQQuyLXtZwq3wNsAqj1O4pzsstTkZNRhROXCaAX9+6IXj5pRb39QQ+vBXWVp6LCDaQFPb97J/wWj0NN6guAGjgBUJ1MZvHx9AiAVgFq8DwzAFpbWkBDPk9uPg4uPsEyUzmgVk4AVCctoHz9k0+P2OeNeCJvUl8A1MAJgOqEM0l6IwDaoQCo3giAdigAqjcCoB0KgOqNAGiHAqB6IwDaoQCo3giAdigAqjcCoB3KGaC58ygA1MAJgOoEQPVGALRDoYvXGwHQDgVA9UYAtEMBUL0RAO1QrQJq+YbNigMGQAFokUzqy/IYAtCmTgAUgALQ1gRA9UYAtEMBUL0RAO1QAFRv5BLQOg+LBqABADUxcghoRSQAWigAqjcCoB0KgOqNAGiHAqB6IwDaoQCo3giAdigAqjcCoB0KgOqNAGiHAqB6IwDaoQCo3giAdiiPgJafNQGgANRU/gCtdSzKjQCoWZ4AqCq7+jKqeQBqlycAqsquvoxqvieA2o1fqiL5AFR/C4NjnNwLgOqNHDpVRPIAqIGTY5zcC4DqjQBohwKgeiMA2qE2GdA648T+AVpnEAxAKQJaK1nvAK2VDIAC0FpZAqDGAqAGRgC0OwFQAyMA2p3sAM0rB2iypSByDSN7p1rJar5M1tbJXZ5qJevhS2QjoQU1MEIL2p0AqIERAO1OANTACIB2JwBqYARAuxM9QB2dIqmMA0AjOcbJvcgB6qrmayYDoEQFQA2MAGh3AqAGRgC0OwFQAyMA2p0AqIERAO1OANTACIB2JwBqYARAuxMANTACoN0JgBoYAdDuBEANjABodwKgBkYAtDsBUAMjd/eHustTrWQAdLMB7ZcTAAWgpJ0AKAAl7QRAAShpJwAKQEk7AVAAStoJgAJQ0k4AFICSdgKgAJS0EwAFoKSdACgAJe0EQAEoaScACkBJOwFQAEraCYACUNJOABSAknYCoACUtBMABaCknQAoACXtBEABKGknAApASTsBUADajpORAGiRCqoAgLp2euaZZ6ycACgAbcPpmWeMCAWgRSqoAtevPgCgAJTLGNDzu9Obj6Mf3urLhxMAHQKgF/f2gke3ol/e6suHU08BxRhUyBTQ83ePgtO3jsJf3urLh1NPAUULKmQK6Onbj4Pzdw7YNz7A9JkjSEoA2nUmupcpoCc3I0C59H/Yyt9onchwimXYguqNqiNTV/0WlMtbfcEpkSWfAwXUdAzasL7g1LKRL66cyXwWf8doFt+wvuDUspEnrNzJ9Tpow/qCU8tGfqhyKFdnkhzVF5xaNnKMk3sB0I1zAqAAlLQTAAWgpJ0AKAAl7QRAAShpJwAKQEk7AVAAStoJgAJQ0k4AFICSdgKgAJS0EwAFoKSdAGg9ubv8Hk7tGpEQAN04JwBaTwQP4WY7AdB6IngIN9sJgEJQawKgEGkBUIi0AChEWgAUIi3fgPKHjjVRci8++5b8IKHD6Ys8P4fNSuhHF/cP9JH6oF4B2jw7LnVy87F4UgAA9Sk/gJ7fFY0L+/i9H+1d3P+n6fTOCfvfwoljefrGdLrHLf+TNaJv/wP7YZepd/9xeuMgylz0y0qnf/6jF49iQN+zzVFsJUrYJEvCJan1GwcM0It7yYMM+is/gB7Kx5Cwj5Pp3sW9W4yxW3ZNIEvEHwkl+3f+3xt3xIPMLHR+9+bjE3YED4VD9MtKp2/s8c7hz2QXf/Nxg9adW4UlbJAlkSFZMN5nndz83/sHhzYNAjl5AZRX+Pm7R/x5Tqy6eG/D/0+ePVZD4aFnVjGjtp39+d09ng+eK5aV8JeNUZgr1uyJhpN38fbdfFQYXl/2WeIuYcGk4cX9P90IPj0Benc6Zd2MqKpDB4AeTlnf1RxQvv/DPZ6acyp/2RiFA4+3jk5u/Atz+Y8GRhGgooQNshRVCysYfw4hb97/4i83oIP3Bei7UbPnogXlDUvSxTcDVGlB5S8bI8kDH8M8mt4SSDWYCoq2T5awQZYKWtCDRxvRhHobg/KBYjgGbQioYPLNAwdd/K04V3wMest2MJs0WCf8gWqHlsPrtBUrYYMsyY4mHoOevvVf9w82YyLvbRbPp6MX9+QsvmEX/2gqbO6JWXyTFvSv1Fl8+MtKIgcnvFtmULBZvLVRaCVL2CBLwiUzi6e3MGejAZ1JSv+BWP25+BXBLHUvAEpHBLPUvQYEKNRHAVCItAAoRFoAFCItAAqR1vAAXU0uPWQfZztXjnObnt3PhCxGTLut5Asq1BAB3doXH3lAs1rPOMvL0bb/XEElGiKgr3LgFq/qAV2KtjZY6GNCvjREQF/7/nGwfv/DK8eiS+f/rCaiJ+df17PRaCxjrmdJ08mDGa6rZz+aiJjXfsp+hoGQRw0R0Nc/YKQ9/2UCqPyc7LLP9WzMhqdy1Bl9BpzPsWhJxcBgcenhajJOAjsryhA0REB3F7vBcnupAHrtodwUshrFlNyORlv7orNnwLLEMhr/jAI7KcZQNEhAl+NgvqsAGsxlt86+LpUuO2KPBYvZ/Gi0nWpzo8BuyjEQDRLQs+9//fJDFVAOIxtNZgCNxqAc0LAjTwOK3t2/Bglo8LMPx0EaUNmBp7t4PtgUKRi3WzI4BWgUCHnUMAFdsH6ZAXq2s82ayXCEKbHjEx8x+RGay3XQK8frGWstGZApQKPADguz+RomoJwvBqiYAb32Evs+4jOh7DJTEIgN4kwSDw5jJHOpMBDyqOEBCvVKABQiLQAKkRYAhUgLgEKkBUAh0gKgEGkBUIi0AChEWgAUIq3/BwLRnsEUBD8eAAAAAElFTkSuQmCC" /><!-- --> We see
+that for some Genre songs with long duration tend to have lower
+popularity, for instance, edm, latin, pop, and r&amp;b. However, for rap
+and rock there is no such significant differences.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co">#percentile approach anova test</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>anova_results_perc <span class="ot">&lt;-</span> spotify_df_perc <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  <span class="fu">group_by</span>(playlist_genre) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>   <span class="fu">summarise</span>(</span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>    <span class="at">anova =</span> <span class="fu">list</span>(<span class="fu">aov</span>(track_popularity <span class="sc">~</span> duration_perc, <span class="at">data =</span> <span class="fu">cur_data</span>())),</span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>    <span class="at">eta_squared =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">eta_squared</span>(.)<span class="sc">$</span>Eta2[<span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.
+## For one-way between subjects designs, partial eta squared is equivalent
+##   to eta squared. Returning eta squared.</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>anova_summary_perc <span class="ot">&lt;-</span> anova_results_perc <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>    <span class="at">f_statistic =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">summary</span>(.)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">1</span>]),</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>    <span class="at">p_value =</span> <span class="fu">map_dbl</span>(anova, <span class="sc">~</span> <span class="fu">summary</span>(.)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>])</span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>  )</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>anova_summary_perc</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   playlist_genre anova  eta_squared f_statistic  p_value
+##   &lt;fct&gt;          &lt;list&gt;       &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
+## 1 edm            &lt;aov&gt;      0.0545       141.   4.52e-60
+## 2 latin          &lt;aov&gt;      0.00679       14.1  7.68e- 7
+## 3 pop            &lt;aov&gt;      0.0209        54.8  2.90e-24
+## 4 r&amp;b            &lt;aov&gt;      0.0195        44.7  5.99e-20
+## 5 rap            &lt;aov&gt;      0.0181        49.6  4.40e-22
+## 6 rock           &lt;aov&gt;      0.00277        5.97 2.58e- 3</code></pre>
+<p>Again, while the popularity across duration categories are
+statistically significant difference, duration explain a small
+proportion of the variance in popularity.</p>
+<h3 id="overall">Overall</h3>
+<p>Long duration songs are slightly less likely to be more popular, but
+the effect of duration is small and varies significantly across
+genres.</p>
+
+</body>
+</html>

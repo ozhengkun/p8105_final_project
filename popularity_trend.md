@@ -7,24 +7,13 @@ Senna
 library(tidyverse)
 ```
 
-    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.0.2     
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
 ``` r
 spotify_df = readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv') |>
   mutate(release_year = as.numeric(format(as.Date(track_album_release_date), "%Y")))
 ```
 
     ## Rows: 32833 Columns: 23
-    ## ── Column specification ────────────────────────────────────────────────────────
+    ## ── Column specification ─────────────────────────────────────────────────────────────────────────────
     ## Delimiter: ","
     ## chr (10): track_id, track_name, track_artist, track_album_id, track_album_na...
     ## dbl (13): track_popularity, danceability, energy, key, loudness, mode, speec...
@@ -51,8 +40,8 @@ ggplot(genre_year, aes(x = release_year, y = release_count, color = playlist_gen
   theme_minimal()
 ```
 
-    ## Warning: Removed 6 rows containing missing values or values outside the scale range
-    ## (`geom_line()`).
+    ## Warning: Removed 6 rows containing missing values or values outside the scale
+    ## range (`geom_line()`).
 
 ![](popularity_trend_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
@@ -91,8 +80,7 @@ spotify_10_20  |>
   theme_minimal()
 ```
 
-    ## `summarise()` has grouped output by 'playlist_genre'. You can override using
-    ## the `.groups` argument.
+    ## `summarise()` has grouped output by 'playlist_genre'. You can override using the `.groups` argument.
     ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 
 ![](popularity_trend_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->

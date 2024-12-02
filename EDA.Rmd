@@ -1,0 +1,43 @@
+---
+title: "EDA"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: journal
+    code_folding: hide
+    number_sections: false
+---
+
+<style>
+  body {
+    background-color: #F4F6ED;
+    color: #191414;
+    font-family: 'Lato', sans-serif; 
+  }
+
+  h1, h2, h3 {
+    color: #1DB954; 
+    font-weight: bold;
+  }
+
+  p {
+    line-height: 1.8; 
+    font-size: 1.1em;
+  }
+
+  .section {
+    background-color: white;
+    border-radius: 10px; 
+    padding: 20px; 
+    margin: 20px auto; 
+    max-width: 900px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+</style>
+<div class="section">
+  <h1>EDA Page</h1>
+  <p>This is the content for the EDA page.</p>
+</div>
+
+[Back to Home](index.html)
