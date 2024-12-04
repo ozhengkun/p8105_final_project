@@ -35,34 +35,35 @@ output:
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 </style>
+
 <div class="section">
-  <h1>Motivations/h1>
+  <h1>Motivations</h1>
   <p>This is the content for the Report page.</p>
 </div>
 
 <div class="section">
-  <h1>Initial Questions/h1>
+  <h1>Initial Questions</h1>
   <p>.</p>
 </div>
 
 <div class="section">
-  <h1>Data/h1>
-  <p>sources, cleaning</p>
+  <h1>Data</h1>
+  <p>Sources, cleaning</p>
 </div>
 
 <div class="section">
-  <h1>Exploratory Analysis/h1>
+  <h1>Exploratory Analysis</h1>
   <p>.</p>
 </div>
 
 <div class="section">
-  <h1>Regression Analysis/h1>
+  <h1>Regression Analysis</h1>
   <p>.</p>
 </div>
 
 <div class="section">
-  <h1>Discussion/h1>
-  <p>key findings, limitations, next steps</p>
+  <h1>Discussion</h1>
+  <p>Key findings, limitations, next steps</p>
 </div>
 
-[Back to Home](index.html)
+<a href="index.html">Back to Home</a>
