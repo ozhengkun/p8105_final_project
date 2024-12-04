@@ -7,6 +7,7 @@ output: github_document
 
 ```{r}
 library(tidyverse)
+library(plotly)
 ```
 
 ```{r}
@@ -14,12 +15,49 @@ spotify_df = readr::read_csv('https://raw.githubusercontent.com/rfordatascience/
   mutate(release_year = as.numeric(format(as.Date(track_album_release_date), "%Y")))
 ```
 
+```{r}
+spotify_df <- 
+  spotify_df %>% 
+  distinct(track_id,.keep_all = T) %>% select(-track_id,-track_album_id,-playlist_id) %>%
+  mutate(track_album_release_year = as.numeric(str_sub(track_album_release_date,1,4))) %>% 
+  select(-track_album_release_date) %>% 
+  mutate(playlist_name = factor(playlist_name),
+         playlist_genre = factor(playlist_genre),
+         playlist_subgenre = factor(playlist_subgenre)) %>% 
+  mutate(danceability = danceability * 100,
+         energy = energy * 100) %>% 
+  mutate(key = factor(case_match(key,0 ~ "C",
+                          1 ~ "C#/Db", 2 ~ "D",
+                          3 ~ "D#/Eb", 4 ~ "E",
+                          5 ~ "F", 6 ~ "F#/Gb",
+                          7 ~ "G", 8 ~ "G#/Ab",
+                          9 ~ "A", 10 ~ "A#/Bb",
+                          11 ~ "B")),
+         mode = factor(case_match(mode, 0 ~ "minor",1 ~ "Major")),
+         speechiness = factor(case_when(speechiness < 0.33 ~ "non-speech-like music",
+                                 speechiness >= 0.33 & speechiness <= 0.66 ~ "mix of speech and music",
+                                 speechiness > 0.66 ~ "entirely of spoken words")))
 
+non_zero = spotify_df|>
+  filter(track_popularity != 0)
+```
+
+filtering release count > 5 since 
+since there are years with only 1 or 2 songs of a genre release - popularity of that genre in that specific year is not reflective of the whole year
 ```{r}
 genre_year = spotify_df|>
   group_by(playlist_genre, release_year)|>
   summarize(release_count = n(),
-            avg_pop = mean(track_popularity, na.rm=TRUE))
+            avg_pop = mean(track_popularity))|>
+  filter(release_count > 10)
+
+genre_year_nonz = spotify_df|>
+  filter(track_popularity !=0)|>
+  group_by(playlist_genre, release_year)|>
+  summarize(release_count = n(),
+            avg_pop = mean(track_popularity))|>
+  filter(release_count > 10)
+
 ```
 
 ```{r}
@@ -29,36 +67,53 @@ ggplot(genre_year, aes(x = release_year, y = release_count, color = playlist_gen
        x = "Release Year",
        y = "Number of Releases") +
   theme_minimal()
+
 ```
+
+
 ```{r}
-ggplot(genre_year, aes(x = release_year, y = avg_pop, color = playlist_genre)) +
-  geom_smooth()+
-  labs(title = "Average Popularity Over Time by Genre",
+plot1 <- ggplot(genre_year, aes(x = release_year, y = avg_pop, color = playlist_genre)) +
+  geom_smooth(se = FALSE) +
+  labs(title = "popularity over time",
        x = "Release Year",
        y = "Average Popularity") +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "none")
+
+
+plot2 <- ggplot(genre_year_nonz, aes(x = release_year, y = avg_pop, color = playlist_genre)) +
+  geom_smooth(se = FALSE) +
+  labs(title = "exclude popularity 0",
+       x = "Release Year_non zero",
+       y = "Average poularity") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+interactive_plot1 <- ggplotly(plot1) %>%
+  layout(
+    showlegend = FALSE,  # No legend for plot1
+    title = "Popularity over Time"
+  )
+
+interactive_plot2 <- ggplotly(plot2) %>%
+  layout(
+    showlegend = TRUE,  # Show legend for plot2
+    legend = list(orientation = 'h', x = 0.5, xanchor = 'center'),  # Position legend at bottom
+    title = "Exclude Popularity 0"
+  )
+
+combined_plot <- subplot(
+  interactive_plot1, 
+  interactive_plot2, 
+  nrows = 1, 
+  shareY = TRUE,
+  titleX = TRUE 
+)
+
+combined_plot
+
 ```
-
-
-Since most songs in the data are released between 2010 and 2020:
-```{r}
-spotify_10_20 <- spotify_df |>
-  filter(release_year >= 2010 & release_year <= 2020)
-
-spotify_10_20  |>
-  group_by(playlist_genre, release_year) |>
-  summarise(avg_pop = mean(track_popularity, na.rm = TRUE)) |>
-  ungroup()|>
-  ggplot(aes(x = release_year, y = avg_pop, color = playlist_genre))+
-  geom_line()+
-  geom_smooth()+
-  labs(title = "Average Popularity Over Time by Genre (2010–2020)",
-       x = "Release Year",
-       y = "Average Popularity") +
-  theme_minimal()
-
-```
-
 
 
 
