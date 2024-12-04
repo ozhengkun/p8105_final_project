@@ -1,5 +1,5 @@
 ---
-title: "EDA"
+title:
 output: 
   html_document:
     toc: true
@@ -35,9 +35,403 @@ output:
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 </style>
-<div class="section">
-  <h1>EDA Page</h1>
-  <p>This is the content for the EDA page.</p>
-</div>
+
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(plotly)
+library(tidyverse)
+library(patchwork)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+# EDA
+
+Our report aims at analyzing 30,000 songs on Spotify to understand what musical features contributes to songs' `popularity`. The data, obtained from Kaggle, includes attributes such as `danceability`, `energy`, `genre`, `key`, `loudness`, `mode`, `duartion` etc. \
+By analyzing these features, we can uncover patterns that help explain what makes certain songs more appealing to listeners.
+
+
+```{r}
+spotify_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
+
+spotify_df <- 
+  spotify_df %>% 
+  distinct(track_id,.keep_all = T) %>% select(-track_id,-track_album_id,-playlist_id) %>%
+  mutate(track_album_release_year = as.numeric(str_sub(track_album_release_date,1,4))) %>% 
+  select(-track_album_release_date) %>% 
+  mutate(playlist_name = factor(playlist_name),
+         playlist_genre = factor(playlist_genre),
+         playlist_subgenre = factor(playlist_subgenre)) %>% 
+  mutate(danceability = danceability * 100,
+         energy = energy * 100) %>% 
+  mutate(key = factor(case_match(key,0 ~ "C",
+                          1 ~ "C#/Db", 2 ~ "D",
+                          3 ~ "D#/Eb", 4 ~ "E",
+                          5 ~ "F", 6 ~ "F#/Gb",
+                          7 ~ "G", 8 ~ "G#/Ab",
+                          9 ~ "A", 10 ~ "A#/Bb",
+                          11 ~ "B")),
+         mode = factor(case_match(mode, 0 ~ "minor",1 ~ "Major")),
+         speechiness = factor(case_when(speechiness < 0.33 ~ "non-speech-like music",
+                                 speechiness >= 0.33 & speechiness <= 0.66 ~ "mix of speech and music",
+                                 speechiness > 0.66 ~ "entirely of spoken words")))
+```
+
+
+The following sections provide insights into the relationships between musical features and song popularity, using visualizations, and statistical analyses to understand trends in the music streaming industry.
+
+We first start with looking at the distribution of our main interest: 
+
+## Popularity
+
+```{r}
+spotify_df %>%
+  plot_ly(
+    x = ~ track_popularity,
+    type = "histogram"
+  ) %>%
+  layout(
+    title = "Distribution of Popularity",
+    xaxis = list(title = "Popularity"),
+    yaxis = list(title = "Count")
+  )
+```
+There are a large number of songs with a popularity score of 0. This could indicate missing or incomplete data, or it could be due to limited listeners and a lack of advertising. Importantly, a score of 0 does not necessarily reflect listener judgment but rather insufficient data. Including these songs could unfairly bias our analysis and distort the visualizations. To ensure accuracy and fairness in our exploratory analysis, we have excluded these 0-score songs from the evaluation for now.
+
+```{r}
+spotify_df <- spotify_df %>% 
+  filter(track_popularity != 0)
+```
+
+
+## Genre
+
+```{r}
+spotify_df %>% group_by(playlist_genre) %>% 
+  summarise(genre_freq = n()) %>%
+  arrange(desc(genre_freq)) %>% 
+  knitr::kable()
+```
+
+
+The genre frequency table provides an overview of how often each genre appears in the dataset. From this distribution, we can infer the preferences of songwriters and performers regarding the types of songs they choose to create and perform. Genres like rap and pop are highly represented, indicating their broad appeal and the tendency for artists to focus on these styles. In contrast, genres like latin and r&b have relatively lower frequencies.
+
+
+```{r}
+spotify_df %>% 
+  mutate(playlist_genre = fct_reorder(playlist_genre,track_popularity)) %>% 
+  ggplot(aes(x = playlist_genre, y = track_popularity, color = playlist_genre)) + 
+  geom_boxplot()+
+  ggtitle("Distribution of Popularity by Genre") + 
+  xlab("Music Genre") +
+  ylab("Popularity") +
+  theme(legend.position = "none") 
+```
+
+The boxplot above shows the distribution of songs popularity by genre, reflecting the opinions of listeners since these popularity scores are largely determined by listener engagement and ratings. It is evident that pop and rap have relatively high median popularity, suggesting that these genres resonate well with audiences.
+
+Combining these results with the genre frequency table, we see an interesting trend: genres like pop and rap are not only favored by listeners but also heavily focused on by songwriters and performers. This creates a positive cycle, where the popularity of these genres encourages more artists to produce in these styles, leading to higher quality content and more engagement from listeners.
+
+## Dancibility
+
+Danceability has always played a key role in making songs infectious: from disco in the 70s to today’s EDM hits. The focus on danceable music reflects the desire to create interactive experiences for listeners, whether on the dance floor or during a solo jam session at home. Genres like pop and rap, with strong beats and rhythmic hooks, naturally fit this goal, fostering an energetic connection between creators and audiences and explaining its popularity these days.
+
+
+```{r}
+spotify_df %>% 
+  ggplot(aes(x = danceability)) + 
+  geom_histogram()+
+  ggtitle("Distribution of Danceability")
+
+
+spotify_df %>%  
+   mutate(playlist_genre = fct_reorder(playlist_genre,danceability)) %>% 
+   unnest() %>% 
+   plot_ly(
+    x = ~playlist_genre,
+    y = ~danceability,
+    type = "violin",
+    color= ~playlist_genre,
+    box = list(visible = TRUE),          
+    meanline = list(visible = TRUE)
+  ) %>%  
+  layout(
+    title = "Distribution of Danceability by Genre",
+    xaxis = list(title = "Genre"),
+    yaxis = list(title = "Danceability"))
+
+```
+
+The distribution plot of danceability shows that writers and performers tend to focus on creating music with higher danceability, likely aiming to make their songs more engaging for listeners. The violin plot by genre further illustrates this preference: genres like pop, edm, latin, r&b, and rap have a higher concentration of danceability, whereas rock stands out with relatively lower danceability.
+
+
+```{r}
+spotify_df %>% group_by(playlist_genre) %>% 
+  ggplot(aes(x = danceability, y = track_popularity,group = playlist_genre,
+             color = playlist_genre)) + 
+  geom_point(alpha = 0.2)+
+  geom_smooth()+
+  theme(legend.position = "right")+
+  ggtitle("Popularity vs Dancibility") + 
+  xlab("Dancibility") +
+  ylab("Popularity")
+```
+
+This scatterplot shows the relationship between danceability and popularity, providing insight from the listener's perspective.\
+The trend lines indicate that, among genres, there is no strong relationship between danceability and popularity, suggesting that while danceability is a key feature in creating engaging music, it does not necessarily guarantee higher popularity. Since listener preferences are complex and influenced by various factors beyond just danceability.\
+This tells us that while creating danceable music is important for engagement, other attributes also play significant roles in determining overall popularity.
+
+
+## Energy
+
+Energy played a crucial role in making music impactful and memorable.\ High-energy tracks capture listeners by creating an immerse and electrifying experience. Genres like pop and edm naturally lean into this energy, often relying on strong beats and dynamic production to connect with audiences. Such energetic tracks are popular because they bring excitement and intensity, making them perfect for settings like parties, workouts, or any time listeners want to feel a burst of energy.
+
+```{r}
+spotify_df %>% 
+  ggplot(aes(x = energy)) + 
+  geom_histogram()+
+  ggtitle("Distribution of Energy")
+
+```
+
+
+
+```{r}
+spotify_df %>%  
+   mutate(playlist_genre = fct_reorder(playlist_genre,energy)) %>% 
+   unnest() %>% 
+   plot_ly(
+    x = ~playlist_genre,
+    y = ~energy,
+    type = "violin",
+    color= ~playlist_genre,
+    box = list(visible = TRUE),          
+    meanline = list(visible = TRUE)
+  ) %>%  
+  layout(
+    title = "Distribution of Energy by Genre",
+    xaxis = list(title = "Genre"),
+    yaxis = list(title = "Energy"))
+```
+
+The distribution of energy follows a similar trend to danceability, with most songs featuring moderate to high energy. This indicates a preference among creators for producing high-energy music, which is often associated with excitement and liveliness. \
+The violin plot by genre emphasizes this pattern. EDM tends to have the highest energy level but also have some songs with relatively low energy level. Genres like rock, latin and pop tend to have a broader spread of energy levels. And r&b tends to have a lower energy levels. 
+
+### Which range of Energy does audiences feel most comfortable with?
+
+```{r}
+energy_popularity <- spotify_df %>% 
+  select(track_popularity,energy)
+
+kmeans_energy <- 
+  kmeans(x = energy_popularity, centers = 3)
+```
+
+```{r}
+kmeans_energy_df =
+  broom::augment(kmeans_energy, energy_popularity)
+
+kmeans_energy_df %>% 
+  ggplot(aes(x = energy, y = track_popularity, color = .cluster)) +
+  geom_boxplot() 
+```
+
+By applying the k-means clustering strategy, we analyzed how energy levels relate to track popularity across different energy ranges. The resulting boxplot highlights three distinct clusters of energy levels, allowing us to infer listener comfort and preferences. \
+Interestingly, the median energy group appears to have the lowest popularity, suggesting that moderate energy songs may not resonate with listeners that much compared to either high or low energy tracks. High-energy songs tend to be the most popular for audiences, which inferred that energetic and engaging songs are more in line with public preference.
+
+
+## Key
+
+Unlike danceability and energy, key is a less obvious factor when it comes to making music appealing. The key of a song refers to the tonal center and the set of notes that define its musical scale.
+
+```{r}
+spotify_df %>% mutate(key = fct_infreq(key)) %>% 
+  ggplot(aes(x = key)) + 
+  geom_bar()
+```
+
+From this distribution we can see, the most commonly used key is `C#/Db`.
+Since `C#/Db` keys are often used in `R&B` and `Pop` genre.
+Other than that, singers love to use simpler keys without sharp key or flat key.
+
+```{r}
+percentile_df <- spotify_df %>%
+  group_by(playlist_genre,key) %>%
+  summarise(count = n()) %>%
+  group_by(playlist_genre) %>%
+  mutate(percentile = count / sum(count) * 100)
+
+ggplot(percentile_df, aes(x = factor(playlist_genre), y = percentile, fill = key)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Distribution of Genre by Key",
+       x = "Genre",
+       y = "Key",
+       fill = "Key")
+```
+
+It seems no single key is dominating across genres. This even distribution suggests that songwriters and producers in different genres may choose keys to fit specific emotional or stylistic goals rather than being constrained to particular keys.
+
+
+```{r}
+spotify_df %>%  
+   mutate(key = fct_reorder(key,track_popularity)) %>% 
+   unnest() %>% 
+   plot_ly(
+    x = ~key,
+    y = ~track_popularity,
+    type = "violin",
+    color= ~key,
+    box = list(visible = TRUE),          
+    meanline = list(visible = TRUE)
+  ) %>%  
+  layout(
+    title = "Distribution of Popularity by Key",
+    xaxis = list(title = "Key"),
+    yaxis = list(title = "Popularity"))
+```
+From this plot, we can see that there is no significant variation in popularity across different keys, with most keys showing similar distributions of popularity. However, a few keys, such as F# and Gb, seem to have slightly broader distributions, suggesting that songs in these keys might be perceived as more versatile or emotionally impactful.
+
+We can also conclude that key alone may not be a major driver of a song's popularity, but it does contribute to the subtle emotional qualities that listeners appreciate.
+
+## Mode
+
+Similar to key, mode is not directly perceptible to most listeners, it is more likely to be the choice of the songwriters and producers. But it significantly influences the emotional tone. \
+Major modes are often associated with happy, upbeat feelings, whereas minor modes can evoke more somber, introspective emotions.
+
+```{r}
+m1 <- spotify_df %>% 
+  ggplot(aes(x = mode)) + 
+  geom_bar()
+
+m2 <- spotify_df %>%  
+  ggplot(aes(x = mode, y = track_popularity,fill = mode))+
+  geom_boxplot()
+
+m1 + m2
+```
+
+Both of these plots suggest that major key songs are preferred by both songwriters and listeners. \
+Songwriters tend to create more songs in major mode, likely because it conveys an upbeat and bright tone that resonates broadly. And listeners also favor this uplifting quality, giving major-mode tracks a slightly higher boxplot than the minor key.
+
+
+## Loudness
+
+Loudness is how intense a song feels to the listener. Higher loudness can create excitement, while lower loudness may contribute to more intimate or reflective tracks. 
+
+```{r}
+spotify_df %>% 
+  ggplot(aes(x = loudness)) + 
+  geom_histogram()+
+  ggtitle("Distribution of Loudness")
+
+spotify_df %>%  
+   mutate(playlist_genre = fct_reorder(playlist_genre,loudness)) %>% 
+   unnest() %>% 
+   plot_ly(
+    x = ~playlist_genre,
+    y = ~loudness,
+    type = "violin",
+    color= ~playlist_genre,
+    box = list(visible = TRUE),          
+    meanline = list(visible = TRUE)
+  ) %>%  
+  layout(
+    title = "Distribution of Loudness by Genre",
+    xaxis = list(title = "Genre"),
+    yaxis = list(title = "Loudness"))
+
+
+```
+The distribution plot of loudness reveals that most songs tend to have relatively high loudness levels, clustering between -10 dB and 0 dB, suggesting that producers prefer making impactful tracks that can capture listener attention.\
+
+The violin plot reveals interesting patterns: the Latin genre exhibits a long tail and several outliers, highlighting the diversity in production choices for Latin music. In contrast, EDM shows a very concentrated loudness range, followed closely by R&B and rock. Pop and rap, on the other hand, have broader loudness ranges, reflecting greater variability in production approaches.
+
+```{r}
+spotify_df %>% group_by(playlist_genre) %>% 
+  ggplot(aes(x = loudness, y = track_popularity,group = playlist_genre,
+             color = playlist_genre)) + 
+  geom_point(alpha = 0.2)+
+  geom_smooth()+
+  theme(legend.position = "right")+
+  ggtitle("Popularity vs Loudness") + 
+  xlab("Loudness") +
+  ylab("Popularity")
+```
+
+The outliers in Latin music are consistent with the observations from the violin plot.\
+
+However, this scatterplot makes it difficult to draw definitive conclusions about the effect of loudness on popularity among genres, similar to the patterns seen in the danceability analysis. Loudness level itself cannot guarantee how popularity goes. And different genres exhibit varying relationships with loudness.
+
+
+
+## Duration
+
+In today's fast-paced society, listeners may have limited patience for longer songs. To explore this, we categorized song durations into three groups: short, medium, and long. By analyzing these categories, we can assess whether longer-duration songs are less popular, reflecting changing preferences where concise, easily consumable content is often favored. 
+
+```{r}
+spotify_df_perc <- spotify_df %>%
+  mutate(
+    duration_perc = case_when(
+      duration_ms < quantile(duration_ms, 0.25, na.rm = TRUE) ~ "Short Duration",
+      duration_ms > quantile(duration_ms, 0.75, na.rm = TRUE) ~ "Long Duration",
+      TRUE ~ "Medium Duration"
+    )
+  )
+```
+
+We use the 25th and 75th percentiles of the song duration to set the boundaries. Songs below the 25th percentile were classified as "Short Duration," those above the 75th percentile as "Long Duration," and the rest were categorized as "Medium Duration." 
+
+
+```{r}
+spotify_df_perc %>%
+  mutate(duration_perc = fct_relevel(duration_perc,c("Short Duration","Medium Duration","Long Duration"))) %>% 
+  ggplot(aes(x = duration_perc, y = track_popularity, fill = duration_perc)) +
+  geom_boxplot(outlier.alpha = 0.3) +
+  labs(
+    title = "Popularity by Duration Category",
+    x = "Duration",
+    y = "Popularity",
+  ) 
+```
+
+From this boxplot we can see songs with longer duration have slightly less popularity score and more variability comparing with the other two groups, possibly indicating that listeners have varied reactions to longer songs. This brings us a new idea that while concise content may be easier to digest, longer songs may still have room to attract dedicated audiences.
+
+```{r}
+spotify_df_perc %>%
+  mutate(duration_perc = fct_relevel(duration_perc,c("Short Duration","Medium Duration","Long Duration"))) %>% 
+  ggplot(aes(x = duration_perc, y = track_popularity, fill = duration_perc)) +
+  geom_boxplot(outlier.alpha = 0.3) +
+  labs(
+    title = "Popularity by Duration Category",
+    x = "Duration",
+    y = "Popularity",
+  ) +
+  facet_wrap(~ playlist_genre,nrow = 2)+
+  scale_x_discrete(labels = c("Short", "Medium", "Long"))
+```
+
+When it comes to each genre, songs with long duration still tend to have lower popularity for most of the genres. However, for rap and rock, there is no such significant differences.
+
+But overall, the analysis suggests that shorter songs tend to be more popular, likely due to their digestibility, while longer songs show more variability in popularity, indicating they may resonate differently across different audiences.
+
+# Conclusion
+
+We have explored various musical features individually, analyzing their potential contributions to song popularity. While some features, like danceability and loudness, cannot necessarily guarantee popularity along, while others show significant patterns, some may have a less straightforward influence. To gain a more comprehensive understanding, we plan to run a regression analysis incorporating all these variables of interest and even some variables we haven't touched on, allowing us to evaluate how each feature collectively affects song popularity.
 
 [Back to Home](index.html)
