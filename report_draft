@@ -1,0 +1,28 @@
+Final Report Draft
+
+## motivation
+
+
+
+Music, as a universal form of entertainment, has long been a subject of interest for data analysis, particularly when it comes to understanding the factors that drive song popularity. In the age of digital streaming platforms like Spotify, millions of songs are made available to listeners globally, making it crucial to explore what differentiates popular tracks from those with less attention. The "30,000 Spotify Songs" dataset from Kaggle provides a rich source of data, including various musical features such as danceability, key, energy, loudness, and popularity scores for a vast collection of songs.
+The primary motivation behind this analysis is to uncover meaningful patterns and relationships between song characteristics and their popularity. For example, we seek to understand whether a song’s danceability directly correlates with its popularity, or if there are specific trends in song key that influence listener preferences. By investigating the relationship between factors such as duration, genre, and release date, we can uncover deeper insights into how the music industry evolves over time and how listener tastes may shift.
+Additionally, visualizing these relationships using correlation matrices, scatter plots, and heat maps will provide an intuitive understanding of how features interact with one another. Grouping these features by genre allows for further exploration of genre-specific trends, offering a comparative perspective that can help guide decisions in music production and marketing strategies.
+Ultimately, this analysis aims to identify which musical characteristics contribute most to a song's success and how the music landscape shifts over time, providing valuable insights for both musicians and industry professionals in crafting songs that resonate with audiences.
+
+
+
+
+## data
+- sources
+- cleaning
+
+## initial questions
+
+## exploratory analysis
+
+## regression analysis
+
+## discussion
+- key findings
+- limitations
+- next steps

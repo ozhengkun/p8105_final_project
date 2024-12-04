@@ -36,8 +36,33 @@ output:
   }
 </style>
 <div class="section">
-  <h1>Report Page</h1>
+  <h1>Motivations/h1>
   <p>This is the content for the Report page.</p>
+</div>
+
+<div class="section">
+  <h1>Initial Questions/h1>
+  <p>.</p>
+</div>
+
+<div class="section">
+  <h1>Data/h1>
+  <p>sources, cleaning</p>
+</div>
+
+<div class="section">
+  <h1>Exploratory Analysis/h1>
+  <p>.</p>
+</div>
+
+<div class="section">
+  <h1>Regression Analysis/h1>
+  <p>.</p>
+</div>
+
+<div class="section">
+  <h1>Discussion/h1>
+  <p>key findings, limitations, next steps</p>
 </div>
 
 [Back to Home](index.html)
