@@ -36,10 +36,103 @@ output:
   }
 </style>
 
-<div class="section">
-  <h1>Data Page</h1>
-  <p>This is the content for the Data page.</p>
-</div>
+
+The raw dataset we utilized can be found [here](https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs).\
+
+
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(plotly)
+library(tidyverse)
+library(patchwork)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+# Data Cleaning
+
+```{r}
+spotify_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
+```
+
+The raw dataset contains information from `r nrow(spotify_df)` songs.\ 
+For each song, there are `r ncol(spotify_df)` pieces of information.
+
+The dataset was cleaned by first removing duplicated `track_id` entries. To streamline the analysis, unnecessary unique ID columns that were not relevant were also removed. In cases where the `track_album_release_date` was missing the month and year, a new column, `track_album_release_year`, was created to include only the release year. Relevant variables were converted to factors for proper categorization, and the `danceability` and `energy` variables were rescaled to a range of 0-100 to enhance their impact on visualizations. Finally, the data was cleaned according to the data dictionary to ensure consistency and accuracy across the dataset.
+
+
+```{r}
+spotify_df <- 
+  spotify_df %>% 
+  distinct(track_id,.keep_all = T) %>% select(-track_id,-track_album_id,-playlist_id) %>%
+  mutate(track_album_release_year = as.numeric(str_sub(track_album_release_date,1,4))) %>% 
+  select(-track_album_release_date) %>% 
+  mutate(playlist_name = factor(playlist_name),
+         playlist_genre = factor(playlist_genre),
+         playlist_subgenre = factor(playlist_subgenre)) %>% 
+  mutate(danceability = danceability * 100,
+         energy = energy * 100) %>% 
+  mutate(key = factor(case_match(key,0 ~ "C",
+                          1 ~ "C#/Db", 2 ~ "D",
+                          3 ~ "D#/Eb", 4 ~ "E",
+                          5 ~ "F", 6 ~ "F#/Gb",
+                          7 ~ "G", 8 ~ "G#/Ab",
+                          9 ~ "A", 10 ~ "A#/Bb",
+                          11 ~ "B")),
+         mode = factor(case_match(mode, 0 ~ "minor",1 ~ "Major")),
+         speechiness = factor(case_when(speechiness < 0.33 ~ "non-speech-like music",
+                                 speechiness >= 0.33 & speechiness <= 0.66 ~ "mix of speech and music",
+                                 speechiness > 0.66 ~ "entirely of spoken words")))
+
+summary(spotify_df)
+```
+
+
+
+
+# Data Dictionary
+
+ Our cleaned spotify dataset includes the following variables:\
+
+
+- `track_name`: Character. Song name.
+- `track_artist`: Character. Song artist.
+- `track_popularity`: Double. Song popularity (0-100), where higher is better.
+- `track_album_name`: Character. Song album name.
+- `track_album_release_year`: Double. Year when album was released.
+- `playlist_name`: Factor. Name of playlist.
+- `playlist_genre`: Factor. Playlist genre.
+- `playlist_subgenre`: Factor. Playlist subgenre.
+- `danceability`: Double. Describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0 is least danceable and 100 is most danceable.
+- `energy`: Double. A measure from 0 to 100 representing the perceptual intensity and activity of the track. High energy values indicate fast, loud, and noisy tracks.
+- `key`: Factor. The estimated overall key of the track (e.g., C, C#/Db, D, etc.).
+- `loudness`: Double. The overall loudness of a track in decibels (dB), averaged across the entire track. Values typically range between -60 and 0 dB.
+- `mode`: Factor. Indicates the modality (major or minor) of a track. 
+- `speechiness`: Factor. Describes the presence of spoken words in a track, with the following levels: 
+  - "non-speech-like music" for values less than 0.33
+  - "mix of speech and music" for values between 0.33 and 0.66
+  - "entirely of spoken words" for values greater than 0.66.
+- `acousticness`: Double. A confidence measure from 0.0 to 1.0 of whether the track is acoustic.
+- `instrumentalness`: Double. Predicts whether a track contains no vocals. Values above 0.5 represent instrumental tracks.
+- `liveness`: Double. Detects the presence of an audience in the recording. Higher values indicate a higher probability of a live performance.
+- `valence`: Double. A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Higher values indicate a more positive mood.
+- `tempo`: Double. The overall estimated tempo of a track in beats per minute (BPM).
+- `duration_ms`: Double. Duration of song in milliseconds.
 
 [Back to Home](index.html)
-

@@ -423,15 +423,158 @@ div.tocify {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 </style>
-<div class="section">
-<h1>
-Data Page
-</h1>
-<p>
-This is the content for the Data page.
+<p>The raw dataset we utilized can be found <a
+href="https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs">here</a>.<br />
 </p>
+<div id="data-cleaning" class="section level1">
+<h1>Data Cleaning</h1>
+<pre class="r"><code>spotify_df &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv&#39;)</code></pre>
+<pre><code>## Rows: 32833 Columns: 23
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (10): track_id, track_name, track_artist, track_album_id, track_album_na...
+## dbl (13): track_popularity, danceability, energy, key, loudness, mode, speec...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>The raw dataset contains information from 32833 songs.  For each
+song, there are 23 pieces of information.</p>
+<p>The dataset was cleaned by first removing duplicated
+<code>track_id</code> entries. To streamline the analysis, unnecessary
+unique ID columns that were not relevant were also removed. In cases
+where the <code>track_album_release_date</code> was missing the month
+and year, a new column, <code>track_album_release_year</code>, was
+created to include only the release year. Relevant variables were
+converted to factors for proper categorization, and the
+<code>danceability</code> and <code>energy</code> variables were
+rescaled to a range of 0-100 to enhance their impact on visualizations.
+Finally, the data was cleaned according to the data dictionary to ensure
+consistency and accuracy across the dataset.</p>
+<pre class="r"><code>spotify_df &lt;- 
+  spotify_df %&gt;% 
+  distinct(track_id,.keep_all = T) %&gt;% select(-track_id,-track_album_id,-playlist_id) %&gt;%
+  mutate(track_album_release_year = as.numeric(str_sub(track_album_release_date,1,4))) %&gt;% 
+  select(-track_album_release_date) %&gt;% 
+  mutate(playlist_name = factor(playlist_name),
+         playlist_genre = factor(playlist_genre),
+         playlist_subgenre = factor(playlist_subgenre)) %&gt;% 
+  mutate(danceability = danceability * 100,
+         energy = energy * 100) %&gt;% 
+  mutate(key = factor(case_match(key,0 ~ &quot;C&quot;,
+                          1 ~ &quot;C#/Db&quot;, 2 ~ &quot;D&quot;,
+                          3 ~ &quot;D#/Eb&quot;, 4 ~ &quot;E&quot;,
+                          5 ~ &quot;F&quot;, 6 ~ &quot;F#/Gb&quot;,
+                          7 ~ &quot;G&quot;, 8 ~ &quot;G#/Ab&quot;,
+                          9 ~ &quot;A&quot;, 10 ~ &quot;A#/Bb&quot;,
+                          11 ~ &quot;B&quot;)),
+         mode = factor(case_match(mode, 0 ~ &quot;minor&quot;,1 ~ &quot;Major&quot;)),
+         speechiness = factor(case_when(speechiness &lt; 0.33 ~ &quot;non-speech-like music&quot;,
+                                 speechiness &gt;= 0.33 &amp; speechiness &lt;= 0.66 ~ &quot;mix of speech and music&quot;,
+                                 speechiness &gt; 0.66 ~ &quot;entirely of spoken words&quot;)))
+
+summary(spotify_df)</code></pre>
+<pre><code>##   track_name        track_artist       track_popularity track_album_name  
+##  Length:28356       Length:28356       Min.   :  0.00   Length:28356      
+##  Class :character   Class :character   1st Qu.: 21.00   Class :character  
+##  Mode  :character   Mode  :character   Median : 42.00   Mode  :character  
+##                                        Mean   : 39.33                     
+##                                        3rd Qu.: 58.00                     
+##                                        Max.   :100.00                     
+##                                                                           
+##             playlist_name   playlist_genre                 playlist_subgenre
+##  Indie Poptimism   :  294   edm  :4877     southern hip hop         : 1583  
+##  Permanent Wave    :  223   latin:4137     indie poptimism          : 1547  
+##  Hard Rock Workout :  211   pop  :5132     neo soul                 : 1478  
+##  Southern Hip Hop  :  174   r&amp;b  :4504     progressive electro house: 1460  
+##  post teen pop     :  159   rap  :5401     electro house            : 1416  
+##  Urban Contemporary:  157   rock :4305     gangster rap             : 1316  
+##  (Other)           :27138                  (Other)                  :19556  
+##   danceability       energy              key           loudness      
+##  Min.   : 0.00   Min.   :  0.0175   C#/Db  : 3436   Min.   :-46.448  
+##  1st Qu.:56.10   1st Qu.: 57.9000   C      : 3001   1st Qu.: -8.309  
+##  Median :67.00   Median : 72.2000   G      : 2907   Median : -6.261  
+##  Mean   :65.34   Mean   : 69.8388   A      : 2631   Mean   : -6.818  
+##  3rd Qu.:76.00   3rd Qu.: 84.3000   B      : 2579   3rd Qu.: -4.709  
+##  Max.   :98.30   Max.   :100.0000   D      : 2478   Max.   :  1.275  
+##                                     (Other):11324                    
+##     mode                         speechiness     acousticness    
+##  Major:16035   entirely of spoken words:   25   Min.   :0.00000  
+##  minor:12321   mix of speech and music : 1479   1st Qu.:0.01438  
+##                non-speech-like music   :26852   Median :0.07970  
+##                                                 Mean   :0.17718  
+##                                                 3rd Qu.:0.26000  
+##                                                 Max.   :0.99400  
+##                                                                  
+##  instrumentalness       liveness         valence           tempo       
+##  Min.   :0.0000000   Min.   :0.0000   Min.   :0.0000   Min.   :  0.00  
+##  1st Qu.:0.0000000   1st Qu.:0.0926   1st Qu.:0.3290   1st Qu.: 99.97  
+##  Median :0.0000206   Median :0.1270   Median :0.5120   Median :121.99  
+##  Mean   :0.0911168   Mean   :0.1910   Mean   :0.5104   Mean   :120.96  
+##  3rd Qu.:0.0065700   3rd Qu.:0.2490   3rd Qu.:0.6950   3rd Qu.:134.00  
+##  Max.   :0.9940000   Max.   :0.9960   Max.   :0.9910   Max.   :239.44  
+##                                                                        
+##   duration_ms     track_album_release_year
+##  Min.   :  4000   Min.   :1957            
+##  1st Qu.:187742   1st Qu.:2008            
+##  Median :216933   Median :2016            
+##  Mean   :226576   Mean   :2011            
+##  3rd Qu.:254975   3rd Qu.:2019            
+##  Max.   :517810   Max.   :2020            
+## </code></pre>
 </div>
+<div id="data-dictionary" class="section level1">
+<h1>Data Dictionary</h1>
+<p>Our cleaned spotify dataset includes the following variables:<br />
+</p>
+<ul>
+<li><code>track_name</code>: Character. Song name.</li>
+<li><code>track_artist</code>: Character. Song artist.</li>
+<li><code>track_popularity</code>: Double. Song popularity (0-100),
+where higher is better.</li>
+<li><code>track_album_name</code>: Character. Song album name.</li>
+<li><code>track_album_release_year</code>: Double. Year when album was
+released.</li>
+<li><code>playlist_name</code>: Factor. Name of playlist.</li>
+<li><code>playlist_genre</code>: Factor. Playlist genre.</li>
+<li><code>playlist_subgenre</code>: Factor. Playlist subgenre.</li>
+<li><code>danceability</code>: Double. Describes how suitable a track is
+for dancing based on a combination of musical elements including tempo,
+rhythm stability, beat strength, and overall regularity. A value of 0 is
+least danceable and 100 is most danceable.</li>
+<li><code>energy</code>: Double. A measure from 0 to 100 representing
+the perceptual intensity and activity of the track. High energy values
+indicate fast, loud, and noisy tracks.</li>
+<li><code>key</code>: Factor. The estimated overall key of the track
+(e.g., C, C#/Db, D, etc.).</li>
+<li><code>loudness</code>: Double. The overall loudness of a track in
+decibels (dB), averaged across the entire track. Values typically range
+between -60 and 0 dB.</li>
+<li><code>mode</code>: Factor. Indicates the modality (major or minor)
+of a track.</li>
+<li><code>speechiness</code>: Factor. Describes the presence of spoken
+words in a track, with the following levels:
+<ul>
+<li>“non-speech-like music” for values less than 0.33</li>
+<li>“mix of speech and music” for values between 0.33 and 0.66</li>
+<li>“entirely of spoken words” for values greater than 0.66.</li>
+</ul></li>
+<li><code>acousticness</code>: Double. A confidence measure from 0.0 to
+1.0 of whether the track is acoustic.</li>
+<li><code>instrumentalness</code>: Double. Predicts whether a track
+contains no vocals. Values above 0.5 represent instrumental tracks.</li>
+<li><code>liveness</code>: Double. Detects the presence of an audience
+in the recording. Higher values indicate a higher probability of a live
+performance.</li>
+<li><code>valence</code>: Double. A measure from 0.0 to 1.0 describing
+the musical positiveness conveyed by a track. Higher values indicate a
+more positive mood.</li>
+<li><code>tempo</code>: Double. The overall estimated tempo of a track
+in beats per minute (BPM).</li>
+<li><code>duration_ms</code>: Double. Duration of song in
+milliseconds.</li>
+</ul>
 <p><a href="index.html">Back to Home</a></p>
+</div>
 
 
 
