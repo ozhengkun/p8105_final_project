@@ -2,34 +2,18 @@ name: "What Makes Your Song Shine on Spotify"
 output_dir: "."
 navbar:
   title: "Home"
-  left:
-    - text: "Explore"
-      menu:
-        - text: "Video"
-          href: video.html
-        - text: "Plan"
-          href: plan.html
-        - text: "Report"
-          href: report.html
-        - text: "Introduction"
-          href: introduction.html
-        - text: "Data"
-          href: data.html
-        - text: "EDA"
-          href: eda.html
-    - text: "Analysis"
-      menu:
-        - text: "Analysis Overview"
-          href: analysis.html
-        - text: "Regression"
-          href: regression.html
-        - text: "Conclusion"
-          href: conclusion.html
-    - text: "Shiny App"
-      href: shiny-app.html
-  right:
-    - text: "About"
-      href: about.html
+  left:   
+  - text: "Data"
+  href: data.html
+  - text: "EDA"
+  href: eda.html
+  - text: "Regression"
+  href: regression.html
+  - text: "Report"
+  href: report.html
+  - text: "Shiny App"
+  href: shiny-app.html
+
 output:
   html_document:
     toc: true
