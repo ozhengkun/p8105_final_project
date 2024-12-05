@@ -37,7 +37,8 @@ output:
 </style>
 
 
-The raw dataset we utilized can be found [here](https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs).\
+The data for this project was sourced from the 30000 Spotify Songs dataset on [Kaggle](https://www.kaggle.com/), which can be found [here](https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs).\
+This dataset is a comprehensive collection of audio features for 30,000 songs, including details such as acousticness, danceability, energy, duration, and other metrics. It provides a rich foundation for exploring patterns in music, analyzing trends, and creating visualizations or predictive models.\
 
 
 
