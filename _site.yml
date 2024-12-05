@@ -1,18 +1,19 @@
 name: "What Makes Your Song Shine on Spotify"
 output_dir: "."
+
 navbar:
   title: "Home"
-  left:   
-  - text: "Data"
-  href: data.html
-  - text: "EDA"
-  href: eda.html
-  - text: "Regression"
-  href: regression.html
-  - text: "Report"
-  href: report.html
-  - text: "Shiny App"
-  href: shiny-app.html
+  left:
+    - text: "Data"
+      href: data.html
+    - text: "EDA"
+      href: eda.html
+    - text: "Regression"
+      href: regression.html
+    - text: "Report"
+      href: report.html
+    - text: "Shiny App"
+      href: shiny-app.html
 
 output:
   html_document:
@@ -21,7 +22,3 @@ output:
     theme: journal
     code_folding: hide
     number_sections: false
-
-
-
-    
