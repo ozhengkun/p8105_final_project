@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
@@ -8,155 +6,570 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Georgia", sans-serif}
 
 body, html {
   height: 100%;
   line-height: 1.8;
+  background-color: #000; /* Pure black */
+  color: #fff; /* White text */
 }
 
-/* Full height image header */
+@font-face {
+    font-family: 'YangLaen'; /* You can name this anything */
+    src: url('./font/Yang Laen.otf') format('opentype'),
+         url('./font/Yang Laen.ttf') format('truetype');
+    font-weight: normal; /* Adjust if you have multiple weights */
+    font-style: normal;  /* Adjust if italic versions are available */
+}
+
+
+
+.section-spacing {
+  margin-top: 50px; /* Adjust spacing before the segment */
+  margin-bottom: 50px; /* Adjust spacing after the segment */
+}
+
+
+h1, h2, h3, h4, h5, h6, .highlight {
+  color: #fff; /* Neon green font */
+}
+
+.w3-bar .w3-button:hover {
+  color: #87f55e !important; /* Neon green hover effect for navigation links */
+}
+
+.team-header h2, .team-header h4 {
+  color: #87f55e; /* Neon green for team section headers */
+}
+
+/* Title color */
+.w3-container h3 {
+  color: #fff; /* White for the main title */
+}
+
+/* Subtitle color */
+.w3-container .subtitle {
+  color: #87f55e; /* Neon green for subtitles */
+}
+
+
+.w3-container {
+  margin: 0; /* Remove any default margin */
+  padding: 128px 16px; /* Keep padding consistent for spacing */
+}
+
+.team-section {
+  background-image: url('./image/group.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.team-header h2 {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.team-header h4 {
+  font-size: 1.5em;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+.team-content {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.member {
+  text-align: center;
+  max-width: 150px;
+}
+
+.member img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.member h4 {
+  font-size: 1.2em;
+  margin: 10px 0 5px;
+}
+
 .bgimg-1 {
+  position: relative; /* Ensure quote stays within the header section */
+}
+
+/* Full heights image header */
+.bgimg-1 {
+  background-color: #000; /* Fallback for black */
+  background-image: url("./image/music5.jpg");
   background-position: center;
   background-size: cover;
-  background-image: url("./image/music5.jpg"); /* Updated file path */
   min-height: 100%;
 }
 
 .w3-bar .w3-button {
   padding: 16px;
 }
+
+/* Music Genres Section Styles */
+.genre-section {
+  text-align: left;
+  padding: 50px 16px;
+}
+
+.genre-section h2 {
+  font-size: 3em; /* Make title larger */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #87f55e; /* Match other neon green text */
+}
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 30px; /* Increase gap between cards */
+  max-width: 2000px; /* Allow larger grid */
+  margin: auto;
+  padding: 0 5%; /* Align grid with title */
+}
+
+.genre-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 400px; /* Larger height for bigger images */
+}
+
+.genre-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out; /* Add zoom effect */
+}
+
+.genre-card:hover img {
+  transform: scale(1.1); /* Zoom on hover */
+}
+
+.genre-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* Keep partially visible */
+  background-color: #87f55e; /* Neon green */
+  color: #000; /* Black text */
+  text-align: left; /* Align text to left */
+  padding: 20px;
+  box-sizing: border-box;
+  transform: translateY(50%); /* Partially visible initially */
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.genre-card:hover .genre-overlay {
+  transform: translateY(0); /* Slide up on hover */
+  background-color: #5ecf41; /* Darker green on hover */
+}
+
+.genre-overlay h3 {
+  font-size: 1.8em; /* Larger font for headings */
+  font-weight: bold;
+  margin: 0 0 10px 0; /* Remove left margin for alignment */
+  color: #000; /* Black text */
+}
+
+.genre-overlay p {
+  margin: 0 0 10px 0; /* Remove left margin for alignment */
+  color: #000; /* Black text */
+}
+
+.genre-overlay a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.genre-overlay a:hover {
+  background-color: #000; /* Invert to black on hover */
+  color: #fff; /* White text on hover */
+}
+
 </style>
 </head>
-<body>
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <a href="#home" class="w3-bar-item w3-button w3-wide">P8105</a> <!-- Updated to "P8105" -->
-    <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
-      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-users"></i> TEAM</a>
-      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-briefcase"></i> WORK</a>
-      <a href="#Analysis" class="w3-bar-item w3-button"><i class="fa fa-line-chart"></i> Analysis</a>
-      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
-    </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-      <i class="fa fa-bars"></i>
-    </a>
-  </div>
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-card w3-top">
+  <a href="index.html" class="w3-bar-item w3-button w3-wide">HOME</a>
+  <a href="Data.html" class="w3-bar-item w3-button">Data</a>
+  <a href="EDA.html" class="w3-bar-item w3-button">EDA</a>
+  <a href="Regression.html" class="w3-bar-item w3-button">Regression</a>
+  <a href="Report.html" class="w3-bar-item w3-button">Report</a>
+  <a href="Shiny-App.html" class="w3-bar-item w3-button">Shiny App</a>
+  <a href="about.html" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="contact.html" class="w3-bar-item w3-button">CONTACT</a>
 </div>
+
 
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
   <div class="w3-display-left w3-text-white" style="padding:48px">
     <!-- Updated Title -->
-    <span class="w3-jumbo w3-hide-small" style="color:#2ecc71; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-weight:bold;">What Makes Your Song Shine on Spotify?</span><br>
-    <span class="w3-xxlarge w3-hide-large w3-hide-medium" style="color:#2ecc71; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-weight:bold;">What Makes Your Song Shine on Spotify?</span><br>
-    
-    <!-- Updated Quote -->
-    <span class="w3-large" style="font-size:22px; color:#ffffff; text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9); font-style:italic;">
-  "Music is the mediator between the spiritual and the sensual life." – Ludwig van Beethoven
-</span>
-  </div> 
-  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <span class="w3-jumbo w3-hide-small" style="color:#87f55e; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-weight:bold;">What Makes Your Song Shine on Spotify?</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium" style="color:#87f55e; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-weight:bold;">What Makes Your Song Shine on Spotify?</span>
+  </div>
+
+  <!-- Updated Quote -->
+  <div class="w3-display-bottomleft w3-text-white" style="padding:20px; font-size:22px; font-style:italic; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+    "Music is the mediator between the spiritual and the sensual life." – Ludwig van Beethoven
   </div>
 </header>
+
 
 <!-- Add Font Awesome Link in the <head> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <!-- About Section -->
-<div class="w3-container" style="padding:128px 16px" id="about">
-  <h3 class="w3-center">ABOUT THE PROJECT</h3>
-  <p class="w3-center w3-large">Key features of our project</p>
-  <div class="w3-row-padding w3-center" style="margin-top:64px">
+<!-- About Section -->
+<div class="w3-container" style="padding: 120px 16px; background-color: #000;" id="about">
+  <h3 class="w3-center" style="font-size: 1.5em; font-weight: bold; color: #fff; margin-top: 20px; margin-bottom: 100px;">
+    ABOUT THE PROJECT
+  </h3>
 
-    <!-- Inspiration -->
-    <div class="w3-quarter">
-      <i class="fas fa-lightbulb w3-margin-bottom w3-jumbo w3-center" style="color:#f1c40f;"></i>
-      <p class="w3-large">Inspiration</p>
-      <p>In a world where music connects billions, have you ever wondered what makes a song truly stand out? Is it the beat, the duration, or the genre? Through this project, we dive deep into Spotify’s vast database to uncover the hidden patterns behind a song’s success.</p>
+  <div class="w3-content" style="max-width: 100%; position: relative;">
+    <!-- Slide 1: Inspiration -->
+    <div class="slide">
+      <div class="w3-row" style="display: flex; align-items: center;">
+        <!-- Image Section -->
+        <div style="flex: 0 0 45%; padding: 16px; transform: translateX(20px);"> 
+          <img src="./image/update1.png" alt="Inspiration" style="width: 80%; border-radius: 8px;">
+        </div>
+        <!-- Content Section -->
+        <div style="flex: 0 0 50%; padding: 16px; transform: translate(-130px, -215px);">
+          <h3 style="font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;">
+            DISCOVER THE  <br> BEAT
+          </h3>
+          <p style="font-size: 1.2em; color: #ffffff; line-height: 1.6;">
+            In a world where music connects billions, have you ever wondered what makes a song truly stand out? Is it the beat, the duration, or the genre? Through this project, we dive deep into Spotify’s vast database to uncover the hidden patterns behind a song’s success.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- Discovery -->
-    <div class="w3-quarter">
-      <i class="fas fa-search w3-margin-bottom w3-jumbo" style="color:#3498db;"></i>
-      <p class="w3-large">Discovery</p>
-      <ul style="list-style-type:disc; text-align:left; padding-left:40px; margin-top:16px;">
-        <li><b>Music Trends Over Time:</b> Explore how popularity has evolved across genres and eras.</li>
-        <li><b>Key Features of Hit Songs:</b> Uncover the optimal combination of factors like danceability, energy, and valence that make a song a hit.</li>
-        <li><b>Insights for Creators:</b> Gain practical tips for crafting songs that resonate with listeners.</li>
-      </ul>
+    <!-- Slide 2: Discovery -->
+    <div class="slide">
+      <div class="w3-row" style="display: flex; justify-content: space-between; gap: 40px; align-items: center;">
+        <div style="flex: 0 0 45%; padding: 16px; transform: translateX(20px);">
+          <img src="./image/update2.jpg" alt="Discovery" style="width: 75%; border-radius: 8px;">
+        </div>
+        <div style="flex: 0 0 50%; padding: 16px; transform: translate(-210px, -230px);">
+          <h3 style="font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;">
+            DECODING  <br> TRENDS
+          </h3>
+          <p style="font-size: 1.2em; color: #ffffff; line-height: 1.6;">
+            Explore how music trends have evolved across decades. Learn about the factors like danceability, energy, and valence that contribute to hit songs. This project provides practical insights for creators to understand what makes a song resonate with listeners.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- Design -->
-    <div class="w3-quarter">
-      <i class="fas fa-paint-brush w3-margin-bottom w3-jumbo" style="color:#e74c3c;"></i>
-      <p class="w3-large">Design</p>
-      <p>We blend aesthetics and function to deliver visually compelling insights that are easy to understand. Every chart, graph, and layout is crafted with precision to highlight key findings.</p>
+    <!-- Slide 3: Design -->
+    <div class="slide">
+      <div class="w3-row" style="display: flex; justify-content: space-between; gap: 40px; align-items: center;">
+        <div style="flex: 0 0 45%; padding: 16px; transform: translateX(20px);">
+          <img src="./image/update3.jpg" alt="Design Image" style="width: 70%; border-radius: 8px;">
+        </div>
+        <div style="flex: 0 0 50%; padding: 16px; transform: translate(-210px, -230px);">
+            <h3 style="font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;">
+            VISUAL THE  <br> STORY
+          </h3>          <p style="font-size: 1.2em; color: #ffffff; line-height: 1.6;">
+            Every chart, graph, and layout in this project is crafted with precision to tell compelling visual stories. We focus on blending aesthetics and functionality to highlight the key findings effectively.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- Link -->
-    <div class="w3-quarter">
-      <i class="fas fa-hands-helping w3-margin-bottom w3-jumbo" style="color:#8e44ad;"></i>
-      <p class="w3-large">Support</p>
-      <p>Whether you’re a music lover, an aspiring artist, or just curious, this project provides a unique perspective on what makes music shine in today’s streaming world. Dive in to explore trends, results, and actionable insights that reveal the heartbeat of Spotify’s most popular tracks.</p>
+    <!-- Slide 4: Support -->
+    <div class="slide">
+      <div class="w3-row" style="display: flex; justify-content: space-between; gap: 40px; align-items: center;">
+        <div style="flex: 0 0 45%; padding: 16px; transform: translateX(20px);">
+          <img src="./image/update4.jpg" alt="Support Image" style="width: 60%; border-radius: 8px;">
+        </div>
+        <div style="flex: 0 0 50%; padding: 16px; transform: translate(-240px, -220px);">
+          <h3 style="font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;">
+            FIND THE <br> PASSION
+          </h3>          <p style="font-size: 1.2em; color: #ffffff; line-height: 1.6;">
+            Whether you’re a music lover, an aspiring artist, or just curious, this project provides a unique perspective on what makes music shine in today’s streaming world. Dive in to explore trends, results, and actionable insights that reveal the heartbeat of Spotify’s most popular tracks.
+          </p>
+        </div>
+      </div>
     </div>
 
+    <!-- Navigation Arrows -->
+    <a class="w3-button w3-black w3-display-left" style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; left: 10px; font-size: 2em;" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="w3-button w3-black w3-display-right" style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; right: 10px; font-size: 2em;" onclick="changeSlide(1)">&#10095;</a>
   </div>
 </div>
 
-<!-- Team Section -->
-<div class="w3-container" style="padding:128px 16px" id="team">
-  <h3 class="w3-center">OUR TEAM</h3>
-  <p class="w3-center w3-large">The ones who make it all happen</p>
-  
-  <!-- Top Row (Three Members) -->
-  <div class="w3-row-padding w3-center" style="margin-top:64px; display: flex; justify-content: center;">
-    <div class="w3-col" style="flex: 1; max-width: 200px; margin: 10px;">
-      <img src="/w3images/team1.jpg" alt="Congyu Yang" style="width:100%; border-radius:50%; aspect-ratio:1;">
-      <h4>Congyu Yang</h4>
-      <a href="#"><i class="fa fa-linkedin" style="font-size:24px; color:#0077b5;"></i></a>
-    </div>
-    <div class="w3-col" style="flex: 1; max-width: 200px; margin: 10px;">
-      <img src="/w3images/team2.jpg" alt="Senna Kim" style="width:100%; border-radius:50%; aspect-ratio:1;">
-      <h4>Senna Kim</h4>
-      <a href="#"><i class="fa fa-linkedin" style="font-size:24px; color:#0077b5;"></i></a>
-    </div>
-    <div class="w3-col" style="flex: 1; max-width: 200px; margin: 10px;">
-      <img src="/w3images/team3.jpg" alt="Wanlin Wu" style="width:100%; border-radius:50%; aspect-ratio:1;">
-      <h4>Wanlin Wu</h4>
-      <a href="#"><i class="fa fa-linkedin" style="font-size:24px; color:#0077b5;"></i></a>
-    </div>
-  </div>
-  
-  <!-- Bottom Row (Two Members) -->
-  <div class="w3-row-padding w3-center" style="margin-top:20px; display: flex; justify-content: center;">
-    <div class="w3-col" style="flex: 1; max-width: 200px; margin: 10px;">
-      <img src="/w3images/team4.jpg" alt="Yulin Liu" style="width:100%; border-radius:50%; aspect-ratio:1;">
-      <h4>Yulin Liu</h4>
-      <a href="#"><i class="fa fa-linkedin" style="font-size:24px; color:#0077b5;"></i></a>
-    </div>
-    <div class="w3-col" style="flex: 1; max-width: 200px; margin: 10px;">
-      <img src="/w3images/team5.jpg" alt="Zhengkun Ou" style="width:100%; border-radius:50%; aspect-ratio:1;">
-      <h4>Zhengkun Ou</h4>
-      <a href="#"><i class="fa fa-linkedin" style="font-size:24px; color:#0077b5;"></i></a>
-    </div>
+<!-- Updated Styles -->
+<style>
+  .slide {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .slide.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .w3-container h3 {
+    text-transform: uppercase;
+  }
+</style>
+
+<!-- Updated Script -->
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function changeSlide(n) {
+    slides[slideIndex].classList.remove("active");
+    slideIndex = (slideIndex + n + slides.length) % slides.length;
+    slides[slideIndex].classList.add("active");
+  }
+
+  // Initialize first slide
+  slides[slideIndex].classList.add("active");
+</script>
+
+
+<!-- Segment Divider -->
+<div class="animation-section" style="margin-top: 50px; margin-bottom: 150px;">
+    <div style="text-align: center; margin: 20px 0;">
+  <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
+</div>
+</div>
+
+<!-- Video Section -->
+<div class="w3-container" style="padding: 50px 16px; text-align: center; background-color: ##000;">
+  <h3 style="font-size: 3em; color: #87f55e; font-weight: bold; margin-bottom: 140px;">DEMONSTRATION</h3>
+  <div style="max-width: 800px; margin: auto;">
+    <iframe 
+      src="https://www.youtube.com/embed/epXY1w_XX_E" 
+      frameborder="0" 
+      allowfullscreen 
+      style="width: 100%; height: 450px; border-radius: 10px;"></iframe>
   </div>
 </div>
 
+<!-- Segment Divider -->
+<div class="animation-section" style="margin-top: 150px; margin-bottom: 70px;">
+    <div style="text-align: center; margin: 20px 0;">
+  <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
+</div>
+</div>
+
+<!-- Music Genres Section -->
+
+<div class="genre-section">
+ <h2 style="
+      font-size: 3em; 
+      font-weight: bold; 
+      text-transform: uppercase; 
+      color: #87f55e; 
+      margin-left: 10%; /* Adjust space from the left edge */
+      margin-bottom: 100px; /* Add space below the title */
+      position: relative;">
+    <span style="display: block; line-height: 1.2;">EXPLORE</span>
+    <span style="display: block; line-height: 1.2;">MUSIC GENRES</span>
+</h2>
+  <div class="genres-grid" style="
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); /* Four columns for images */
+      gap: 20px; /* Spacing between items */
+      padding-left: 10%; /* Space from the left */
+      padding-right: 5%; /* Optional for right alignment */">
+    <!-- Card 1 -->
+   <div class="genre-card" style="position: relative;">
+      <img src="./image/pop.jpg" alt="Pop Music" style="width: 100%; height: auto; border-radius: 10px;">
+      <div class="genre-overlay" style="text-align: center;">
+        <h3>Pop</h3>
+        <p>Embrace the energy of Pop.</p>
+        <a href="https://open.spotify.com/playlist/6vI3xbpdPYYJmicjBieLcr" target="_blank">Listen Now</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="genre-card">
+      <img src="./image/country.jpg" alt="Country Music">
+      <div class="genre-overlay">
+        <h3>Country</h3>
+        <p>Discover Country music hits.</p>
+        <a href="https://open.spotify.com/playlist/37i9dQZF1DX7aUUBCKwo4Y" target="_blank">Listen Now</a>
+      </div>
+    </div>
+
+    <!-- Add more cards (up to 8 genres) -->
+    <div class="genre-card">
+      <img src="./image/rock.jpg" alt="Rock Music">
+      <div class="genre-overlay">
+        <h3>Rock</h3>
+        <p>Unleash the thrill of Rock.</p>
+        <a href="https://open.spotify.com/playlist/7DgPQwzEoUVfQYBiMLER9Z" target="_blank">Listen Now</a>
+      </div>
+    </div>
+
+    <div class="genre-card">
+      <img src="./image/jazz.jpg" alt="Jazz Music">
+      <div class="genre-overlay">
+        <h3>Jazz</h3>
+        <p>Relax with smooth Jazz.</p>
+        <a href="https://open.spotify.com/playlist/5rdgRwdMskt1IJKjNf0VWQ" target="_blank">Listen Now</a>
+      </div>
+    </div>
+    
+    <div class="genre-card">
+      <img src="./image/electronic.jpg" alt="Electronic Music">
+      <div class="genre-overlay">
+        <h3>Electronic</h3>
+        <p>Get lost in the beats of Electronic.</p>
+        <a href="https://open.spotify.com/playlist/3tRhisNDv5YZXPQltBbJNc" target="_blank">Listen Now</a>
+      </div>
+    </div>
+    
+    <div class="genre-card">
+      <img src="./image/classical.jpg" alt="Classical Music">
+      <div class="genre-overlay">
+        <h3>Classical</h3>
+        <p>Experience the depth of Classical.</p>
+        <a href="https://open.spotify.com/album/6halEDglV9MDWczbiT8LGT" target="_blank">Listen Now</a>
+      </div>
+    </div>
+    
+    <div class="genre-card">
+      <img src="./image/hiphop.jpg" alt="Hiphop Music">
+      <div class="genre-overlay">
+        <h3>Hiphop</h3>
+        <p>Flow with Hip Hop vibes.</p>
+        <a href="https://open.spotify.com/playlist/02okEcUQXHe2sS5ajE9XG0" target="_blank">Listen Now</a>
+      </div>
+    </div>
+    
+    <div class="genre-card">
+      <img src="./image/world.jpg" alt="Hiphop Music">
+      <div class="genre-overlay">
+        <h3>World</h3>
+        <p>Explore the richness of World.</p>
+        <a href="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF" target="_blank">Listen Now</a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Segment Divider -->
+<div class="animation-section" style="margin-top: 100px; margin-bottom: 200px;">
+    <div style="text-align: center; margin: 20px 0;">
+  <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
+</div>
+</div>
+
+
+<!-- Main Team Section -->
+<div style="background-color: #87f55e; position: relative; min-height: 100vh; padding-bottom: 150px;">
+  <!-- Top Jagged Edge -->
+  <div style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #000;
+    clip-path: polygon(0 0, 10% 100%, 20% 0, 30% 100%, 40% 0, 50% 100%, 60% 0, 70% 100%, 80% 0, 90% 100%, 100% 0);
+    z-index: 1;">
+  </div>
+
+  <!-- Team Header -->
+
+  <div style="
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      position: relative; 
+      z-index: 2; 
+      padding-top: var(--title-padding, 300px);">
+   <h1 style="font-family: 'YangLaen', sans-serif; font-size: 8em; color: #000;">
+    Our Team
+   </h1>
+
+  </div>
+
+  <!-- Team Content -->
+  <div class="team-content" style="
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      align-items: center; 
+      text-align: center; 
+      gap: 30px; 
+      position: relative; 
+      margin-top: 200px;">
+    <div class="member" style="display: inline-block; margin: 20px;">
+      <img src="./image/Congyu.jpg" alt="Congyu Yang" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
+      <h4 style="font-family: 'YangLaen', sans-serif; margin-top: 10px; color: #000;">Congyu Yang</h4>
+    </div>
+    <div class="member" style="display: inline-block; margin: 20px;">
+      <img src="./image/Senna.jpg" alt="Senna Kim" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
+      <h4 style="font-family: 'YangLaen', sans-serif;margin-top: 10px; color: #000;">Senna Kim</h4>
+    </div>
+    <div class="member" style="display: inline-block; margin: 20px;">
+      <img src="./image/Wanlin.jpg" alt="Wanlin Wu" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
+      <h4 style="font-family: 'YangLaen', sans-serif;margin-top: 10px; color: #000;">Wanlin Wu</h4>
+    </div>
+    <div class="member" style="display: inline-block; margin: 20px;">
+      <img src="./image/Yulin.jpg" alt="Yulin Liu" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
+      <h4 style="font-family: 'YangLaen', sans-serif;margin-top: 10px; color: #000;">Yulin Liu</h4>
+    </div>
+    <div class="member" style="display: inline-block; margin: 20px;">
+      <img src="./image/wanlin_wu.jpg" alt="Zhengkun Ou" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
+      <h4 style="font-family: 'YangLaen', sans-serif;margin-top: 10px; color: #000;">Zhengkun Ou</h4>
+    </div>
+  </div>
+
+  <!-- Bottom Jagged Edge -->
+  <div style="
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #000;
+    clip-path: polygon(0 100%, 10% 0, 20% 100%, 30% 0, 40% 100%, 50% 0, 60% 100%, 70% 0, 80% 100%, 90% 0, 100% 100%);
+    z-index: 1;">
+  </div>
+</div>
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64">
+<footer class="w3-center w3-black w3-padding-64" style="position: relative; z-index: 3;">
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
   <div class="w3-xlarge w3-section">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -167,4 +580,6 @@ body, html {
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
 </footer>
+
+
 

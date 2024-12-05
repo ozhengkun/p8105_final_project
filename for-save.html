@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>for-save.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Explore
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="video.html">Video</a>
+    </li>
+    <li>
+      <a href="plan.html">Plan</a>
+    </li>
+    <li>
+      <a href="report.html">Report</a>
+    </li>
+    <li>
+      <a href="introduction.html">Introduction</a>
+    </li>
+    <li>
+      <a href="data.html">Data</a>
+    </li>
+    <li>
+      <a href="eda.html">EDA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="analysis.html">Analysis Overview</a>
+    </li>
+    <li>
+      <a href="regression.html">Regression</a>
+    </li>
+    <li>
+      <a href="conclusion.html">Conclusion</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="shiny-app.html">Shiny App</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<head>
+<title>
+W3.CSS Template
+</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Georgia", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+  background-color: #000; /* Pure black */
+  color: #fff; /* White text */
+}
+
+@font-face {
+    font-family: 'YangLaen'; /* You can name this anything */
+    src: url('./font/Yang Laen.otf') format('opentype'),
+         url('./font/Yang Laen.ttf') format('truetype');
+    font-weight: normal; /* Adjust if you have multiple weights */
+    font-style: normal;  /* Adjust if italic versions are available */
+}
+
+
+
+.section-spacing {
+  margin-top: 50px; /* Adjust spacing before the segment */
+  margin-bottom: 50px; /* Adjust spacing after the segment */
+}
+
+
+h1, h2, h3, h4, h5, h6, .highlight {
+  color: #fff; /* Neon green font */
+}
+
+.w3-bar .w3-button:hover {
+  color: #87f55e !important; /* Neon green hover effect for navigation links */
+}
+
+.team-header h2, .team-header h4 {
+  color: #87f55e; /* Neon green for team section headers */
+}
+
+/* Title color */
+.w3-container h3 {
+  color: #fff; /* White for the main title */
+}
+
+/* Subtitle color */
+.w3-container .subtitle {
+  color: #87f55e; /* Neon green for subtitles */
+}
+
+
+.w3-container {
+  margin: 0; /* Remove any default margin */
+  padding: 128px 16px; /* Keep padding consistent for spacing */
+}
+
+.team-section {
+  background-image: url('./image/group.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.team-header h2 {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.team-header h4 {
+  font-size: 1.5em;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+.team-content {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.member {
+  text-align: center;
+  max-width: 150px;
+}
+
+.member img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.member h4 {
+  font-size: 1.2em;
+  margin: 10px 0 5px;
+}
+
+.bgimg-1 {
+  position: relative; /* Ensure quote stays within the header section */
+}
+
+/* Full heights image header */
+.bgimg-1 {
+  background-color: #000; /* Fallback for black */
+  background-image: url("./image/music5.jpg");
+  background-position: center;
+  background-size: cover;
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+/* Music Genres Section Styles */
+.genre-section {
+  text-align: left;
+  padding: 50px 16px;
+}
+
+.genre-section h2 {
+  font-size: 3em; /* Make title larger */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #87f55e; /* Match other neon green text */
+}
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 30px; /* Increase gap between cards */
+  max-width: 2000px; /* Allow larger grid */
+  margin: auto;
+  padding: 0 5%; /* Align grid with title */
+}
+
+.genre-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 400px; /* Larger height for bigger images */
+}
+
+.genre-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out; /* Add zoom effect */
+}
+
+.genre-card:hover img {
+  transform: scale(1.1); /* Zoom on hover */
+}
+
+.genre-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* Keep partially visible */
+  background-color: #87f55e; /* Neon green */
+  color: #000; /* Black text */
+  text-align: left; /* Align text to left */
+  padding: 20px;
+  box-sizing: border-box;
+  transform: translateY(50%); /* Partially visible initially */
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.genre-card:hover .genre-overlay {
+  transform: translateY(0); /* Slide up on hover */
+  background-color: #5ecf41; /* Darker green on hover */
+}
+
+.genre-overlay h3 {
+  font-size: 1.8em; /* Larger font for headings */
+  font-weight: bold;
+  margin: 0 0 10px 0; /* Remove left margin for alignment */
+  color: #000; /* Black text */
+}
+
+.genre-overlay p {
+  margin: 0 0 10px 0; /* Remove left margin for alignment */
+  color: #000; /* Black text */
+}
+
+.genre-overlay a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.genre-overlay a:hover {
+  background-color: #000; /* Invert to black on hover */
+  color: #fff; /* White text on hover */
+}
+
+</style>
+</head>
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-card w3-top">
+<p><a href="index.html" class="w3-bar-item w3-button w3-wide">HOME</a>
+<a href="Data.html" class="w3-bar-item w3-button">Data</a>
+<a href="EDA.html" class="w3-bar-item w3-button">EDA</a>
+<a href="Regression.html" class="w3-bar-item w3-button">Regression</a>
+<a href="Report.html" class="w3-bar-item w3-button">Report</a>
+<a href="Shiny-App.html" class="w3-bar-item w3-button">Shiny App</a>
+<a href="about.html" class="w3-bar-item w3-button">ABOUT</a>
+<a href="contact.html" class="w3-bar-item w3-button">CONTACT</a></p>
+</div>
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+<div class="w3-display-left w3-text-white" style="padding:48px">
+<pre><code>&lt;!-- Updated Title --&gt;
+&lt;span class=&quot;w3-jumbo w3-hide-small&quot; style=&quot;color:#87f55e; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-weight:bold;&quot;&gt;What Makes Your Song Shine on Spotify?&lt;/span&gt;&lt;br&gt;
+&lt;span class=&quot;w3-xxlarge w3-hide-large w3-hide-medium&quot; style=&quot;color:#87f55e; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-weight:bold;&quot;&gt;What Makes Your Song Shine on Spotify?&lt;/span&gt;</code></pre>
+</div>
+<!-- Updated Quote -->
+<div class="w3-display-bottomleft w3-text-white"
+style="padding:20px; font-size:22px; font-style:italic; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+<pre><code>&quot;Music is the mediator between the spiritual and the sensual life.&quot; – Ludwig van Beethoven</code></pre>
+</div>
+</header>
+<!-- Add Font Awesome Link in the <head> -->
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></p>
+<!-- About Section -->
+<!-- About Section -->
+<div id="about" class="w3-container"
+style="padding: 120px 16px; background-color: #000;">
+<h3 class="w3-center" style="font-size: 1.5em; font-weight: bold; color: #fff; margin-top: 20px; margin-bottom: 100px;">
+ABOUT THE PROJECT
+</h3>
+<div class="w3-content" style="max-width: 100%; position: relative;">
+<pre><code>&lt;!-- Slide 1: Inspiration --&gt;
+&lt;div class=&quot;slide&quot;&gt;
+  &lt;div class=&quot;w3-row&quot; style=&quot;display: flex; align-items: center;&quot;&gt;
+    &lt;!-- Image Section --&gt;
+    &lt;div style=&quot;flex: 0 0 45%; padding: 16px; transform: translateX(20px);&quot;&gt; 
+      &lt;img src=&quot;./image/update1.png&quot; alt=&quot;Inspiration&quot; style=&quot;width: 80%; border-radius: 8px;&quot;&gt;
+    &lt;/div&gt;
+    &lt;!-- Content Section --&gt;
+    &lt;div style=&quot;flex: 0 0 50%; padding: 16px; transform: translate(-130px, -215px);&quot;&gt;
+      &lt;h3 style=&quot;font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;&quot;&gt;
+        DISCOVER THE  &lt;br&gt; BEAT
+      &lt;/h3&gt;
+      &lt;p style=&quot;font-size: 1.2em; color: #ffffff; line-height: 1.6;&quot;&gt;
+        In a world where music connects billions, have you ever wondered what makes a song truly stand out? Is it the beat, the duration, or the genre? Through this project, we dive deep into Spotify’s vast database to uncover the hidden patterns behind a song’s success.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Slide 2: Discovery --&gt;
+&lt;div class=&quot;slide&quot;&gt;
+  &lt;div class=&quot;w3-row&quot; style=&quot;display: flex; justify-content: space-between; gap: 40px; align-items: center;&quot;&gt;
+    &lt;div style=&quot;flex: 0 0 45%; padding: 16px; transform: translateX(20px);&quot;&gt;
+      &lt;img src=&quot;./image/update2.jpg&quot; alt=&quot;Discovery&quot; style=&quot;width: 75%; border-radius: 8px;&quot;&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;flex: 0 0 50%; padding: 16px; transform: translate(-210px, -230px);&quot;&gt;
+      &lt;h3 style=&quot;font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;&quot;&gt;
+        DECODING  &lt;br&gt; TRENDS
+      &lt;/h3&gt;
+      &lt;p style=&quot;font-size: 1.2em; color: #ffffff; line-height: 1.6;&quot;&gt;
+        Explore how music trends have evolved across decades. Learn about the factors like danceability, energy, and valence that contribute to hit songs. This project provides practical insights for creators to understand what makes a song resonate with listeners.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Slide 3: Design --&gt;
+&lt;div class=&quot;slide&quot;&gt;
+  &lt;div class=&quot;w3-row&quot; style=&quot;display: flex; justify-content: space-between; gap: 40px; align-items: center;&quot;&gt;
+    &lt;div style=&quot;flex: 0 0 45%; padding: 16px; transform: translateX(20px);&quot;&gt;
+      &lt;img src=&quot;./image/update3.jpg&quot; alt=&quot;Design Image&quot; style=&quot;width: 70%; border-radius: 8px;&quot;&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;flex: 0 0 50%; padding: 16px; transform: translate(-210px, -230px);&quot;&gt;
+        &lt;h3 style=&quot;font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;&quot;&gt;
+        VISUAL THE  &lt;br&gt; STORY
+      &lt;/h3&gt;          &lt;p style=&quot;font-size: 1.2em; color: #ffffff; line-height: 1.6;&quot;&gt;
+        Every chart, graph, and layout in this project is crafted with precision to tell compelling visual stories. We focus on blending aesthetics and functionality to highlight the key findings effectively.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Slide 4: Support --&gt;
+&lt;div class=&quot;slide&quot;&gt;
+  &lt;div class=&quot;w3-row&quot; style=&quot;display: flex; justify-content: space-between; gap: 40px; align-items: center;&quot;&gt;
+    &lt;div style=&quot;flex: 0 0 45%; padding: 16px; transform: translateX(20px);&quot;&gt;
+      &lt;img src=&quot;./image/update4.jpg&quot; alt=&quot;Support Image&quot; style=&quot;width: 60%; border-radius: 8px;&quot;&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;flex: 0 0 50%; padding: 16px; transform: translate(-240px, -220px);&quot;&gt;
+      &lt;h3 style=&quot;font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;&quot;&gt;
+        FIND THE &lt;br&gt; PASSION
+      &lt;/h3&gt;          &lt;p style=&quot;font-size: 1.2em; color: #ffffff; line-height: 1.6;&quot;&gt;
+        Whether you’re a music lover, an aspiring artist, or just curious, this project provides a unique perspective on what makes music shine in today’s streaming world. Dive in to explore trends, results, and actionable insights that reveal the heartbeat of Spotify’s most popular tracks.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Navigation Arrows --&gt;
+&lt;a class=&quot;w3-button w3-black w3-display-left&quot; style=&quot;position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; left: 10px; font-size: 2em;&quot; onclick=&quot;changeSlide(-1)&quot;&gt;&amp;#10094;&lt;/a&gt;
+&lt;a class=&quot;w3-button w3-black w3-display-right&quot; style=&quot;position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; right: 10px; font-size: 2em;&quot; onclick=&quot;changeSlide(1)&quot;&gt;&amp;#10095;&lt;/a&gt;</code></pre>
+</div>
+</div>
+<!-- Updated Styles -->
+<style>
+  .slide {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .slide.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .w3-container h3 {
+    text-transform: uppercase;
+  }
+</style>
+<!-- Updated Script -->
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function changeSlide(n) {
+    slides[slideIndex].classList.remove("active");
+    slideIndex = (slideIndex + n + slides.length) % slides.length;
+    slides[slideIndex].classList.add("active");
+  }
+
+  // Initialize first slide
+  slides[slideIndex].classList.add("active");
+</script>
+<!-- Segment Divider -->
+<div class="animation-section"
+style="margin-top: 50px; margin-bottom: 150px;">
+<pre><code>&lt;div style=&quot;text-align: center; margin: 20px 0;&quot;&gt;</code></pre>
+<p><img src="image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;"></p>
+</div>
+</div>
+<!-- Video Section -->
+<div class="w3-container"
+style="padding: 50px 16px; text-align: center; background-color: ##000;">
+<h3 style="font-size: 3em; color: #87f55e; font-weight: bold; margin-bottom: 140px;">
+DEMONSTRATION
+</h3>
+<div style="max-width: 800px; margin: auto;">
+<pre><code>&lt;iframe 
+  src=&quot;https://www.youtube.com/embed/epXY1w_XX_E&quot; 
+  frameborder=&quot;0&quot; 
+  allowfullscreen 
+  style=&quot;width: 100%; height: 450px; border-radius: 10px;&quot;&gt;&lt;/iframe&gt;</code></pre>
+</div>
+</div>
+<!-- Segment Divider -->
+<div class="animation-section"
+style="margin-top: 150px; margin-bottom: 70px;">
+<pre><code>&lt;div style=&quot;text-align: center; margin: 20px 0;&quot;&gt;</code></pre>
+<p><img src="image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;"></p>
+</div>
+</div>
+<!-- Music Genres Section -->
+<div class="genre-section">
+<h2 style="
+      font-size: 3em; 
+      font-weight: bold; 
+      text-transform: uppercase; 
+      color: #87f55e; 
+      margin-left: 10%; /* Adjust space from the left edge */
+      margin-bottom: 100px; /* Add space below the title */
+      position: relative;">
+<span style="display: block; line-height: 1.2;">EXPLORE</span> <span
+style="display: block; line-height: 1.2;">MUSIC GENRES</span>
+</h2>
+<div class="genres-grid" style="
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); /* Four columns for images */
+      gap: 20px; /* Spacing between items */
+      padding-left: 10%; /* Space from the left */
+      padding-right: 5%; /* Optional for right alignment */">
+<pre><code>&lt;!-- Card 1 --&gt;</code></pre>
+<div class="genre-card" style="position: relative;">
+<pre><code>  &lt;img src=&quot;./image/pop.jpg&quot; alt=&quot;Pop Music&quot; style=&quot;width: 100%; height: auto; border-radius: 10px;&quot;&gt;
+  &lt;div class=&quot;genre-overlay&quot; style=&quot;text-align: center;&quot;&gt;
+    &lt;h3&gt;Pop&lt;/h3&gt;
+    &lt;p&gt;Embrace the energy of Pop.&lt;/p&gt;
+    &lt;a href=&quot;https://open.spotify.com/playlist/6vI3xbpdPYYJmicjBieLcr&quot; target=&quot;_blank&quot;&gt;Listen Now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Card 2 --&gt;
+&lt;div class=&quot;genre-card&quot;&gt;
+  &lt;img src=&quot;./image/country.jpg&quot; alt=&quot;Country Music&quot;&gt;
+  &lt;div class=&quot;genre-overlay&quot;&gt;
+    &lt;h3&gt;Country&lt;/h3&gt;
+    &lt;p&gt;Discover Country music hits.&lt;/p&gt;
+    &lt;a href=&quot;https://open.spotify.com/playlist/37i9dQZF1DX7aUUBCKwo4Y&quot; target=&quot;_blank&quot;&gt;Listen Now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Add more cards (up to 8 genres) --&gt;
+&lt;div class=&quot;genre-card&quot;&gt;
+  &lt;img src=&quot;./image/rock.jpg&quot; alt=&quot;Rock Music&quot;&gt;
+  &lt;div class=&quot;genre-overlay&quot;&gt;
+    &lt;h3&gt;Rock&lt;/h3&gt;
+    &lt;p&gt;Unleash the thrill of Rock.&lt;/p&gt;
+    &lt;a href=&quot;https://open.spotify.com/playlist/7DgPQwzEoUVfQYBiMLER9Z&quot; target=&quot;_blank&quot;&gt;Listen Now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;genre-card&quot;&gt;
+  &lt;img src=&quot;./image/jazz.jpg&quot; alt=&quot;Jazz Music&quot;&gt;
+  &lt;div class=&quot;genre-overlay&quot;&gt;
+    &lt;h3&gt;Jazz&lt;/h3&gt;
+    &lt;p&gt;Relax with smooth Jazz.&lt;/p&gt;
+    &lt;a href=&quot;https://open.spotify.com/playlist/5rdgRwdMskt1IJKjNf0VWQ&quot; target=&quot;_blank&quot;&gt;Listen Now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;genre-card&quot;&gt;
+  &lt;img src=&quot;./image/electronic.jpg&quot; alt=&quot;Electronic Music&quot;&gt;
+  &lt;div class=&quot;genre-overlay&quot;&gt;
+    &lt;h3&gt;Electronic&lt;/h3&gt;
+    &lt;p&gt;Get lost in the beats of Electronic.&lt;/p&gt;
+    &lt;a href=&quot;https://open.spotify.com/playlist/3tRhisNDv5YZXPQltBbJNc&quot; target=&quot;_blank&quot;&gt;Listen Now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;genre-card&quot;&gt;
+  &lt;img src=&quot;./image/classical.jpg&quot; alt=&quot;Classical Music&quot;&gt;
+  &lt;div class=&quot;genre-overlay&quot;&gt;
+    &lt;h3&gt;Classical&lt;/h3&gt;
+    &lt;p&gt;Experience the depth of Classical.&lt;/p&gt;
+    &lt;a href=&quot;https://open.spotify.com/album/6halEDglV9MDWczbiT8LGT&quot; target=&quot;_blank&quot;&gt;Listen Now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;genre-card&quot;&gt;
+  &lt;img src=&quot;./image/hiphop.jpg&quot; alt=&quot;Hiphop Music&quot;&gt;
+  &lt;div class=&quot;genre-overlay&quot;&gt;
+    &lt;h3&gt;Hiphop&lt;/h3&gt;
+    &lt;p&gt;Flow with Hip Hop vibes.&lt;/p&gt;
+    &lt;a href=&quot;https://open.spotify.com/playlist/02okEcUQXHe2sS5ajE9XG0&quot; target=&quot;_blank&quot;&gt;Listen Now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;genre-card&quot;&gt;
+  &lt;img src=&quot;./image/world.jpg&quot; alt=&quot;Hiphop Music&quot;&gt;
+  &lt;div class=&quot;genre-overlay&quot;&gt;
+    &lt;h3&gt;World&lt;/h3&gt;
+    &lt;p&gt;Explore the richness of World.&lt;/p&gt;
+    &lt;a href=&quot;https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF&quot; target=&quot;_blank&quot;&gt;Listen Now&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<!-- Segment Divider -->
+<div class="animation-section"
+style="margin-top: 100px; margin-bottom: 200px;">
+<pre><code>&lt;div style=&quot;text-align: center; margin: 20px 0;&quot;&gt;</code></pre>
+<p><img src="image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;"></p>
+</div>
+</div>
+<!-- Main Team Section -->
+<div
+style="background-color: #87f55e; position: relative; min-height: 100vh; padding-bottom: 150px;">
+<!-- Top Jagged Edge -->
+<div style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #000;
+    clip-path: polygon(0 0, 10% 100%, 20% 0, 30% 100%, 40% 0, 50% 100%, 60% 0, 70% 100%, 80% 0, 90% 100%, 100% 0);
+    z-index: 1;">
+
+</div>
+<p><!-- Team Header --></p>
+<div style="
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      position: relative; 
+      z-index: 2; 
+      padding-top: var(--title-padding, 300px);">
+<h1 style="font-family: &#39;YangLaen&#39;, sans-serif; font-size: 8em; color: #000;">
+Our Team
+</h1>
+</div>
+<!-- Team Content -->
+<div class="team-content" style="
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      align-items: center; 
+      text-align: center; 
+      gap: 30px; 
+      position: relative; 
+      margin-top: 200px;">
+<pre><code>&lt;div class=&quot;member&quot; style=&quot;display: inline-block; margin: 20px;&quot;&gt;
+  &lt;img src=&quot;./image/Congyu.jpg&quot; alt=&quot;Congyu Yang&quot; style=&quot;width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;&quot;&gt;
+  &lt;h4 style=&quot;font-family: &#39;YangLaen&#39;, sans-serif; margin-top: 10px; color: #000;&quot;&gt;Congyu Yang&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div class=&quot;member&quot; style=&quot;display: inline-block; margin: 20px;&quot;&gt;
+  &lt;img src=&quot;./image/Senna.jpg&quot; alt=&quot;Senna Kim&quot; style=&quot;width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;&quot;&gt;
+  &lt;h4 style=&quot;font-family: &#39;YangLaen&#39;, sans-serif;margin-top: 10px; color: #000;&quot;&gt;Senna Kim&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div class=&quot;member&quot; style=&quot;display: inline-block; margin: 20px;&quot;&gt;
+  &lt;img src=&quot;./image/Wanlin.jpg&quot; alt=&quot;Wanlin Wu&quot; style=&quot;width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;&quot;&gt;
+  &lt;h4 style=&quot;font-family: &#39;YangLaen&#39;, sans-serif;margin-top: 10px; color: #000;&quot;&gt;Wanlin Wu&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div class=&quot;member&quot; style=&quot;display: inline-block; margin: 20px;&quot;&gt;
+  &lt;img src=&quot;./image/Yulin.jpg&quot; alt=&quot;Yulin Liu&quot; style=&quot;width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;&quot;&gt;
+  &lt;h4 style=&quot;font-family: &#39;YangLaen&#39;, sans-serif;margin-top: 10px; color: #000;&quot;&gt;Yulin Liu&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div class=&quot;member&quot; style=&quot;display: inline-block; margin: 20px;&quot;&gt;
+  &lt;img src=&quot;./image/wanlin_wu.jpg&quot; alt=&quot;Zhengkun Ou&quot; style=&quot;width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;&quot;&gt;
+  &lt;h4 style=&quot;font-family: &#39;YangLaen&#39;, sans-serif;margin-top: 10px; color: #000;&quot;&gt;Zhengkun Ou&lt;/h4&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<!-- Bottom Jagged Edge -->
+<div style="
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #000;
+    clip-path: polygon(0 100%, 10% 0, 20% 100%, 30% 0, 40% 100%, 50% 0, 60% 100%, 70% 0, 80% 100%, 90% 0, 100% 100%);
+    z-index: 1;">
+
+</div>
+</div>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64" style="position: relative; z-index: 3;">
+<a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To
+the top</a>
+<div class="w3-xlarge w3-section">
+<pre><code>&lt;i class=&quot;fa fa-facebook-official w3-hover-opacity&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;fa fa-instagram w3-hover-opacity&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;fa fa-snapchat w3-hover-opacity&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;fa fa-pinterest-p w3-hover-opacity&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;fa fa-twitter w3-hover-opacity&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;fa fa-linkedin w3-hover-opacity&quot;&gt;&lt;/i&gt;</code></pre>
+</div>
+</footer>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
