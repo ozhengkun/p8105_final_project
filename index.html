@@ -1,10 +1,15 @@
+<!DOCTYPE html>
+<html>
 <head>
 <title>Spotify 3000</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- W3.CSS Library -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- Google Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Font Awesome Link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Georgia", sans-serif}
 
@@ -23,13 +28,10 @@ body, html {
     font-style: normal;  /* Adjust if italic versions are available */
 }
 
-
-
 .section-spacing {
   margin-top: 50px; /* Adjust spacing before the segment */
   margin-bottom: 50px; /* Adjust spacing after the segment */
 }
-
 
 h1, h2, h3, h4, h5, h6, .highlight {
   color: #fff; /* Neon green font */
@@ -52,7 +54,6 @@ h1, h2, h3, h4, h5, h6, .highlight {
 .w3-container .subtitle {
   color: #87f55e; /* Neon green for subtitles */
 }
-
 
 .w3-container {
   margin: 0; /* Remove any default margin */
@@ -98,11 +99,6 @@ h1, h2, h3, h4, h5, h6, .highlight {
   height: 120px;
   border-radius: 50%;
   border: 3px solid white;
-}
-
-.member h4 {
-  font-size: 1.2em;
-  margin: 10px 0 5px;
 }
 
 .bgimg-1 {
@@ -210,8 +206,117 @@ h1, h2, h3, h4, h5, h6, .highlight {
   color: #fff; /* White text on hover */
 }
 
+/* Container styles */
+.about-section {
+  padding: 120px 16px;
+  background-color: #000;
+}
+
+.about-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the top */
+  flex-wrap: wrap;
+  gap: 20px; /* Space between image and text */
+  max-width: 1200px; /* Limit the width of the row */
+  margin: auto; /* Center the row */
+}
+
+/* Image section */
+.about-image {
+  flex: 1 1 35%; /* Image takes up 35% of the container's width */
+  padding: 16px;
+}
+
+.image-style {
+  width: 100%; /* Ensure image takes full width of its container */
+  border-radius: 8px;
+}
+
+/* Text section */
+.about-text {
+  flex: 1 1 60%; /* Text takes up 60% of the container's width */
+  padding: 16px;
+  max-width: 600px; /* Limit text container width */
+}
+
+.about-heading {
+  font-size: 2.5em; /* Adjusted font size */
+  font-weight: bold;
+  color: #87f55e;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.about-paragraph {
+  font-size: 1.1em;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-row {
+    flex-direction: column; /* Stack image and text vertically on smaller screens */
+    text-align: center;
+  }
+
+  .about-image, .about-text {
+    flex: 1; /* Equal width for image and text */
+    max-width: none;
+  }
+
+  .about-heading {
+    font-size: 2em; /* Adjust heading size for smaller screens */
+  }
+
+  .about-paragraph {
+    font-size: 1em; /* Adjust paragraph size for smaller screens */
+  }
+}
+
+/* Slide styles */
+.slide {
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.w3-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.w3-content.limited-width {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Navigation arrow styles */
+.w3-button.w3-display-left, .w3-button.w3-display-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-size: 2em;
+  background-color: transparent;
+  color: #fff;
+}
+
+.w3-button.w3-display-left {
+  left: 10px;
+}
+
+.w3-button.w3-display-right {
+  right: 10px;
+}
 </style>
 </head>
+
+<body>
 
 <!-- Navigation Bar -->
 <div class="w3-bar w3-white w3-card w3-top">
@@ -224,7 +329,6 @@ h1, h2, h3, h4, h5, h6, .highlight {
   <a href="about.html" class="w3-bar-item w3-button">ABOUT</a>
   <a href="contact.html" class="w3-bar-item w3-button">CONTACT</a>
 </div>
-
 
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
@@ -240,137 +344,98 @@ h1, h2, h3, h4, h5, h6, .highlight {
   </div>
 </header>
 
-
-<!-- Add Font Awesome Link in the <head> -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 <!-- About Section -->
-<!-- About Section -->
-<div class="w3-container" style="padding: 120px 16px; background-color: #000;" id="about">
+<div class="about-section" id="about">
   <h3 class="w3-center" style="font-size: 1.5em; font-weight: bold; color: #fff; margin-top: 20px; margin-bottom: 100px;">
     ABOUT THE PROJECT
   </h3>
 
-  <div class="w3-content" style="max-width: 100%; position: relative;">
+  <div class="w3-content limited-width" style="position: relative;">
     <!-- Slide 1: Inspiration -->
-    <div class="slide">
-      <div class="w3-row" style="display: flex; align-items: center;">
+    <div class="slide active">
+      <div class="about-row">
         <!-- Image Section -->
-        <div style="flex: 0 0 45%; padding: 16px; transform: translateX(20px);"> 
-          <img src="./image/update1.png" alt="Inspiration" style="width: 80%; border-radius: 8px;">
+        <div class="about-image">
+          <img src="./image/update1.png" alt="Inspiration" class="image-style">
         </div>
         <!-- Content Section -->
-        <div style="flex: 0 0 50%; padding: 16px; transform: translate(-130px, -215px);">
-          <h3 style="font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;">
+        <div class="about-text">
+          <h3 class="about-heading">
             DISCOVER THE  <br> BEAT
           </h3>
-          <p style="font-size: 1.2em; color: #ffffff; line-height: 1.6;">
+          <p class="about-paragraph">
             In a world where music connects billions, have you ever wondered what makes a song truly stand out? Is it the beat, the duration, or the genre? Through this project, we dive deep into Spotify’s vast database to uncover the hidden patterns behind a song’s success.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- Slide 2: Discovery -->
-    <div class="slide">
-      <div class="w3-row" style="display: flex; justify-content: space-between; gap: 40px; align-items: center;">
-        <div style="flex: 0 0 45%; padding: 16px; transform: translateX(20px);">
-          <img src="./image/update2.jpg" alt="Discovery" style="width: 75%; border-radius: 8px;">
+     <!-- Slide 2: Discovery -->
+      <div class="slide active">
+      <div class="about-row">
+        <!-- Image Section -->
+        <div class="about-image">
+          <img src="./image/update2.jpg" alt="Discovery" class="image-style">
         </div>
-        <div style="flex: 0 0 50%; padding: 16px; transform: translate(-210px, -230px);">
-          <h3 style="font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;">
+        <!-- Content Section -->
+        <div class="about-text">
+          <h3 class="about-heading">
             DECODING  <br> TRENDS
           </h3>
-          <p style="font-size: 1.2em; color: #ffffff; line-height: 1.6;">
-            Explore how music trends have evolved across decades. Learn about the factors like danceability, energy, and valence that contribute to hit songs. This project provides practical insights for creators to understand what makes a song resonate with listeners.
-          </p>
+          <p class="about-paragraph">
+Explore how music trends have evolved across decades. Learn about the factors like danceability, energy, and valence that contribute to hit songs. This project provides practical insights for creators to understand what makes a song resonate with listeners.          </p>
         </div>
       </div>
     </div>
-
-    <!-- Slide 3: Design -->
-    <div class="slide">
-      <div class="w3-row" style="display: flex; justify-content: space-between; gap: 40px; align-items: center;">
-        <div style="flex: 0 0 45%; padding: 16px; transform: translateX(20px);">
-          <img src="./image/update3.jpg" alt="Design Image" style="width: 70%; border-radius: 8px;">
+         <!-- Slide 3: Design -->
+      <div class="slide active">
+      <div class="about-row">
+        <!-- Image Section -->
+        <div class="about-image">
+          <img src="./image/update5.jpg" alt="Design" class="image-style">
         </div>
-        <div style="flex: 0 0 50%; padding: 16px; transform: translate(-210px, -230px);">
-            <h3 style="font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;">
+        <!-- Content Section -->
+        <div class="about-text">
+          <h3 class="about-heading">
             VISUAL THE  <br> STORY
-          </h3>          <p style="font-size: 1.2em; color: #ffffff; line-height: 1.6;">
-            Every chart, graph, and layout in this project is crafted with precision to tell compelling visual stories. We focus on blending aesthetics and functionality to highlight the key findings effectively.
-          </p>
-        </div>
+          </h3>
+          <p class="about-paragraph">
+Every chart, graph, and layout in this project is crafted with precision to tell compelling visual stories. We focus on blending aesthetics and functionality to highlight the key findings effectively.        </div>
       </div>
     </div>
-
-    <!-- Slide 4: Support -->
-    <div class="slide">
-      <div class="w3-row" style="display: flex; justify-content: space-between; gap: 40px; align-items: center;">
-        <div style="flex: 0 0 45%; padding: 16px; transform: translateX(20px);">
-          <img src="./image/update4.jpg" alt="Support Image" style="width: 60%; border-radius: 8px;">
+         <!-- Slide 4: Support -->
+      <div class="slide active">
+      <div class="about-row">
+        <!-- Image Section -->
+        <div class="about-image">
+          <img src="./image/update4.jpg" alt="Support" class="image-style">
         </div>
-        <div style="flex: 0 0 50%; padding: 16px; transform: translate(-240px, -220px);">
-          <h3 style="font-size: 7em; font-weight: bold; color: #87f55e; line-height: 0.9; margin-bottom: 20px; text-transform: uppercase;">
+        <!-- Content Section -->
+        <div class="about-text">
+          <h3 class="about-heading">
             FIND THE <br> PASSION
-          </h3>          <p style="font-size: 1.2em; color: #ffffff; line-height: 1.6;">
-            Whether you’re a music lover, an aspiring artist, or just curious, this project provides a unique perspective on what makes music shine in today’s streaming world. Dive in to explore trends, results, and actionable insights that reveal the heartbeat of Spotify’s most popular tracks.
-          </p>
-        </div>
+          </h3>
+          <p class="about-paragraph">
+ Whether you’re a music lover, an aspiring artist, or just curious, this project provides a unique perspective on what makes music shine in today’s streaming world. Dive in to explore trends, results, and actionable insights that reveal the heartbeat of Spotify’s most popular tracks.        </div>
       </div>
     </div>
+    <!-- Repeat similar structure for other slides -->
 
     <!-- Navigation Arrows -->
-    <a class="w3-button w3-black w3-display-left" style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; left: 10px; font-size: 2em;" onclick="changeSlide(-1)">&#10094;</a>
-    <a class="w3-button w3-black w3-display-right" style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; right: 10px; font-size: 2em;" onclick="changeSlide(1)">&#10095;</a>
+    <a class="w3-button w3-display-left" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="w3-button w3-display-right" onclick="changeSlide(1)">&#10095;</a>
   </div>
 </div>
 
-<!-- Updated Styles -->
-<style>
-  .slide {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-
-  .slide.active {
-    opacity: 1;
-    position: relative;
-  }
-
-  .w3-container h3 {
-    text-transform: uppercase;
-  }
-</style>
-
-<!-- Updated Script -->
-<script>
-  let slideIndex = 0;
-  const slides = document.querySelectorAll(".slide");
-
-  function changeSlide(n) {
-    slides[slideIndex].classList.remove("active");
-    slideIndex = (slideIndex + n + slides.length) % slides.length;
-    slides[slideIndex].classList.add("active");
-  }
-
-  // Initialize first slide
-  slides[slideIndex].classList.add("active");
-</script>
-
-
 <!-- Segment Divider -->
 <div class="animation-section" style="margin-top: 50px; margin-bottom: 150px;">
-    <div style="text-align: center; margin: 20px 0;">
-  <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
-</div>
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
+  </div>
 </div>
 
 <!-- Video Section -->
-<div class="w3-container" style="padding: 50px 16px; text-align: center; background-color: ##000;">
+<div class="w3-container" style="padding: 50px 16px; text-align: center; background-color: #000;">
   <h3 style="font-size: 3em; color: #87f55e; font-weight: bold; margin-bottom: 140px;">DEMONSTRATION</h3>
   <div style="max-width: 800px; margin: auto;">
     <iframe 
@@ -383,35 +448,35 @@ h1, h2, h3, h4, h5, h6, .highlight {
 
 <!-- Segment Divider -->
 <div class="animation-section" style="margin-top: 150px; margin-bottom: 70px;">
-    <div style="text-align: center; margin: 20px 0;">
-  <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
-</div>
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
+  </div>
 </div>
 
 <!-- Music Genres Section -->
-
 <div class="genre-section">
- <h2 style="
-      font-size: 3em; 
-      font-weight: bold; 
-      text-transform: uppercase; 
-      color: #87f55e; 
-      margin-left: 10%; /* Adjust space from the left edge */
-      margin-bottom: 100px; /* Add space below the title */
-      position: relative;">
+  <h2 style="
+    font-size: 3em; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    color: #87f55e; 
+    margin-left: 10%; 
+    margin-bottom: 100px; 
+    position: relative;">
     <span style="display: block; line-height: 1.2;">EXPLORE</span>
     <span style="display: block; line-height: 1.2;">MUSIC GENRES</span>
-</h2>
+  </h2>
   <div class="genres-grid" style="
-      display: grid; 
-      grid-template-columns: repeat(4, 1fr); /* Four columns for images */
-      gap: 20px; /* Spacing between items */
-      padding-left: 10%; /* Space from the left */
-      padding-right: 5%; /* Optional for right alignment */">
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    padding-left: 10%; 
+    padding-right: 5%;">
+    <!-- Cards -->
     <!-- Card 1 -->
-   <div class="genre-card" style="position: relative;">
-      <img src="./image/pop.jpg" alt="Pop Music" style="width: 100%; height: auto; border-radius: 10px;">
-      <div class="genre-overlay" style="text-align: center;">
+    <div class="genre-card">
+      <img src="./image/pop.jpg" alt="Pop Music">
+      <div class="genre-overlay">
         <h3>Pop</h3>
         <p>Embrace the energy of Pop.</p>
         <a href="https://open.spotify.com/playlist/6vI3xbpdPYYJmicjBieLcr" target="_blank">Listen Now</a>
@@ -428,7 +493,7 @@ h1, h2, h3, h4, h5, h6, .highlight {
       </div>
     </div>
 
-    <!-- Add more cards (up to 8 genres) -->
+    <!-- Card 3 -->
     <div class="genre-card">
       <img src="./image/rock.jpg" alt="Rock Music">
       <div class="genre-overlay">
@@ -438,6 +503,7 @@ h1, h2, h3, h4, h5, h6, .highlight {
       </div>
     </div>
 
+    <!-- Card 4 -->
     <div class="genre-card">
       <img src="./image/jazz.jpg" alt="Jazz Music">
       <div class="genre-overlay">
@@ -446,7 +512,8 @@ h1, h2, h3, h4, h5, h6, .highlight {
         <a href="https://open.spotify.com/playlist/5rdgRwdMskt1IJKjNf0VWQ" target="_blank">Listen Now</a>
       </div>
     </div>
-    
+
+    <!-- Card 5 -->
     <div class="genre-card">
       <img src="./image/electronic.jpg" alt="Electronic Music">
       <div class="genre-overlay">
@@ -455,7 +522,8 @@ h1, h2, h3, h4, h5, h6, .highlight {
         <a href="https://open.spotify.com/playlist/3tRhisNDv5YZXPQltBbJNc" target="_blank">Listen Now</a>
       </div>
     </div>
-    
+
+    <!-- Card 6 -->
     <div class="genre-card">
       <img src="./image/classical.jpg" alt="Classical Music">
       <div class="genre-overlay">
@@ -464,35 +532,35 @@ h1, h2, h3, h4, h5, h6, .highlight {
         <a href="https://open.spotify.com/album/6halEDglV9MDWczbiT8LGT" target="_blank">Listen Now</a>
       </div>
     </div>
-    
+
+    <!-- Card 7 -->
     <div class="genre-card">
-      <img src="./image/hiphop.jpg" alt="Hiphop Music">
+      <img src="./image/hiphop.jpg" alt="Hip Hop Music">
       <div class="genre-overlay">
-        <h3>Hiphop</h3>
+        <h3>Hip Hop</h3>
         <p>Flow with Hip Hop vibes.</p>
         <a href="https://open.spotify.com/playlist/02okEcUQXHe2sS5ajE9XG0" target="_blank">Listen Now</a>
       </div>
     </div>
-    
+
+    <!-- Card 8 -->
     <div class="genre-card">
-      <img src="./image/world.jpg" alt="Hiphop Music">
+      <img src="./image/world.jpg" alt="World Music">
       <div class="genre-overlay">
         <h3>World</h3>
-        <p>Explore the richness of World.</p>
+        <p>Explore the richness of World music.</p>
         <a href="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF" target="_blank">Listen Now</a>
       </div>
     </div>
-    
   </div>
 </div>
 
 <!-- Segment Divider -->
 <div class="animation-section" style="margin-top: 100px; margin-bottom: 200px;">
-    <div style="text-align: center; margin: 20px 0;">
-  <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
+  <div style="text-align: center; margin: 20px 0;">
+    <img src="./image/segment.gif" alt="Segment Divider" style="width: 100%; max-height: 50px; object-fit: cover;">
+  </div>
 </div>
-</div>
-
 
 <!-- Main Team Section -->
 <div style="background-color: #87f55e; position: relative; min-height: 100vh; padding-bottom: 150px;">
@@ -509,49 +577,48 @@ h1, h2, h3, h4, h5, h6, .highlight {
   </div>
 
   <!-- Team Header -->
-
   <div style="
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      position: relative; 
-      z-index: 2; 
-      padding-top: var(--title-padding, 300px);">
-   <h1 style="font-family: 'YangLaen', sans-serif; font-size: 8em; color: #000;">
-    Our Team
-   </h1>
-
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    position: relative; 
+    z-index: 2; 
+    padding-top: var(--title-padding, 300px);">
+    <h1 style="font-family: 'YangLaen', sans-serif; font-size: 8em; color: #000;">
+      Our Team
+    </h1>
   </div>
 
   <!-- Team Content -->
   <div class="team-content" style="
-      display: flex; 
-      flex-wrap: wrap; 
-      justify-content: center; 
-      align-items: center; 
-      text-align: center; 
-      gap: 30px; 
-      position: relative; 
-      margin-top: 200px;">
-    <div class="member" style="display: inline-block; margin: 20px;">
-      <img src="./image/Congyu.jpg" alt="Congyu Yang" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
-      <h4 style="font-family: 'YangLaen', sans-serif; margin-top: 10px; color: #000;">Congyu Yang</h4>
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    gap: 30px; 
+    position: relative; 
+    margin-top: 200px;">
+    <!-- Team Members -->
+    <div class="member">
+      <img src="./image/Congyu.jpg" alt="Congyu Yang">
+      <h4 style="font-family: 'YangLaen', sans-serif; color: #000;">Congyu Yang</h4>
     </div>
-    <div class="member" style="display: inline-block; margin: 20px;">
-      <img src="./image/Senna.jpg" alt="Senna Kim" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
-      <h4 style="font-family: 'YangLaen', sans-serif;margin-top: 10px; color: #000;">Senna Kim</h4>
+    <div class="member">
+      <img src="./image/Senna.jpg" alt="Senna Kim">
+      <h4 style="font-family: 'YangLaen', sans-serif; color: #000;">Senna Kim</h4>
     </div>
-    <div class="member" style="display: inline-block; margin: 20px;">
-      <img src="./image/Wanlin.jpg" alt="Wanlin Wu" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
-      <h4 style="font-family: 'YangLaen', sans-serif;margin-top: 10px; color: #000;">Wanlin Wu</h4>
+    <div class="member">
+      <img src="./image/Wanlin.jpg" alt="Wanlin Wu">
+      <h4 style="font-family: 'YangLaen', sans-serif; color: #000;">Wanlin Wu</h4>
     </div>
-    <div class="member" style="display: inline-block; margin: 20px;">
-      <img src="./image/Yulin.jpg" alt="Yulin Liu" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
-      <h4 style="font-family: 'YangLaen', sans-serif;margin-top: 10px; color: #000;">Yulin Liu</h4>
+    <div class="member">
+      <img src="./image/Yulin.jpg" alt="Yulin Liu">
+      <h4 style="font-family: 'YangLaen', sans-serif; color: #000;">Yulin Liu</h4>
     </div>
-    <div class="member" style="display: inline-block; margin: 20px;">
-      <img src="./image/Zhengkun.jpg" alt="Zhengkun Ou" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;">
-      <h4 style="font-family: 'YangLaen', sans-serif;margin-top: 10px; color: #000;">Zhengkun Ou</h4>
+    <div class="member">
+      <img src="./image/Zhengkun.jpg" alt="Zhengkun Ou">
+      <h4 style="font-family: 'YangLaen', sans-serif; color: #000;">Zhengkun Ou</h4>
     </div>
   </div>
 
@@ -581,4 +648,28 @@ h1, h2, h3, h4, h5, h6, .highlight {
   </div>
 </footer>
 
+<!-- JavaScript for Slides -->
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".slide");
 
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove("active");
+      if (i === index) {
+        slide.classList.add("active");
+      }
+    });
+  }
+
+  function changeSlide(direction) {
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  // Initialize the slideshow
+  showSlide(currentSlide);
+</script>
+
+</body>
+</html>
