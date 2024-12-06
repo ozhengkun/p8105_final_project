@@ -14,7 +14,7 @@
 
 <title>Regression Analysis</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -37,6 +37,8 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -324,23 +326,34 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="data.html">Data</a>
+  <a href="Data.html">Data</a>
 </li>
 <li>
-  <a href="eda.html">EDA</a>
+  <a href="EDA.html">EDA</a>
 </li>
 <li>
   <a href="new_regression.html">Regression</a>
 </li>
 <li>
-  <a href="report.html">Report</a>
+  <a href="Report.html">Report</a>
 </li>
 <li>
   <a href="https://suzywwl.shinyapps.io/muisc/">Shiny App</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/ozhengkun/p8105_final_project">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="mailto:yl5829@cumc.columbia.edu">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -589,213 +602,213 @@ summary(model_all_input) |&gt;
 <tbody>
 <tr class="odd">
 <td align="left">(Intercept)</td>
-<td align="right">53.171</td>
-<td align="right">5.455</td>
-<td align="right">9.747</td>
+<td align="right">55.916</td>
+<td align="right">5.575</td>
+<td align="right">10.029</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">danceability</td>
-<td align="right">0.099</td>
+<td align="right">0.098</td>
 <td align="right">0.013</td>
-<td align="right">7.655</td>
+<td align="right">7.586</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">energy</td>
-<td align="right">-0.219</td>
+<td align="right">-0.230</td>
 <td align="right">0.014</td>
-<td align="right">-15.836</td>
+<td align="right">-16.529</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">loudness</td>
-<td align="right">1.253</td>
+<td align="right">1.305</td>
 <td align="right">0.076</td>
-<td align="right">16.588</td>
+<td align="right">17.223</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">acousticness</td>
-<td align="right">5.029</td>
-<td align="right">0.828</td>
-<td align="right">6.077</td>
+<td align="right">5.250</td>
+<td align="right">0.827</td>
+<td align="right">6.347</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">instrumentalness</td>
-<td align="right">-5.700</td>
-<td align="right">0.716</td>
-<td align="right">-7.957</td>
+<td align="right">-6.222</td>
+<td align="right">0.715</td>
+<td align="right">-8.708</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">valence</td>
-<td align="right">-1.334</td>
+<td align="right">-1.799</td>
 <td align="right">0.776</td>
-<td align="right">-1.719</td>
-<td align="right">0.086</td>
+<td align="right">-2.318</td>
+<td align="right">0.020</td>
 </tr>
 <tr class="even">
 <td align="left">tempo</td>
-<td align="right">0.027</td>
+<td align="right">0.031</td>
 <td align="right">0.006</td>
-<td align="right">4.754</td>
+<td align="right">5.310</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">liveness</td>
-<td align="right">-2.708</td>
-<td align="right">0.988</td>
-<td align="right">-2.741</td>
-<td align="right">0.006</td>
+<td align="right">-3.464</td>
+<td align="right">0.990</td>
+<td align="right">-3.498</td>
+<td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">duration_ms</td>
 <td align="right">0.000</td>
 <td align="right">0.000</td>
-<td align="right">-15.053</td>
+<td align="right">-15.268</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">speechinessmix of speech and music</td>
-<td align="right">1.628</td>
-<td align="right">5.101</td>
-<td align="right">0.319</td>
-<td align="right">0.750</td>
+<td align="right">0.927</td>
+<td align="right">5.228</td>
+<td align="right">0.177</td>
+<td align="right">0.859</td>
 </tr>
 <tr class="even">
 <td align="left">speechinessnon-speech-like music</td>
-<td align="right">2.825</td>
-<td align="right">5.070</td>
-<td align="right">0.557</td>
-<td align="right">0.577</td>
+<td align="right">1.897</td>
+<td align="right">5.196</td>
+<td align="right">0.365</td>
+<td align="right">0.715</td>
 </tr>
 <tr class="odd">
 <td align="left">song_age</td>
-<td align="right">-0.013</td>
+<td align="right">0.005</td>
 <td align="right">0.018</td>
-<td align="right">-0.749</td>
-<td align="right">0.454</td>
+<td align="right">0.298</td>
+<td align="right">0.766</td>
 </tr>
 <tr class="even">
 <td align="left">playlist_genrelatin</td>
-<td align="right">7.725</td>
+<td align="right">7.822</td>
 <td align="right">0.584</td>
-<td align="right">13.219</td>
+<td align="right">13.393</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">playlist_genrepop</td>
-<td align="right">12.614</td>
-<td align="right">0.545</td>
-<td align="right">23.127</td>
+<td align="right">12.468</td>
+<td align="right">0.544</td>
+<td align="right">22.925</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">playlist_genrer&amp;b</td>
-<td align="right">2.485</td>
-<td align="right">0.609</td>
-<td align="right">4.081</td>
+<td align="right">2.274</td>
+<td align="right">0.607</td>
+<td align="right">3.744</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">playlist_genrerap</td>
-<td align="right">7.881</td>
-<td align="right">0.555</td>
-<td align="right">14.200</td>
+<td align="right">7.469</td>
+<td align="right">0.553</td>
+<td align="right">13.498</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">playlist_genrerock</td>
-<td align="right">11.536</td>
-<td align="right">0.655</td>
-<td align="right">17.600</td>
+<td align="right">11.025</td>
+<td align="right">0.657</td>
+<td align="right">16.793</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">keyA#/Bb</td>
-<td align="right">0.630</td>
-<td align="right">0.759</td>
-<td align="right">0.829</td>
-<td align="right">0.407</td>
+<td align="right">0.359</td>
+<td align="right">0.761</td>
+<td align="right">0.472</td>
+<td align="right">0.637</td>
 </tr>
 <tr class="even">
 <td align="left">keyB</td>
-<td align="right">0.415</td>
-<td align="right">0.705</td>
-<td align="right">0.589</td>
-<td align="right">0.556</td>
+<td align="right">0.098</td>
+<td align="right">0.704</td>
+<td align="right">0.139</td>
+<td align="right">0.890</td>
 </tr>
 <tr class="odd">
 <td align="left">keyC</td>
-<td align="right">1.099</td>
-<td align="right">0.678</td>
-<td align="right">1.619</td>
-<td align="right">0.105</td>
+<td align="right">0.357</td>
+<td align="right">0.677</td>
+<td align="right">0.528</td>
+<td align="right">0.598</td>
 </tr>
 <tr class="even">
 <td align="left">keyC#/Db</td>
-<td align="right">0.674</td>
-<td align="right">0.661</td>
-<td align="right">1.020</td>
-<td align="right">0.308</td>
+<td align="right">0.344</td>
+<td align="right">0.658</td>
+<td align="right">0.522</td>
+<td align="right">0.601</td>
 </tr>
 <tr class="odd">
 <td align="left">keyD</td>
-<td align="right">0.169</td>
-<td align="right">0.710</td>
-<td align="right">0.239</td>
-<td align="right">0.811</td>
+<td align="right">-0.643</td>
+<td align="right">0.707</td>
+<td align="right">-0.909</td>
+<td align="right">0.363</td>
 </tr>
 <tr class="even">
 <td align="left">keyD#/Eb</td>
-<td align="right">-0.227</td>
-<td align="right">1.025</td>
-<td align="right">-0.221</td>
-<td align="right">0.825</td>
+<td align="right">-0.984</td>
+<td align="right">1.020</td>
+<td align="right">-0.965</td>
+<td align="right">0.335</td>
 </tr>
 <tr class="odd">
 <td align="left">keyE</td>
-<td align="right">-0.064</td>
-<td align="right">0.758</td>
-<td align="right">-0.084</td>
-<td align="right">0.933</td>
+<td align="right">-0.049</td>
+<td align="right">0.761</td>
+<td align="right">-0.065</td>
+<td align="right">0.949</td>
 </tr>
 <tr class="even">
 <td align="left">keyF</td>
-<td align="right">1.041</td>
-<td align="right">0.721</td>
-<td align="right">1.444</td>
-<td align="right">0.149</td>
+<td align="right">0.218</td>
+<td align="right">0.726</td>
+<td align="right">0.300</td>
+<td align="right">0.764</td>
 </tr>
 <tr class="odd">
 <td align="left">keyF#/Gb</td>
-<td align="right">1.286</td>
-<td align="right">0.728</td>
-<td align="right">1.767</td>
+<td align="right">0.056</td>
+<td align="right">0.725</td>
 <td align="right">0.077</td>
+<td align="right">0.939</td>
 </tr>
 <tr class="even">
 <td align="left">keyG</td>
-<td align="right">-0.023</td>
-<td align="right">0.683</td>
-<td align="right">-0.034</td>
-<td align="right">0.973</td>
+<td align="right">-1.040</td>
+<td align="right">0.682</td>
+<td align="right">-1.525</td>
+<td align="right">0.127</td>
 </tr>
 <tr class="odd">
 <td align="left">keyG#/Ab</td>
-<td align="right">2.168</td>
-<td align="right">0.744</td>
-<td align="right">2.915</td>
-<td align="right">0.004</td>
+<td align="right">1.732</td>
+<td align="right">0.741</td>
+<td align="right">2.339</td>
+<td align="right">0.019</td>
 </tr>
 <tr class="even">
 <td align="left">modeminor</td>
-<td align="right">-0.403</td>
+<td align="right">-0.467</td>
 <td align="right">0.321</td>
-<td align="right">-1.257</td>
-<td align="right">0.209</td>
+<td align="right">-1.453</td>
+<td align="right">0.146</td>
 </tr>
 </tbody>
 </table>
@@ -945,25 +958,25 @@ rf_predictions &lt;- predict(rf_model, test_data)
 
 rf_rmse &lt;- sqrt(mean((test_data$track_popularity - rf_predictions)^2))
 print(paste(&quot;Random Forest RMSE:&quot;, rf_rmse))</code></pre>
-<pre><code>## [1] &quot;Random Forest RMSE: 20.9518501618367&quot;</code></pre>
+<pre><code>## [1] &quot;Random Forest RMSE: 20.7488233366839&quot;</code></pre>
 <pre class="r"><code># 4. Variable Importance
 varImpPlot(rf_model, 
            main = &quot;Variable Importance Plot&quot;)</code></pre>
 <p><img src="new_regression_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code># Print importance scores
 importance(rf_model)</code></pre>
-<pre><code>##                            %IncMSE IncNodePurity
-## danceability              9.481791     1048279.3
-## energy                   12.202691     1091482.6
-## loudness                 17.804731     1155787.5
-## acousticness             10.869662     1107995.1
-## instrumentalness         16.482114      885908.5
-## liveness                  1.798666     1008024.0
-## valence                   5.821011     1043037.1
-## tempo                     9.400847     1105488.4
-## duration_ms               8.982859     1133586.0
-## track_album_release_year 60.246608     1383629.4
-## playlist_genre           38.564317      840119.3</code></pre>
+<pre><code>##                             %IncMSE IncNodePurity
+## danceability              7.0359078     1036625.4
+## energy                   15.5650051     1116890.1
+## loudness                 22.5607921     1161430.4
+## acousticness             12.0580944     1104477.8
+## instrumentalness         16.6570408      921120.0
+## liveness                  0.4613632     1020420.1
+## valence                   4.1120588     1027363.6
+## tempo                     8.7122872     1107690.4
+## duration_ms               9.4191328     1162106.5
+## track_album_release_year 45.2419922     1350523.0
+## playlist_genre           36.3283538      819380.2</code></pre>
 <pre class="r"><code># 5. Tune hyperparameters
 ctrl &lt;- trainControl(
     method = &quot;cv&quot;,
@@ -1184,7 +1197,7 @@ models_list =
 results &lt;- compare_models(models_list, test_data)
 results</code></pre>
 <pre><code>## all_parameter_model                 log                sqrt                 box 
-##            22.05778            42.48003            40.39172            29.09778</code></pre>
+##            22.03817            42.91236            40.81068            29.40023</code></pre>
 <p>Actually, based on RMSE, the original as the lowest RMSE. So we would
 keep the original model.</p>
 </div>

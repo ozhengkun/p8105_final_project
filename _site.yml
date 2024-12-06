@@ -11,9 +11,15 @@ navbar:
     - text: "Regression"
       href: new_regression.html
     - text: "Report"
-      href: report.html
+      href: Report.html
     - text: "Shiny App"
       href: https://suzywwl.shinyapps.io/muisc/
+  right:
+    - icon: fa-github
+      href: https://github.com/ozhengkun/p8105_final_project
+    - icon: fa-envelope
+      href: mailto:yl5829@cumc.columbia.edu
+
 output:
   html_document:
     toc: true
@@ -21,3 +27,4 @@ output:
     theme: journal
     code_folding: hide
     number_sections: false
+
