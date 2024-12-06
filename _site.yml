@@ -5,9 +5,9 @@ navbar:
   title: "Home"
   left:
     - text: "Data"
-      href: data.html
+      href: Data.html
     - text: "EDA"
-      href: eda.html
+      href: EDA.html
     - text: "Regression"
       href: new_regression.html
     - text: "Report"
