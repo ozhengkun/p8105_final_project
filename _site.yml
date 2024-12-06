@@ -9,7 +9,7 @@ navbar:
     - text: "EDA"
       href: eda.html
     - text: "Regression"
-      href: regression.html
+      href: new_regression.html
     - text: "Report"
       href: report.html
     - text: "Shiny App"
