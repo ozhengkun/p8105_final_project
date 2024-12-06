@@ -13,7 +13,7 @@ navbar:
     - text: "Report"
       href: report.html
     - text: "Shiny App"
-      href: "https://suzywwl.shinyapps.io/muisc/"
+      href: https://suzywwl.shinyapps.io/muisc/
 output:
   html_document:
     toc: true
