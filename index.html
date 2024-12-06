@@ -319,14 +319,23 @@ h1, h2, h3, h4, h5, h6, .highlight {
 <body>
 
 <!-- Navigation Bar -->
-<div class="w3-bar w3-white w3-card w3-top">
+<div class="w3-bar w3-white w3-card w3-top" style="z-index:10000;">
   <a href="index.html" class="w3-bar-item w3-button w3-wide">HOME</a>
   <a href="Data.html" class="w3-bar-item w3-button">Data</a>
   <a href="EDA.html" class="w3-bar-item w3-button">EDA</a>
   <a href="new_regression.html" class="w3-bar-item w3-button">Regression</a>
   <a href="Report.html" class="w3-bar-item w3-button">Report</a>
   <a href="https://suzywwl.shinyapps.io/muisc/" class="w3-bar-item w3-button">Shiny App</a>
+  
+  <!-- Add these two links on the right -->
+  <a href="mailto:yl5829@cumc.columbia.edu" class="w3-bar-item w3-button w3-right" style="padding:16px;">
+    <i class="fa fa-envelope" aria-hidden="true"></i>
+  </a>
+  <a href="https://github.com/ozhengkun/p8105_final_project/tree/main" target="_blank" class="w3-bar-item w3-button w3-right" style="padding:16px;">
+    <i class="fa fa-github" aria-hidden="true"></i>
+  </a>
 </div>
+
 
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
@@ -359,7 +368,7 @@ h1, h2, h3, h4, h5, h6, .highlight {
         <!-- Content Section -->
         <div class="about-text">
           <h3 class="about-heading">
-            DISCOVER THE  <br> BEAT
+            DISCOVER THE  <br> MOTIVATION
           </h3>
           <p class="about-paragraph">
             In a world where music connects billions, have you ever wondered what makes a song truly stand out? Is it the beat, the duration, or the genre? Through this project, we dive deep into Spotify’s vast database to uncover the hidden patterns behind a song’s success.
@@ -381,7 +390,7 @@ h1, h2, h3, h4, h5, h6, .highlight {
             DECODING  <br> TRENDS
           </h3>
           <p class="about-paragraph">
-Explore how music trends have evolved across decades. Learn about the factors like danceability, energy, and valence that contribute to hit songs. This project provides practical insights for creators to understand what makes a song resonate with listeners.          </p>
+Learn about the factors like danceability, energy, and valence that contribute to hit songs. This project provides practical insights for creators to understand what makes a song resonate with listeners.          </p>
         </div>
       </div>
     </div>
@@ -602,7 +611,7 @@ Every chart, graph, and layout in this project is crafted with precision to tell
       <img src="./image/Congyu.jpg" alt="Congyu Yang">
       <h4 style="font-family: 'YangLaen', sans-serif; color: #000;">Congyu Yang</h4>
     </div>
-    <div class="member">
+        <div class="member">
       <img src="./image/Senna.jpg" alt="Senna Kim">
       <h4 style="font-family: 'YangLaen', sans-serif; color: #000;">Senna Kim</h4>
     </div>
@@ -633,17 +642,10 @@ Every chart, graph, and layout in this project is crafted with precision to tell
   </div>
 </div>
 
+
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-64" style="position: relative; z-index: 3;">
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <div class="w3-xlarge w3-section">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-  </div>
 </footer>
 
 <!-- JavaScript for Slides -->
