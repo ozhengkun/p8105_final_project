@@ -356,6 +356,8 @@ ggplot(importance_df, aes(x = reorder(Feature, Importance), y = Importance)) +
          x = "Features",
          y = "Importance Score")
 ```
+
+
 The random forest model identified the following key features influencing song popularity:
 
 - **Track Album Release Year**: The most significant predictor, suggesting that newer songs may tend to have higher popularity scores.
