@@ -53,6 +53,7 @@ library(caret)
 library(gridExtra)
 library(MASS)
 library(glmnet)
+set.seed(123)
 ```
 
 ```{r}
@@ -223,7 +224,7 @@ The regression results revealed several significant predictors:
 
 - **Mode** (compared to Major): The minor mode shows no significant difference ($\beta = -0.421$, p = 0.190)
 
-Notably, speechiness (both mix and non-speech-like) and song age showed no significant effects on popularity (p > 0.05).
+Notably, speechiness (both mix and non-speech-like compare to entirely of spoken words) and song age showed no significant effects on popularity (p > 0.05).
 
 ```{r}
 par(mfrow = c(2,2))
