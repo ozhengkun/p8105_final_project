@@ -1,5 +1,5 @@
 ---
-title: "Shiny Dashboard"
+title: "Discover Songs in Spotify"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -14,6 +14,9 @@ library(p8105.datasets)
 library(plotly)
 library(shiny)
 library(shinythemes)
+library(rsconnect)
+library(DT)
+library(dplyr)
 
 fluidPage(theme = shinytheme("darkly"))
 ```
@@ -77,12 +80,21 @@ sum_data <- bind_rows(
   factor_data
 )
 
+
+
 ```
 
 
 
 Column {.sidebar}
 -----------------------------------------------------------------------
+
+Hi there, music lovers~
+
+Here you can explore how song popularity is distributed within a chosen musical genre, examine the distribution of a chosen musical feature within a selected genre and analyze song features for a specific artist.
+
+Try to select your favorite genre and your go-to singer to begin with!
+
 
 ```{r}
 genre_choices = 
@@ -134,7 +146,7 @@ textInput(
 ```
 
 
-Column {data-width=650}
+Column {data-width=250}
 -----------------------------------------------------------------------
 
 ### Popularity Distribution for Selected Genre
@@ -152,8 +164,63 @@ renderPlotly(
 
 ```
 
-Column {data-width=350}
+### Selected Factor Distribution for Selected Genre
+
+```{r}
+renderPlotly({
+  filtered_data <- sum_data |> 
+    filter(
+      genre == input[["genre_choice"]],
+      factor == input[["factor_choice"]]
+    )
+  
+  if (input[["factor_choice"]] %in% c("key", "mode", "speechiness")) {
+    plot_data <- filtered_data |> 
+      group_by(content) |> 
+      summarise(count = n(), .groups = "drop") 
+
+    plot_ly(
+      plot_data,
+      x = ~content,
+      y = ~count,
+      type = "bar",
+      name = "Count"
+    )
+  } else {
+    plot_ly(
+      filtered_data,
+      x = ~value,
+      type = "histogram",
+      name = "Value Distribution"
+    )
+  }
+})
+
+```
+
+Column {data-width=250}
 -----------------------------------------------------------------------
+
+### Most Popular Songs in the Selected Genre
+
+```{r}
+filtered_data <- reactive({
+    spotify_data |>
+      filter(genre == input[["genre_choice"]]) |>
+      arrange(desc(popularity))  
+  })
+
+renderDataTable({
+    datatable(
+      filtered_data(),
+      options = list(
+        pageLength = 10,   
+        autoWidth = TRUE   
+      ),
+      rownames = FALSE     
+    )
+  })
+```
 
 ### Song Features for the Selected Artist
 
@@ -172,26 +239,13 @@ renderPlotly(
       y = ~popularity,
       type = "scatter",
       mode = "markers",
+      colors="pal",
       marker = list(size = 10)
     ) 
 )
 
 ```
 
-### Selected Factor Distribution for Selected Genre
 
-```{r}
-renderPlotly(
-	sum_data  |> 
-	filter(
-	   genre == input[["genre_choice"]],
-	   factor ==input[["factor_choice"]]
-	) |> 
-		 plot_ly(
-      x = ~factor,
-      y = ~value,
-      type = "histogram",
-      nbinsx = 30)
-)
 
-```
+
