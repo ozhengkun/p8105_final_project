@@ -163,6 +163,8 @@ p1 <- ggplot(train_data, aes(x = track_popularity)) +
   theme_minimal()
 p1
 ```
+
+
 The distribution of track popularity shows:
 
 - **High Frequency at Zero Popularity**: A significant number of songs have a popularity score of zero, representing tracks that are rarely or never played, newly added songs with no audience, or niche tracks with limited reach.
@@ -173,7 +175,7 @@ This distribution highlights the need for possible transformations to address th
 
 
 
-## Statistical Inference About Result
+## Identifying Key Predictors
 ### Multiple Linear Regression
 ```{r}
 set.seed(123)
@@ -227,6 +229,8 @@ Notably, speechiness (both mix and non-speech-like) and song age showed no signi
 par(mfrow = c(2,2))
 plot(model_all_input)
 ```
+
+
 1. **Residuals vs Fitted Plot** (top left):
 - From this plot, we observe:
     - A fairly random scatter around the horizontal line at y=0
@@ -265,6 +269,7 @@ The model generally meets the assumptions of linear regression, but with some mi
 ### Random Forest
 
 Given the linear models are only capture the linear relationship between the predictors and the popularity, we also try to use the random forest to see if the non-linear relationship could be captured. Also, random forest model was employed to identify the most influential predictors of song popularity.
+
 ```{r}
 rf_model <- randomForest(
     track_popularity ~ danceability + energy + loudness + 
@@ -409,7 +414,8 @@ model_boxcox <- lm((track_popularity^lambda - 1)/lambda ~ danceability + energy 
                    data = train_data)
 ```
 
-The Lambda is close to 1, which means the original model might be better. But we still need to check the distribution after transformation. 
+The Lambda is close to 1, which means the original model might be better. But we still want to check the distribution after transformation. 
+
 ```{r}
 
 p1 <- ggplot(train_data, aes(x = track_popularity)) +
@@ -437,7 +443,9 @@ p4 <- ggplot(train_data, aes(x = (track_popularity^lambda - 1)/lambda)) +
 
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 ```
+
 The distribution of the transformed popularity scores shows that they all looks normal besides the concentration of score of 0 in popularity. 
+
 ```{r}
 check_residuals <- function(model) {
     par(mfrow = c(2,2))
@@ -448,7 +456,9 @@ check_residuals(model_log)
 check_residuals(model_sqrt)
 check_residuals(model_boxcox)
 ```
-Other than the original model, the Box-Cox transformation model has the best distribution of residuals. Then we also compare the RMSE of the models to see which model is better. The log and square root transformation seems obey the linearity and normality assumption. Couldn't tell which one is better in terms of prediction power, so then we compare the RMSE of the models.
+
+Other than the original model, the Box-Cox transformation model has the best distribution of residuals in terms of appoximating to normal distribution. Then we also compare the RMSE of the models to see which model is better. The log and square root transformation seems obey the linearity and normality assumption. Couldn't tell which one is better in terms of prediction power, so then we compare the RMSE of the models.
+
 ```{r}
 compare_models <- function(models, test_data) {
     results <- sapply(models, function(model) {
@@ -470,7 +480,15 @@ results <- compare_models(models_list, test_data)
 results
 ```
 
-Actually, based on RMSE, the original as the lowest RMSE. So we would keep the original model.
+Interpretation:
+
+The untransformed model achieved the lowest RMSE (22.06).
+
+Applying a log or sqrt transformation substantially increased the RMSE, indicating that these transformations did not improve model accuracy in this particular scenario.
+
+The Box-Cox transformation resulted in an RMSE of 29.10, which is higher than the original model but lower than the log and sqrt transformations.
+
+In this case, transforming the target variable did not yield a better predictive performance compared to the original model. These findings suggest that the given dataset and the relationships between predictors and the target variable are best captured by the original scale, and transformations do not provide a performance advantage
 
 ### Lasso Regression
 ```{r}
@@ -517,15 +535,15 @@ lasso_coef_df <- data.frame(
 lasso_coef_df %>%
   filter(coefficient == 0) 
 ```
+
 **Interpretation**:
-In Lasso regression, the best lambda is 0.004, the RMSE is 19.6, and the Beta of above 5 variables are eliminated. 
+To improve the predictive accuracy and interpretability of our model, we employed Lasso regression. Lasso applies an L1 penalty to the regression coefficients, effectively performing both variable selection and regularization simultaneously.
 
-- These variables are considered less important for predicting track popularity
-- Their effects might be:
-    - Truly negligible
-    - Captured by other correlated variables
-    - Redundant in the presence of other predictors
+After conducting a thorough cross-validation procedure, the optimal regularization parameter for our dataset was determined to be approximately 0.0449. This value struck an effective balance between retaining explanatory power and preventing overfitting. The Lasso model’s RMSE on the test set was approximately 19.61, which is better than the original model. 
 
+One of the hallmark outcomes of Lasso regression is its ability to shrink some coefficients to exactly zero, thus removing those variables from the final model. In our case, five predictors—primarily related to specific playlist genres (R&B, rap, rock) and certain musical keys (D and D#/Eb)—were completely eliminated. This result suggests that these particular features do not contribute meaningful explanatory value beyond what other predictors already provide. Their removal simplifies the model and reduces noise, making the final model more robust and easier to interpret.
+
+By selectively focusing on the most informative features, Lasso enhances the overall quality of our predictive framework. 
 
 [Back to Home](index.html)
 

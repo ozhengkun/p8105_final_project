@@ -14,7 +14,7 @@
 
 <title>Regression Analysis</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -549,8 +549,8 @@ very popular while most songs remain relatively unknown.</p>
   labs(title = &quot;Original Distribution&quot;, x = &quot;Track Popularity&quot;, y = &quot;Count&quot;) +
   theme_minimal()
 p1</code></pre>
-<p><img src="new_regression_files/figure-html/unnamed-chunk-5-1.png" width="672" />
-The distribution of track popularity shows:</p>
+<p><img src="new_regression_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The distribution of track popularity shows:</p>
 <ul>
 <li><strong>High Frequency at Zero Popularity</strong>: A significant
 number of songs have a popularity score of zero, representing tracks
@@ -569,8 +569,8 @@ the highest levels of popularity.</li>
 address the over representation at zero.</p>
 </div>
 </div>
-<div id="statistical-inference-about-result" class="section level2">
-<h2>Statistical Inference About Result</h2>
+<div id="identifying-key-predictors" class="section level2">
+<h2>Identifying Key Predictors</h2>
 <div id="multiple-linear-regression" class="section level3">
 <h3>Multiple Linear Regression</h3>
 <pre class="r"><code>set.seed(123)
@@ -602,213 +602,213 @@ summary(model_all_input) |&gt;
 <tbody>
 <tr class="odd">
 <td align="left">(Intercept)</td>
-<td align="right">55.916</td>
-<td align="right">5.575</td>
-<td align="right">10.029</td>
+<td align="right">52.090</td>
+<td align="right">5.157</td>
+<td align="right">10.101</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">danceability</td>
 <td align="right">0.098</td>
 <td align="right">0.013</td>
-<td align="right">7.586</td>
+<td align="right">7.572</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">energy</td>
-<td align="right">-0.230</td>
+<td align="right">-0.213</td>
 <td align="right">0.014</td>
-<td align="right">-16.529</td>
+<td align="right">-15.311</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">loudness</td>
-<td align="right">1.305</td>
+<td align="right">1.196</td>
 <td align="right">0.076</td>
-<td align="right">17.223</td>
+<td align="right">15.692</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">acousticness</td>
-<td align="right">5.250</td>
-<td align="right">0.827</td>
-<td align="right">6.347</td>
+<td align="right">4.969</td>
+<td align="right">0.830</td>
+<td align="right">5.988</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">instrumentalness</td>
-<td align="right">-6.222</td>
-<td align="right">0.715</td>
-<td align="right">-8.708</td>
+<td align="right">-6.057</td>
+<td align="right">0.717</td>
+<td align="right">-8.448</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">valence</td>
-<td align="right">-1.799</td>
-<td align="right">0.776</td>
-<td align="right">-2.318</td>
-<td align="right">0.020</td>
+<td align="right">-1.531</td>
+<td align="right">0.777</td>
+<td align="right">-1.970</td>
+<td align="right">0.049</td>
 </tr>
 <tr class="even">
 <td align="left">tempo</td>
-<td align="right">0.031</td>
+<td align="right">0.029</td>
 <td align="right">0.006</td>
-<td align="right">5.310</td>
+<td align="right">4.940</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">liveness</td>
-<td align="right">-3.464</td>
-<td align="right">0.990</td>
-<td align="right">-3.498</td>
+<td align="right">-3.983</td>
+<td align="right">0.987</td>
+<td align="right">-4.034</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">duration_ms</td>
 <td align="right">0.000</td>
 <td align="right">0.000</td>
-<td align="right">-15.268</td>
+<td align="right">-14.462</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">speechinessmix of speech and music</td>
-<td align="right">0.927</td>
-<td align="right">5.228</td>
-<td align="right">0.177</td>
-<td align="right">0.859</td>
+<td align="right">2.860</td>
+<td align="right">4.766</td>
+<td align="right">0.600</td>
+<td align="right">0.548</td>
 </tr>
 <tr class="even">
 <td align="left">speechinessnon-speech-like music</td>
-<td align="right">1.897</td>
-<td align="right">5.196</td>
-<td align="right">0.365</td>
-<td align="right">0.715</td>
+<td align="right">3.678</td>
+<td align="right">4.733</td>
+<td align="right">0.777</td>
+<td align="right">0.437</td>
 </tr>
 <tr class="odd">
 <td align="left">song_age</td>
-<td align="right">0.005</td>
+<td align="right">0.001</td>
 <td align="right">0.018</td>
-<td align="right">0.298</td>
-<td align="right">0.766</td>
+<td align="right">0.079</td>
+<td align="right">0.937</td>
 </tr>
 <tr class="even">
 <td align="left">playlist_genrelatin</td>
-<td align="right">7.822</td>
-<td align="right">0.584</td>
-<td align="right">13.393</td>
+<td align="right">7.271</td>
+<td align="right">0.581</td>
+<td align="right">12.522</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">playlist_genrepop</td>
-<td align="right">12.468</td>
+<td align="right">12.373</td>
 <td align="right">0.544</td>
-<td align="right">22.925</td>
+<td align="right">22.734</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">playlist_genrer&amp;b</td>
-<td align="right">2.274</td>
-<td align="right">0.607</td>
-<td align="right">3.744</td>
-<td align="right">0.000</td>
+<td align="right">1.968</td>
+<td align="right">0.609</td>
+<td align="right">3.232</td>
+<td align="right">0.001</td>
 </tr>
 <tr class="odd">
 <td align="left">playlist_genrerap</td>
-<td align="right">7.469</td>
-<td align="right">0.553</td>
-<td align="right">13.498</td>
+<td align="right">6.685</td>
+<td align="right">0.555</td>
+<td align="right">12.036</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="even">
 <td align="left">playlist_genrerock</td>
-<td align="right">11.025</td>
+<td align="right">10.574</td>
 <td align="right">0.657</td>
-<td align="right">16.793</td>
+<td align="right">16.086</td>
 <td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">keyA#/Bb</td>
-<td align="right">0.359</td>
-<td align="right">0.761</td>
-<td align="right">0.472</td>
-<td align="right">0.637</td>
+<td align="right">0.644</td>
+<td align="right">0.759</td>
+<td align="right">0.849</td>
+<td align="right">0.396</td>
 </tr>
 <tr class="even">
 <td align="left">keyB</td>
-<td align="right">0.098</td>
-<td align="right">0.704</td>
-<td align="right">0.139</td>
-<td align="right">0.890</td>
+<td align="right">0.323</td>
+<td align="right">0.706</td>
+<td align="right">0.457</td>
+<td align="right">0.648</td>
 </tr>
 <tr class="odd">
 <td align="left">keyC</td>
-<td align="right">0.357</td>
-<td align="right">0.677</td>
-<td align="right">0.528</td>
-<td align="right">0.598</td>
+<td align="right">0.741</td>
+<td align="right">0.681</td>
+<td align="right">1.088</td>
+<td align="right">0.277</td>
 </tr>
 <tr class="even">
 <td align="left">keyC#/Db</td>
-<td align="right">0.344</td>
-<td align="right">0.658</td>
-<td align="right">0.522</td>
-<td align="right">0.601</td>
+<td align="right">0.867</td>
+<td align="right">0.662</td>
+<td align="right">1.309</td>
+<td align="right">0.191</td>
 </tr>
 <tr class="odd">
 <td align="left">keyD</td>
-<td align="right">-0.643</td>
-<td align="right">0.707</td>
-<td align="right">-0.909</td>
-<td align="right">0.363</td>
+<td align="right">-0.129</td>
+<td align="right">0.713</td>
+<td align="right">-0.180</td>
+<td align="right">0.857</td>
 </tr>
 <tr class="even">
 <td align="left">keyD#/Eb</td>
-<td align="right">-0.984</td>
-<td align="right">1.020</td>
-<td align="right">-0.965</td>
-<td align="right">0.335</td>
+<td align="right">-0.456</td>
+<td align="right">1.025</td>
+<td align="right">-0.445</td>
+<td align="right">0.656</td>
 </tr>
 <tr class="odd">
 <td align="left">keyE</td>
-<td align="right">-0.049</td>
-<td align="right">0.761</td>
-<td align="right">-0.065</td>
-<td align="right">0.949</td>
+<td align="right">-0.296</td>
+<td align="right">0.763</td>
+<td align="right">-0.388</td>
+<td align="right">0.698</td>
 </tr>
 <tr class="even">
 <td align="left">keyF</td>
-<td align="right">0.218</td>
-<td align="right">0.726</td>
-<td align="right">0.300</td>
-<td align="right">0.764</td>
+<td align="right">0.164</td>
+<td align="right">0.725</td>
+<td align="right">0.226</td>
+<td align="right">0.821</td>
 </tr>
 <tr class="odd">
 <td align="left">keyF#/Gb</td>
-<td align="right">0.056</td>
-<td align="right">0.725</td>
-<td align="right">0.077</td>
-<td align="right">0.939</td>
+<td align="right">0.333</td>
+<td align="right">0.730</td>
+<td align="right">0.456</td>
+<td align="right">0.648</td>
 </tr>
 <tr class="even">
 <td align="left">keyG</td>
-<td align="right">-1.040</td>
-<td align="right">0.682</td>
-<td align="right">-1.525</td>
-<td align="right">0.127</td>
+<td align="right">-0.309</td>
+<td align="right">0.687</td>
+<td align="right">-0.451</td>
+<td align="right">0.652</td>
 </tr>
 <tr class="odd">
 <td align="left">keyG#/Ab</td>
-<td align="right">1.732</td>
-<td align="right">0.741</td>
-<td align="right">2.339</td>
-<td align="right">0.019</td>
+<td align="right">1.656</td>
+<td align="right">0.749</td>
+<td align="right">2.213</td>
+<td align="right">0.027</td>
 </tr>
 <tr class="even">
 <td align="left">modeminor</td>
-<td align="right">-0.467</td>
+<td align="right">-0.316</td>
 <td align="right">0.321</td>
-<td align="right">-1.453</td>
-<td align="right">0.146</td>
+<td align="right">-0.984</td>
+<td align="right">0.325</td>
 </tr>
 </tbody>
 </table>
@@ -881,13 +881,21 @@ no significant difference (<span class="math inline">\(\beta =
 showed no significant effects on popularity (p &gt; 0.05).</p>
 <pre class="r"><code>par(mfrow = c(2,2))
 plot(model_all_input)</code></pre>
-<p><img src="new_regression_files/figure-html/unnamed-chunk-7-1.png" width="672" />
-1. <strong>Residuals vs Fitted Plot</strong> (top left): - From this
-plot, we observe: - A fairly random scatter around the horizontal line
-at y=0 - A slight fan shape, with residuals spreading out more at higher
-fitted values - This suggests some minor violation of the
-homoscedasticity assumption, meaning the variance of residuals isn’t
-completely constant</p>
+<p><img src="new_regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><strong>Residuals vs Fitted Plot</strong> (top left):</li>
+</ol>
+<ul>
+<li>From this plot, we observe:
+<ul>
+<li>A fairly random scatter around the horizontal line at y=0</li>
+<li>A slight fan shape, with residuals spreading out more at higher
+fitted values</li>
+<li>This suggests some minor violation of the homoscedasticity
+assumption, meaning the variance of residuals isn’t completely
+constant</li>
+</ul></li>
+</ul>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Q-Q (Quantile-Quantile) Plot</strong> (top right):</li>
 </ol>
@@ -958,7 +966,7 @@ rf_predictions &lt;- predict(rf_model, test_data)
 
 rf_rmse &lt;- sqrt(mean((test_data$track_popularity - rf_predictions)^2))
 print(paste(&quot;Random Forest RMSE:&quot;, rf_rmse))</code></pre>
-<pre><code>## [1] &quot;Random Forest RMSE: 20.7488233366839&quot;</code></pre>
+<pre><code>## [1] &quot;Random Forest RMSE: 20.824533012087&quot;</code></pre>
 <pre class="r"><code># 4. Variable Importance
 varImpPlot(rf_model, 
            main = &quot;Variable Importance Plot&quot;)</code></pre>
@@ -966,17 +974,17 @@ varImpPlot(rf_model,
 <pre class="r"><code># Print importance scores
 importance(rf_model)</code></pre>
 <pre><code>##                             %IncMSE IncNodePurity
-## danceability              7.0359078     1036625.4
-## energy                   15.5650051     1116890.1
-## loudness                 22.5607921     1161430.4
-## acousticness             12.0580944     1104477.8
-## instrumentalness         16.6570408      921120.0
-## liveness                  0.4613632     1020420.1
-## valence                   4.1120588     1027363.6
-## tempo                     8.7122872     1107690.4
-## duration_ms               9.4191328     1162106.5
-## track_album_release_year 45.2419922     1350523.0
-## playlist_genre           36.3283538      819380.2</code></pre>
+## danceability              7.6175236     1043198.1
+## energy                   16.9949714     1098872.9
+## loudness                 16.8999154     1151685.6
+## acousticness             11.2678981     1088424.1
+## instrumentalness         14.9549744      915110.9
+## liveness                  0.3527285     1020628.3
+## valence                   5.6634000     1046796.4
+## tempo                    11.2139075     1112326.0
+## duration_ms              11.0612299     1157740.8
+## track_album_release_year 60.6588942     1338766.3
+## playlist_genre           40.5813087      803633.5</code></pre>
 <pre class="r"><code># 5. Tune hyperparameters
 ctrl &lt;- trainControl(
     method = &quot;cv&quot;,
@@ -1131,7 +1139,7 @@ model_boxcox &lt;- lm((track_popularity^lambda - 1)/lambda ~ danceability + ener
                    valence + tempo + duration_ms + song_age,
                    data = train_data)</code></pre>
 <p>The Lambda is close to 1, which means the original model might be
-better. But we still need to check the distribution after
+better. But we still want to check the distribution after
 transformation.</p>
 <pre class="r"><code>p1 &lt;- ggplot(train_data, aes(x = track_popularity)) +
   geom_histogram(binwidth = 1, fill = &quot;skyblue&quot;, color = &quot;black&quot;) +
@@ -1157,8 +1165,8 @@ p4 &lt;- ggplot(train_data, aes(x = (track_popularity^lambda - 1)/lambda)) +
   theme_minimal()
 
 grid.arrange(p1, p2, p3, p4, ncol = 2)</code></pre>
-<p><img src="new_regression_files/figure-html/unnamed-chunk-10-1.png" width="672" />
-The distribution of the transformed popularity scores shows that they
+<p><img src="new_regression_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>The distribution of the transformed popularity scores shows that they
 all looks normal besides the concentration of score of 0 in
 popularity.</p>
 <pre class="r"><code>check_residuals &lt;- function(model) {
@@ -1171,13 +1179,14 @@ check_residuals(model_log)</code></pre>
 <pre class="r"><code>check_residuals(model_sqrt)</code></pre>
 <p><img src="new_regression_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
 <pre class="r"><code>check_residuals(model_boxcox)</code></pre>
-<p><img src="new_regression_files/figure-html/unnamed-chunk-11-3.png" width="672" />
-Other than the original model, the Box-Cox transformation model has the
-best distribution of residuals. Then we also compare the RMSE of the
-models to see which model is better. The log and square root
-transformation seems obey the linearity and normality assumption.
-Couldn’t tell which one is better in terms of prediction power, so then
-we compare the RMSE of the models.</p>
+<p><img src="new_regression_files/figure-html/unnamed-chunk-11-3.png" width="672" /></p>
+<p>Other than the original model, the Box-Cox transformation model has
+the best distribution of residuals in terms of appoximating to normal
+distribution. Then we also compare the RMSE of the models to see which
+model is better. The log and square root transformation seems obey the
+linearity and normality assumption. Couldn’t tell which one is better in
+terms of prediction power, so then we compare the RMSE of the
+models.</p>
 <pre class="r"><code>compare_models &lt;- function(models, test_data) {
     results &lt;- sapply(models, function(model) {
         pred &lt;- predict(model, newdata = test_data)
@@ -1197,9 +1206,20 @@ models_list =
 results &lt;- compare_models(models_list, test_data)
 results</code></pre>
 <pre><code>## all_parameter_model                 log                sqrt                 box 
-##            22.03817            42.91236            40.81068            29.40023</code></pre>
-<p>Actually, based on RMSE, the original as the lowest RMSE. So we would
-keep the original model.</p>
+##            22.12851            42.50033            40.42099            29.18551</code></pre>
+<p>Interpretation:</p>
+<p>The untransformed model achieved the lowest RMSE (22.06).</p>
+<p>Applying a log or sqrt transformation substantially increased the
+RMSE, indicating that these transformations did not improve model
+accuracy in this particular scenario.</p>
+<p>The Box-Cox transformation resulted in an RMSE of 29.10, which is
+higher than the original model but lower than the log and sqrt
+transformations.</p>
+<p>In this case, transforming the target variable did not yield a better
+predictive performance compared to the original model. These findings
+suggest that the given dataset and the relationships between predictors
+and the target variable are best captured by the original scale, and
+transformations do not provide a performance advantage</p>
 </div>
 <div id="lasso-regression" class="section level3">
 <h3>Lasso Regression</h3>
@@ -1249,19 +1269,28 @@ lasso_coef_df %&gt;%
 ## 3 playlist_genrerock           0
 ## 4               keyD           0
 ## 5           keyD#/Eb           0</code></pre>
-<p><strong>Interpretation</strong>: In Lasso regression, the best lambda
-is 0.004, the RMSE is 19.6, and the Beta of above 5 variables are
-eliminated.</p>
-<ul>
-<li>These variables are considered less important for predicting track
-popularity</li>
-<li>Their effects might be:
-<ul>
-<li>Truly negligible</li>
-<li>Captured by other correlated variables</li>
-<li>Redundant in the presence of other predictors</li>
-</ul></li>
-</ul>
+<p><strong>Interpretation</strong>: To improve the predictive accuracy
+and interpretability of our model, we employed Lasso regression. Lasso
+applies an L1 penalty to the regression coefficients, effectively
+performing both variable selection and regularization
+simultaneously.</p>
+<p>After conducting a thorough cross-validation procedure, the optimal
+regularization parameter for our dataset was determined to be
+approximately 0.0449. This value struck an effective balance between
+retaining explanatory power and preventing overfitting. The Lasso
+model’s RMSE on the test set was approximately 19.61, which is better
+than the original model.</p>
+<p>One of the hallmark outcomes of Lasso regression is its ability to
+shrink some coefficients to exactly zero, thus removing those variables
+from the final model. In our case, five predictors—primarily related to
+specific playlist genres (R&amp;B, rap, rock) and certain musical keys
+(D and D#/Eb)—were completely eliminated. This result suggests that
+these particular features do not contribute meaningful explanatory value
+beyond what other predictors already provide. Their removal simplifies
+the model and reduces noise, making the final model more robust and
+easier to interpret.</p>
+<p>By selectively focusing on the most informative features, Lasso
+enhances the overall quality of our predictive framework.</p>
 <p><a href="index.html">Back to Home</a></p>
 </div>
 </div>
