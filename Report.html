@@ -13,7 +13,7 @@
 
 <title>Report</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -402,7 +402,6 @@ div.tocify {
 <h1>
 Motivations
 </h1>
-<p>
 <p>Music has always been a universal language, captivating audiences
 across the globe. In today’s streaming era, platforms such as Spotify
 and YouTube have revolutionized how we access and consume music,
@@ -413,18 +412,18 @@ href="https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs">“30
 Spotify Songs”</a> dataset from Kaggle provides a rich source of data,
 including various musical features such as danceability, key, energy,
 loudness, and popularity scores.</p>
-The primary motivation for this analysis is to uncover the relationship
-between various musical characteristics and song popularity. Using
-detailed data on features like danceability, energy, and loudness, we
-aim to explore how these elements contribute to the success of a song.
-While some features can show clear patterns with popularity, others may
-have subtler or more complex influences. By examining these variables
-collectively through regression analysis, we seek to identify the key
-factors that drive listener preferences and understand how different
-features interact to shape a song’s appeal. This analysis can offer
-valuable insights for musicians and industry professionals seeking to
-create music that is loved by a wide audience.
-</p>
+<p>The primary motivation for this analysis is to uncover the
+relationship between various musical characteristics and song
+popularity. Using detailed data on features like danceability, energy,
+and loudness, we aim to explore how these elements contribute to the
+success of a song. While some features can show clear patterns with
+popularity, others may have subtler or more complex influences. By
+examining these variables collectively through regression analysis, we
+seek to identify the key factors that drive listener preferences and
+understand how different features interact to shape a song’s appeal.
+This analysis can offer valuable insights for musicians and industry
+professionals seeking to create music that is loved by a wide
+audience.</p>
 </div>
 <div class="section">
 <h1>
@@ -433,16 +432,13 @@ Data
 <h2>
 Data Source
 </h2>
-<p>
-The dataset contains detailed audio features and metadata for 30,000
+<p>The dataset contains detailed audio features and metadata for 30,000
 songs. The dataset includes variables such as track popularity,
 danceability, energy, loudness, tempo, and more, along with their
-respective popularity score calculated by Spotify.
-</p>
+respective popularity score calculated by Spotify.</p>
 <h2>
 Data Cleaning
 </h2>
-<p>
 <p>The raw dataset comprised 32,833 songs with 23 variables. To prepare
 the data for analysis, several cleaning steps were performed. First,
 duplicate entries in the track_id column were removed to ensure
@@ -451,14 +447,13 @@ to the analysis were dropped to streamline the dataset.</p>
 <p>Since there were some missing data in the track_album_release_date
 column, a new column track_album_release_year was created to extract
 only the release year for consistency.</p>
-Relevant variables were converted to factors for proper categorization,
-and the danceability and energy variables were rescaled to a range of
-0-100 to enhance their impact on visualizations. Finally, the data was
-cleaned according to the data dictionary to ensure consistency and
-accuracy across the dataset. These cleaning steps ensured a consistent
-and reliable dataset for exploring the relationships between musical
-characteristics and popularity.
-</p>
+<p>Relevant variables were converted to factors for proper
+categorization, and the danceability and energy variables were rescaled
+to a range of 0-100 to enhance their impact on visualizations. Finally,
+the data was cleaned according to the data dictionary to ensure
+consistency and accuracy across the dataset. These cleaning steps
+ensured a consistent and reliable dataset for exploring the
+relationships between musical characteristics and popularity.</p>
 </div>
 <div class="section">
 <h1>
@@ -467,8 +462,7 @@ Exploratory Data Analysis
 <h2>
 Popularity Distribution
 </h2>
-<p>
-The distribution of track popularity shows that the data contains a
+<p>The distribution of track popularity shows that the data contains a
 significant number of songs with a popularity score of zero. This
 anomaly could arise from missing or incomplete data or limited reach.
 This can potentially obscure patterns by emphasizing songs with no
@@ -476,83 +470,70 @@ engagement. Since in the exploratory analysis, we aim to gain a clearer
 understanding of trends among tracks with actual listener engagement,
 songs with a zero popularity score were excluded. Out of the 6 genres,
 genres such as rap and pop were shown to be released the most during the
-data collection time frame, while latin and r&amp;b were released less.
-</p>
+data collection time frame, while latin and r&amp;b were released
+less.</p>
 <h3>
 Danceability
 </h3>
-<p>
-Danceability, a measure of how suitable a song is for dancing, is shown
-to have weak or no correlation with popularity. While danceable tracks
-are popular within certain genres, this attribute alone does not
-universally drive listener preference.
-</p>
+<p>Danceability, a measure of how suitable a song is for dancing, is
+shown to have weak or no correlation with popularity. While danceable
+tracks are popular within certain genres, this attribute alone does not
+universally drive listener preference.</p>
 <h3>
 Energy
 </h3>
-<p>
 <p>Energy levels reflect the intensity and impact of a song. Most tracks
 in the data have moderate to high energy levels, suggesting creators’
 preference for lively and engaging music.</p>
 <p>Genres like edm and pop tend to have the highest energy levels, while
 r&amp;b and latin exhibit broader variability.</p>
-Clustering analysis indicates that songs with extreme energy levels
+<p>Clustering analysis indicates that songs with extreme energy levels
 (high or low) are significantly more popular than those with moderate
-energy, with high energy songs being the most popular.
-</p>
+energy, with high energy songs being the most popular.</p>
 <h3>
 Key and Mode
 </h3>
-<p>
 <p>The key and mode of songs subtly contribute to the emotional tone.
 The distribution of key shows no dominant key, although C#/Db appears
 slightly more frequently, particularly in pop and r&amp;b.</p>
-Analysis of mode shows that more songs are composed in the major mode.
-Songs written in major mode show a slightly higher popularity than the
-minor mode, reinforcing its preference among listeners.
-</p>
+<p>Analysis of mode shows that more songs are composed in the major
+mode. Songs written in major mode show a slightly higher popularity than
+the minor mode, reinforcing its preference among listeners.</p>
 <h3>
 Loudness
 </h3>
-<p>
-Loudness is how intense a song feels to the listener. Higher loudness
+<p>Loudness is how intense a song feels to the listener. Higher loudness
 can create excitement, while lower loudness may contribute to more
 intimate or reflective tracks.Similar to danceability there is no strong
-correlation between loudness and popularity.
-</p>
+correlation between loudness and popularity.</p>
 <h3>
 Duration
 </h3>
-<p>
 <p>Song duration was analyzed by categorizing tracks into short, medium,
 and long durations based on the 25th and 75th percentiles.</p>
 <p>Shorter songs have a slightly higher median popularity, likely due to
 their digestibility and alignment with modern consumption habits.
 Long-duration songs show greater variability in popularity, suggesting
 they appeal more to niche audiences.</p>
-Genre-specific analysis reveals exceptions as rap and rock do not
-exhibit significant popularity differences across different durations.
-</p>
-<p>
-The EDA reveals that no single feature guarantees popularity. Instead,
-popularity arises from a combination of attributes tailored to audience
-preferences and genre characteristics. Pop and rap dominate due to their
-broad appeal, while features like high energy and danceability enhance
-engagement. However, nuanced factors such as key, mode, and duration
-also play important roles in shaping listener experiences. Future
-regression analysis will provide deeper insights into how these
-variables collectively drive song popularity.
-</p>
+<p>Genre-specific analysis reveals exceptions as rap and rock do not
+exhibit significant popularity differences across different
+durations.</p>
+<p>The EDA reveals that no single feature guarantees popularity.
+Instead, popularity arises from a combination of attributes tailored to
+audience preferences and genre characteristics. Pop and rap dominate due
+to their broad appeal, while features like high energy and danceability
+enhance engagement. However, nuanced factors such as key, mode, and
+duration also play important roles in shaping listener experiences.
+Future regression analysis will provide deeper insights into how these
+variables collectively drive song popularity.</p>
 </div>
 <div class="section">
 <h1>
 Regression analysis on Song Popularity
 </h1>
-<p>
-The regression analysis aimed to identify the relationships between song
-attributes and popularity by identifying key predictors, and exploring
-transformations and simplification.
-</p>
+<p>The regression analysis aimed to identify the relationships between
+song attributes and popularity by identifying key predictors, and
+exploring transformations and simplification.</p>
 <div>
 <h2>
 Identifying Key Predictors
@@ -560,57 +541,39 @@ Identifying Key Predictors
 <h4>
 Multiple Linear Regression
 </h4>
-<p>
-A multiple linear regression model was applied with song popularity as
-the dependent variable and various song attributes as predictors. The
+<p>A multiple linear regression model was applied with song popularity
+as the dependent variable and various song attributes as predictors. The
 predictors were selected based on data preprocessing and domain
 knowledge. The final model included features like danceability, energy,
 loudness, acousticness, and categorical variables such as playlist genre
-and key.
-</p>
+and key.</p>
 <h4>
 Key Results
 </h4>
-<p>
-<strong>Danceability</strong> (β=0.098, p&lt;0.001): Songs with higher
-danceability scores were more likely to be popular, with a small but
-significant positive effect.
-</p>
-<p>
-<strong>Energy</strong> (β=−0.230, p&lt;0.001): Higher energy levels
-were associated with lower popularity.
-</p>
-<p>
-<strong>Loudness</strong> (β=1.305, p&lt;0.001): Louder songs were more
-likely to be more popular.
-</p>
-<p>
-<strong>Acousticness</strong> (β=5.250, p&lt;0.001): More acoustic songs
-were more likely to be more popular.
-</p>
-<p>
-<strong>Instrumentalness</strong> (β=−6.222, p&lt;0.001): Instrumental
-tracks are less likely to be popular.
-</p>
+<p><strong>Danceability</strong> (β=0.098, p&lt;0.001): Songs with
+higher danceability scores were more likely to be popular, with a small
+but significant positive effect.</p>
+<p><strong>Energy</strong> (β=−0.230, p&lt;0.001): Higher energy levels
+were associated with lower popularity.</p>
+<p><strong>Loudness</strong> (β=1.305, p&lt;0.001): Louder songs were
+more likely to be more popular.</p>
+<p><strong>Acousticness</strong> (β=5.250, p&lt;0.001): More acoustic
+songs were more likely to be more popular.</p>
+<p><strong>Instrumentalness</strong> (β=−6.222, p&lt;0.001):
+Instrumental tracks are less likely to be popular.</p>
 <h4>
 Playlist Genre
 </h4>
-<p>
-<strong>Pop</strong> (β=12.468, p&lt;0.001) and <strong>Rock</strong>
+<p><strong>Pop</strong> (β=12.468, p&lt;0.001) and <strong>Rock</strong>
 (β=11.025, p&lt;0.001) genres showed the strongest positive associations
-with popularity.
-</p>
-<p>
-Other genres such as <strong>Latin</strong> (β=7.822, p&lt;0.001) and
+with popularity.</p>
+<p>Other genres such as <strong>Latin</strong> (β=7.822, p&lt;0.001) and
 <strong>Rap</strong> (β=7.469, p&lt;0.001) also had notable positive
-effects.
-</p>
+effects.</p>
 <h4>
 Model Diagnostics
 </h4>
-<p>
-Minor violations of linear regression assumptions were observed:
-</p>
+<p>Minor violations of linear regression assumptions were observed:</p>
 <ul>
 <li>
 <strong>Homoscedasticity:</strong> Some heteroscedasticity was observed
@@ -625,21 +588,16 @@ slight deviations at the tails.
 leverage, suggesting potential influence on model estimates.
 </li>
 </ul>
-<p>
-Despite these minor issues, the linear regression model captured
-significant linear relationships between song attributes and popularity.
-</p>
+<p>Despite these minor issues, the linear regression model captured
+significant linear relationships between song attributes and
+popularity.</p>
 <h4>
 Random Forest Analysis
 </h4>
-<p>
-To account for potential non-linear relationships, a random forest model
-was used. The model achieved an RMSE of 20.75, suggesting competitive
-performance compared to the linear model.
-</p>
-<p>
-Key findings include:
-</p>
+<p>To account for potential non-linear relationships, a random forest
+model was used. The model achieved an RMSE of 20.75, suggesting
+competitive performance compared to the linear model.</p>
+<p>Key findings include:</p>
 <ul>
 <li>
 <strong>Track Release Year:</strong> The most influential predictor,
@@ -658,11 +616,9 @@ consistent with the linear model.
 tracks, aligning with regression results.
 </li>
 </ul>
-<p>
-The random forest model provided additional insights into non-linear
+<p>The random forest model provided additional insights into non-linear
 relationships and confirmed the importance of key predictors identified
-in the linear regression model.
-</p>
+in the linear regression model.</p>
 </div>
 <div>
 <h2>
@@ -671,10 +627,9 @@ Exploring Transformations and Simplification
 <h4>
 Distribution Transformation
 </h4>
-<p>
-To improve predictive power and address potential heteroscedasticity,
-several methods were applied to transform the track popularity variable:
-</p>
+<p>To improve predictive power and address potential heteroscedasticity,
+several methods were applied to transform the track popularity
+variable:</p>
 <ul>
 <li>
 <strong>Log Transformation:</strong> Reduced skewness and stabilized
@@ -689,14 +644,10 @@ skewness, providing a balanced transformation.
 homoscedasticity.
 </li>
 </ul>
-<p>
-These transformations were evaluated to determine their effect on
+<p>These transformations were evaluated to determine their effect on
 predictive accuracy and overall model performance. The lambda was close
-to 1, suggesting that the original model might be better.
-</p>
-<p>
-From RMSE scores:
-</p>
+to 1, suggesting that the original model might be better.</p>
+<p>From RMSE scores:</p>
 <ul>
 <li>
 The untransformed model achieved the lowest RMSE (22.06).
@@ -709,22 +660,16 @@ Box-Cox transformation resulted in an RMSE of 29.10, higher than the
 original model but lower than the log and square root transformations.
 </li>
 </ul>
-<p>
-These findings suggest the original scale best captures the
+<p>These findings suggest the original scale best captures the
 relationships, and transformations do not provide a performance
-advantage.
-</p>
+advantage.</p>
 <h2>
 Lasso Regression
 </h2>
-<p>
-To improve the predictive accuracy and interpretability, Lasso
+<p>To improve the predictive accuracy and interpretability, Lasso
 regression was employed. By applying an L1 penalty, Lasso performed both
-variable selection and regularization.
-</p>
-<p>
-Key outcomes:
-</p>
+variable selection and regularization.</p>
+<p>Key outcomes:</p>
 <ul>
 <li>
 Optimal regularization parameter: 0.0449, balancing explanatory power
@@ -739,11 +684,9 @@ Five predictors, primarily related to playlist genres (R&amp;B, rap,
 rock) and musical keys (D and D#/Eb), were eliminated.
 </li>
 </ul>
-<p>
-This simplification suggests these variables do not contribute
+<p>This simplification suggests these variables do not contribute
 meaningful explanatory value. By focusing on the most informative
-features, Lasso enhances the predictive framework’s quality.
-</p>
+features, Lasso enhances the predictive framework’s quality.</p>
 </div>
 </div>
 <div class="section">
@@ -753,26 +696,24 @@ Discussion
 <h4>
 Conclusion
 </h4>
-<p>
-This analysis explored the relationship between musical characteristics
-and song popularity using the “30,000 Spotify Songs” dataset. From the
-exploratory data analysis and regression analysis, it was revealed that
-attributes such as danceability, energy, loudness, acousticness, and
-instrumentalness significantly influenced a song’s popularity.
-Danceability, loudness, and acousticness had positive relationships with
-popularity, while energy and instrumentalness exhibited negative
-correlations. Genre played a significant role, with pop and rock tracks
-being the most impactful, with rap and Latin genres also having notable
-positive effects. Temporal features, or the track release year were
-influential, reinforcing that newer music determines popularity
-trends.Random forest analysis complemented the linear model to reaffirm
-the importance of attributes like playlist genre, loudness, and energy.
-</p>
+<p>This analysis explored the relationship between musical
+characteristics and song popularity using the “30,000 Spotify Songs”
+dataset. From the exploratory data analysis and regression analysis, it
+was revealed that attributes such as danceability, energy, loudness,
+acousticness, and instrumentalness significantly influenced a song’s
+popularity. Danceability, loudness, and acousticness had positive
+relationships with popularity, while energy and instrumentalness
+exhibited negative correlations. Genre played a significant role, with
+pop and rock tracks being the most impactful, with rap and Latin genres
+also having notable positive effects. Temporal features, or the track
+release year were influential, reinforcing that newer music determines
+popularity trends.Random forest analysis complemented the linear model
+to reaffirm the importance of attributes like playlist genre, loudness,
+and energy.</p>
 <h4>
 Limitations
 </h4>
-<p>
-Despite these findings, the study had several limitations. First, the
+<p>Despite these findings, the study had several limitations. First, the
 dataset contained a significant number of songs with zero popularity
 scores, which likely skewed results. This could indicate underlying
 biases in the data collection process or limited engagement metrics.
@@ -780,12 +721,10 @@ Additionally, minor violations of linear regression assumptions, such as
 heteroscedasticity may indicate areas where modeling accuracy could be
 improved. Finally, the dataset emphasized Western musical genres and
 streaming data, which limits the generalizability of findings to other
-cultural contexts.
-</p>
+cultural contexts.</p>
 <h4>
 Next Steps
 </h4>
-<p>
 <p>Future research can address these limitations by refining the dataset
 to include only tracks with actual listener engagement and include more
 diverse genres and cultural influences. Advanced modeling techniques
@@ -795,7 +734,6 @@ efforts would allow a more nuanced analysis. By addressing these
 limitations and expanding the analysis, future work can provide even
 more comprehensive insights into the dynamics of music popularity in the
 streaming era.</p>
-</p>
 </div>
 <p><a href="index.html">Back to Home</a></p>
 
