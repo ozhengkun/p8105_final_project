@@ -262,8 +262,11 @@ plot(model_all_input)
 **Overall Assessment**:
 
 The model generally meets the assumptions of linear regression, but with some minor violations:
+
 - The main concern is some heteroscedasticity in the residuals
+
 - The normality assumption is reasonably met
+
 - There are a few potentially influential observations that might warrant further investigation
 
 
