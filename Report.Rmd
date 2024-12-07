@@ -113,21 +113,41 @@ A multiple linear regression model was applied with song popularity as the depen
 
 <h4>Key Results</h4>
 
-<strong>Danceability</strong> (β=0.098, p\<0.001): Songs with higher danceability scores were more likely to be popular, with a small but significant positive effect.
+<strong>Danceability</strong> (β = 0.096, p &lt; 0.001): Songs with higher danceability scores were more likely to be popular, with a small but significant positive effect.<br>
 
-<strong>Energy</strong> (β=−0.230, p\<0.001): Higher energy levels were associated with lower popularity.
+<strong>Energy</strong> (β = -0.222, p &lt; 0.001): Higher energy levels were associated with lower popularity.<br>
 
-<strong>Loudness</strong> (β=1.305, p\<0.001): Louder songs were more likely to be more popular.
+<strong>Loudness</strong> (β = 1.268, p &lt; 0.001): Louder songs were more likely to be more popular.<br>
 
-<strong>Acousticness</strong> (β=5.250, p\<0.001): More acoustic songs were more likely to be more popular.
+<strong>Acousticness</strong> (β = 4.503, p &lt; 0.001): More acoustic songs were more likely to be more popular.<br>
 
-<strong>Instrumentalness</strong> (β=−6.222, p\<0.001): Instrumental tracks are less likely to be popular.
+<strong>Instrumentalness</strong> (β = -5.935, p &lt; 0.001): Instrumental tracks are less likely to be popular.<br>
+
+<strong>Valence</strong> (β = -1.793, p = 0.021): Tracks with lower valence (less "happy") tend to be more popular.<br>
+
+<strong>Tempo</strong> (β = 0.028, p &lt; 0.001): Faster tracks are slightly more popular.<br>
+
+<strong>Liveness</strong> (β = -3.261, p = 0.001): Tracks with less "live" characteristics tend to be more popular.<br>
+
+<strong>Duration_ms</strong> (β = 0.000, p &lt; 0.001): Shorter tracks tend to be more popular.<br>
 
 <h4>Playlist Genre</h4>
 
-<strong>Pop</strong> (β=12.468, p\<0.001) and <strong>Rock</strong> (β=11.025, p\<0.001) genres showed the strongest positive associations with popularity.
+<strong>Pop</strong> (β = 12.402, p &lt; 0.001) and <strong>Rock</strong> (β = 11.328, p &lt; 0.001) genres showed the strongest positive associations with popularity.<br>
 
-Other genres such as <strong>Latin</strong> (β=7.822, p\<0.001) and <strong>Rap</strong> (β=7.469, p\<0.001) also had notable positive effects.
+Other genres such as <strong>Latin</strong> (β = 7.518, p &lt; 0.001) and <strong>Rap</strong> (β = 7.330, p &lt; 0.001) also had notable positive effects.<br>
+
+<strong>R&amp;B</strong> (β = 2.739, p &lt; 0.001) showed a smaller but significant effect.<br>
+
+<h4>Key</h4>
+
+Most keys don’t show significant differences, except:<br>
+- <strong>G#/Ab</strong> (β = 2.340, p = 0.002) shows a significant positive effect.<br>
+- <strong>C</strong> (β = 1.334, p = 0.050) is marginally significant.<br>
+
+<h4>Mode</h4>
+
+The minor mode shows no significant difference (β = -0.421, p = 0.190).<br>
 
 <h4>Model Diagnostics</h4>
 
