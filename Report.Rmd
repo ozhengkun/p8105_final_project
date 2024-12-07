@@ -22,7 +22,7 @@ output:
     font-weight: bold;
   }
 
-  p { font-size: 13px; }
+  p { font-size: 1.1em; }
 
   .section {
     background-color: white;

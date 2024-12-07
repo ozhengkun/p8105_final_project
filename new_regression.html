@@ -10,7 +10,6 @@
 
 
 
-<meta name="date" content="2024-12-04" />
 
 <title>Regression Analysis</title>
 
@@ -372,7 +371,6 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Regression Analysis</h1>
-<h4 class="date">2024-12-04</h4>
 
 </div>
 
@@ -971,7 +969,7 @@ rf_predictions &lt;- predict(rf_model, test_data)
 
 rf_rmse &lt;- sqrt(mean((test_data$track_popularity - rf_predictions)^2))
 print(paste(&quot;Random Forest RMSE:&quot;, rf_rmse))</code></pre>
-<pre><code>## [1] &quot;Random Forest RMSE: 20.5951091531994&quot;</code></pre>
+<pre><code>## [1] &quot;Random Forest RMSE: 20.6052254749393&quot;</code></pre>
 <pre class="r"><code># 4. Variable Importance
 varImpPlot(rf_model, 
            main = &quot;Variable Importance Plot&quot;)</code></pre>
@@ -979,17 +977,17 @@ varImpPlot(rf_model,
 <pre class="r"><code># Print importance scores
 importance(rf_model)</code></pre>
 <pre><code>##                             %IncMSE IncNodePurity
-## danceability              9.0245303     1056463.0
-## energy                   15.7073539     1118520.7
-## loudness                 17.4784160     1164796.3
-## acousticness              7.3118520     1086754.1
-## instrumentalness         14.4339807      917047.2
-## liveness                 -0.4149554     1018283.4
-## valence                   4.4372657     1040046.9
-## tempo                    10.4243748     1091421.5
-## duration_ms               7.3359709     1172122.7
-## track_album_release_year 48.7011564     1331249.0
-## playlist_genre           36.9329569      808375.7</code></pre>
+## danceability             10.4492847     1057047.7
+## energy                   14.3041453     1110609.1
+## loudness                 20.2466955     1169506.2
+## acousticness              9.7024006     1096290.6
+## instrumentalness         16.2251299      902602.3
+## liveness                  0.1406055     1020556.0
+## valence                   5.3781718     1028819.0
+## tempo                     8.0624654     1093822.5
+## duration_ms               9.7205121     1169534.9
+## track_album_release_year 52.2011627     1334867.8
+## playlist_genre           41.5182700      810898.4</code></pre>
 <pre class="r"><code># 5. Tune hyperparameters
 ctrl &lt;- trainControl(
     method = &quot;cv&quot;,

@@ -1,5 +1,5 @@
 ---
-title:
+title: "EDA"
 output: 
   html_document:
     toc: true
@@ -61,7 +61,6 @@ scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
 
-# EDA
 
 Our report aims at analyzing 30,000 songs on Spotify to understand what musical features contributes to songs' `popularity`. The data, obtained from Kaggle, includes attributes such as `danceability`, `energy`, `genre`, `key`, `loudness`, `mode`, `duartion` etc. \
 By analyzing these features, we can uncover patterns that help explain what makes certain songs more appealing to listeners.
@@ -98,7 +97,7 @@ The following sections provide insights into the relationships between musical f
 
 We first start with looking at the distribution of our main interest: 
 
-## Popularity
+# Popularity
 
 ```{r}
 spotify_df %>%
@@ -120,7 +119,7 @@ spotify_df <- spotify_df %>%
 ```
 
 
-## Genre
+# Genre
 
 ```{r}
 spotify_df %>% group_by(playlist_genre) %>% 
@@ -148,7 +147,7 @@ The boxplot above shows the distribution of songs popularity by genre, reflectin
 
 Combining these results with the genre frequency table, we see an interesting trend: genres like pop and rap are not only favored by listeners but also heavily focused on by songwriters and performers. This creates a positive cycle, where the popularity of these genres encourages more artists to produce in these styles, leading to higher quality content and more engagement from listeners.
 
-## Dancibility
+# Dancibility
 
 Danceability has always played a key role in making songs infectious: from disco in the 70s to today’s EDM hits. The focus on danceable music reflects the desire to create interactive experiences for listeners, whether on the dance floor or during a solo jam session at home. Genres like pop and rap, with strong beats and rhythmic hooks, naturally fit this goal, fostering an energetic connection between creators and audiences and explaining its popularity these days.
 
@@ -198,7 +197,7 @@ The trend lines indicate that, among genres, there is no strong relationship bet
 This tells us that while creating danceable music is important for engagement, other attributes also play significant roles in determining overall popularity.
 
 
-## Energy
+# Energy
 
 Energy played a crucial role in making music impactful and memorable.\ High-energy tracks capture listeners by creating an immerse and electrifying experience. Genres like pop and edm naturally lean into this energy, often relying on strong beats and dynamic production to connect with audiences. Such energetic tracks are popular because they bring excitement and intensity, making them perfect for settings like parties, workouts, or any time listeners want to feel a burst of energy.
 
@@ -233,7 +232,7 @@ spotify_df %>%
 The distribution of energy follows a similar trend to danceability, with most songs featuring moderate to high energy. This indicates a preference among creators for producing high-energy music, which is often associated with excitement and liveliness. \
 The violin plot by genre emphasizes this pattern. EDM tends to have the highest energy level but also have some songs with relatively low energy level. Genres like rock, latin and pop tend to have a broader spread of energy levels. And r&b tends to have a lower energy levels. 
 
-### Which range of Energy does audiences feel most comfortable with?
+## Which range of Energy does audiences feel most comfortable with?
 
 ```{r}
 energy_popularity <- spotify_df %>% 
@@ -256,7 +255,7 @@ By applying the k-means clustering strategy, we analyzed how energy levels relat
 Interestingly, the median energy group appears to have the lowest popularity, suggesting that moderate energy songs may not resonate with listeners that much compared to either high or low energy tracks. High-energy songs tend to be the most popular for audiences, which inferred that energetic and engaging songs are more in line with public preference.
 
 
-## Key
+# Key
 
 Unlike danceability and energy, key is a less obvious factor when it comes to making music appealing. The key of a song refers to the tonal center and the set of notes that define its musical scale.
 
@@ -309,7 +308,7 @@ From this plot, we can see that there is no significant variation in popularity 
 
 We can also conclude that key alone may not be a major driver of a song's popularity, but it does contribute to the subtle emotional qualities that listeners appreciate.
 
-## Mode
+# Mode
 
 Similar to key, mode is not directly perceptible to most listeners, it is more likely to be the choice of the songwriters and producers. But it significantly influences the emotional tone. \
 Major modes are often associated with happy, upbeat feelings, whereas minor modes can evoke more somber, introspective emotions.
@@ -330,7 +329,7 @@ Both of these plots suggest that major key songs are preferred by both songwrite
 Songwriters tend to create more songs in major mode, likely because it conveys an upbeat and bright tone that resonates broadly. And listeners also favor this uplifting quality, giving major-mode tracks a slightly higher boxplot than the minor key.
 
 
-## Loudness
+# Loudness
 
 Loudness is how intense a song feels to the listener. Higher loudness can create excitement, while lower loudness may contribute to more intimate or reflective tracks. 
 
@@ -380,7 +379,7 @@ However, this scatterplot makes it difficult to draw definitive conclusions abou
 
 
 
-## Duration
+# Duration
 
 In today's fast-paced society, listeners may have limited patience for longer songs. To explore this, we categorized song durations into three groups: short, medium, and long. By analyzing these categories, we can assess whether longer-duration songs are less popular, reflecting changing preferences where concise, easily consumable content is often favored. 
 
